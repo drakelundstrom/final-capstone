@@ -34,7 +34,7 @@ tour_complete bit Default 0,
 CONSTRAINT  tournaments_tournament_id  PRIMARY KEY (tournament_id),
 );
 
-CREATE TABLE sport (
+CREATE TABLE sports (
 sport_id int IDENTITY NOT NULL,
 sport_name varchar(50) NOT NULL,
 CONSTRAINT  sport_sport_id  PRIMARY KEY (sport_id),
@@ -56,13 +56,14 @@ SET IDENTITY_INSERT tournaments ON
 INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id ) VALUES (1, 2, 'soccer is a sport', 1);
 INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id ) VALUES (2, 2, 'baseball is a sport', 2);
 INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id ) VALUES (3, 2, 'basketball is a sport', 3);
+INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id ) VALUES (4, 2, 'soccer part 2', 1);
 SET IDENTITY_INSERT tournaments OFF
 
-SET IDENTITY_INSERT sport ON
-INSERT INTO sport (sport_id ,sport_name ) VALUES (1, 'soccer');
-INSERT INTO sport (sport_id ,sport_name ) VALUES (2, 'baseball');
-INSERT INTO sport (sport_id ,sport_name ) VALUES (3, 'basketball');
-SET IDENTITY_INSERT sport OFF
+SET IDENTITY_INSERT sports ON
+INSERT INTO sports (sport_id ,sport_name ) VALUES (1, 'soccer');
+INSERT INTO sports (sport_id ,sport_name ) VALUES (2, 'baseball');
+INSERT INTO sports (sport_id ,sport_name ) VALUES (3, 'basketball');
+SET IDENTITY_INSERT sports OFF
 
 
 INSERT INTO participants (tournament_id , user_id ) VALUES (1, 1);
@@ -73,6 +74,10 @@ INSERT INTO participants (tournament_id , user_id ) VALUES (3, 1);
 GO
 
 ALTER TABLE tournaments
+ADD FOREIGN KEY (sport_id)
+REFERENCES sports(sport_id);
+
+ALTER TABLE tournaments
 ADD FOREIGN KEY (creator_id)
 REFERENCES users(user_id);
 
@@ -80,7 +85,7 @@ ALTER TABLE participants
 ADD FOREIGN KEY (user_id)
 REFERENCES users(user_id);
 
-ALTER TABLE tournaments
+ALTER TABLE participants
 ADD FOREIGN KEY (tournament_id)
 REFERENCES tournaments(tournament_id);
 
@@ -98,8 +103,8 @@ SELECT *
 FROM participants;
 
 SELECT * 
-FROM sport;
+FROM sports;
 
 SELECT * FROM tournaments t
 JOIN users u ON u.user_id = t.creator_id
-JOIN sport s ON s.sport_id = t.sport_id
+JOIN sports s ON s.sport_id = t.sport_id
