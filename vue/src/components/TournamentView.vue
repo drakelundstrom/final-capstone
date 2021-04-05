@@ -11,12 +11,14 @@
           <th scope="col">Creator Username</th>
           <th scope="col">Status</th>
           <!-- add num of participants -->
-          
         </tr>
       </thead>
 
       <tbody>
-        <tr v-for="(tournament, index) in tournaments" v-bind:key="index">
+        <tr
+          v-for="(tournament, index) in this.$store.state.tournaments"
+          v-bind:key="index"
+        >
           <td>{{ tournament.tournament_name }}</td>
           <td>{{ tournament.tournament_id }}</td>
           <td>{{ tournament.sport }}</td>
@@ -32,29 +34,35 @@
 import tournamentService from "../services/TournamentService.js";
 
 export default {
-name: "TournamentView",
+  name: "TournamentView",
 
-data(){
+  data() {
+    return {};
+  },
 
-    return{
-        message : "",
-    };
-},
-
-created(){
-
-    this.message = "";
-
-    tournamentService
-    .getTournaments()
+  methods: {
     
-}
+  },
+
+  created() {
+
+      tournamentService.getTournaments().then((response) => {
+        this.$store.commit("SET_TOURNAMENTS", response.data)
+      })
+      .catch(error => {
+        {const response = error.response;
+        if(response.status === 401){
+          this.invalidCredentials = true;
+        }
+
+      }
+
+      })
+    }
 
 };
 </script>
 
 <style>
-
-
 </style>
 
