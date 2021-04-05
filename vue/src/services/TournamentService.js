@@ -2,6 +2,8 @@ import axios from 'axios';
 
 const path = '/tournament';
 
+
+
 export default{
     getTournaments(){
         return axios.get(path)

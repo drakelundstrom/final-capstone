@@ -60,7 +60,7 @@ const router = new Router({
     },
 
     {
-      path: "/tournaments",
+      path: "/tournament",
       name: "Tournaments",
       component: Tournaments
     },
