@@ -14,6 +14,7 @@ GO
 USE final_capstone
 GO
 
+BEGIN TRANSACTION
 --create tables
 CREATE TABLE users (
 	user_id int IDENTITY(1,1) NOT NULL,
@@ -22,7 +23,28 @@ CREATE TABLE users (
 	salt varchar(200) NOT NULL,
 	user_role varchar(50) NOT NULL
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
-)
+);
+
+CREATE TABLE tournaments (
+tournament_id int IDENTITY NOT NULL,
+creator_id int NOT NULL,
+tournament_name varchar(50) NOT NULL,
+sport_id int NOT NULL,
+tour_complete bit Default 0,
+CONSTRAINT  tournaments_tournament_id  PRIMARY KEY (tournament_id),
+);
+
+CREATE TABLE sport (
+sport_id int IDENTITY NOT NULL,
+sport_name varchar(50) NOT NULL,
+CONSTRAINT  sport_sport_id  PRIMARY KEY (sport_id),
+);
+
+CREATE TABLE participants (
+	tournament_id integer NOT NULL,
+	user_id integer NOT NULL,
+	CONSTRAINT participants_tournament_id_user_id PRIMARY KEY (tournament_id, user_id)
+);
 
 --populate default data
 -- user/password
@@ -30,4 +52,50 @@ INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg4
 --admin/password
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('admin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
 
+SET IDENTITY_INSERT tournaments ON
+INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id ) VALUES (1, 2, 'soccer is a sport', 1);
+INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id ) VALUES (2, 2, 'baseball is a sport', 2);
+INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id ) VALUES (3, 2, 'basketball is a sport', 3);
+SET IDENTITY_INSERT tournaments OFF
+
+SET IDENTITY_INSERT sport ON
+INSERT INTO sport (sport_id ,sport_name ) VALUES (1, 'soccer');
+INSERT INTO sport (sport_id ,sport_name ) VALUES (2, 'baseball');
+INSERT INTO sport (sport_id ,sport_name ) VALUES (3, 'basketball');
+SET IDENTITY_INSERT sport OFF
+
+
+INSERT INTO participants (tournament_id , user_id ) VALUES (1, 1);
+INSERT INTO participants (tournament_id , user_id ) VALUES (2, 1);
+INSERT INTO participants (tournament_id , user_id ) VALUES (3, 1);
+
+
 GO
+
+ALTER TABLE tournaments
+ADD FOREIGN KEY (creator_id)
+REFERENCES users(user_id);
+
+ALTER TABLE participants
+ADD FOREIGN KEY (user_id)
+REFERENCES users(user_id);
+
+ALTER TABLE tournaments
+ADD FOREIGN KEY (tournament_id)
+REFERENCES tournaments(tournament_id);
+
+
+
+COMMIT TRANSACTION
+
+SELECT *
+FROM tournaments;
+
+SELECT * 
+FROM users;
+
+SELECT *
+FROM participants;
+
+SELECT * 
+FROM sport;
