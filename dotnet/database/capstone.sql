@@ -99,3 +99,7 @@ FROM participants;
 
 SELECT * 
 FROM sport;
+
+SELECT * FROM tournaments t
+JOIN users u ON u.user_id = t.creator_id
+JOIN sport s ON s.sport_id = t.sport_id
