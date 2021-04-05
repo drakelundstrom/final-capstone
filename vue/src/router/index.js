@@ -6,6 +6,10 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
+import Tournaments from '../views/Tournaments.vue'
+import Tournament from '../views/Tournament.vue'
+
+
 
 Vue.use(Router)
 
@@ -54,6 +58,19 @@ const router = new Router({
         requiresAuth: false
       }
     },
+
+    {
+      path: "/tournaments",
+      name: "Tournaments",
+      component: Tournaments
+    },
+
+    {
+      path: "/tournament/:id",
+      name: "Tournament",
+      component: Tournament
+    }
+
   ]
 })
 
