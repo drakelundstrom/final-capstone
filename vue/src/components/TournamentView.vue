@@ -16,14 +16,14 @@
 
       <tbody>
         <tr
-          v-for="(tournament, index) in this.$store.state.tournaments"
+          v-for="(tournament, index) in $store.state.tournaments"
           v-bind:key="index"
         >
-          <td>{{ tournament.tournament_name }}</td>
-          <td>{{ tournament.tournament_id }}</td>
-          <td>{{ tournament.sport }}</td>
-          <td>{{ tournament.creator_username }}</td>
-          <td>{{ tournament.status }}</td>
+          <td>{{ tournament.tournamentName }}</td>
+          <td>{{ tournament.tournamentId }}</td>
+          <td>{{ tournament.sportName }}</td>
+          <td>{{ tournament.creatorUsername }}</td>
+          <td>{{ tournament.tourComplete }}</td>
         </tr>
       </tbody>
     </table>
