@@ -18,5 +18,7 @@ namespace Capstone.Models
 
         public bool TourComplete { get; set; }
 
+        public int NumberOfParticipants { get; set; }
+
     }
 }
