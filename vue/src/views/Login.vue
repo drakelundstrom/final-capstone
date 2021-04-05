@@ -31,7 +31,7 @@
         v-model="user.password"
         required
       />
-      <router-link :to="{ name: 'register' }">Need an account?</router-link>
+      <router-link :to="{ name: 'register' }" id ="register-link">Need an account?</router-link>
       <button type="submit">Sign in</button>
     </form>
   </div>
@@ -74,3 +74,32 @@ export default {
   }
 };
 </script>
+
+<style>
+h1{
+font-size: 15pt;
+grid-area: signin;
+
+}
+input{
+  width: 5%;
+  height: 10pt;
+  grid-area: inputboxes
+
+}
+label{
+  padding: 5px;
+  grid-area: labelname;
+}
+
+#register-link{
+  padding: 5px;
+}
+
+button {
+  grid-area: submitbtn;
+}
+
+
+
+</style>
