@@ -43,6 +43,10 @@ namespace Capstone.DAO
                         tournaments.Add(tournament);
 
                     }
+                    foreach (Tournament tournament in tournaments)
+                    {
+                        tournament.NumberOfParticipants = GetNumberOfParticipants(tournament.TournamentId);
+                    }
                 }
             }
             catch (Exception ex)
@@ -54,7 +58,29 @@ namespace Capstone.DAO
 
 
 
+        private int GetNumberOfParticipants(int tour_id)
+        {
+            int result = -1;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
 
+                    conn.Open
+                    ();
+                    SqlCommand cmd = new SqlCommand("SELECT Count(*) FROM participants WHERE tournament_id = (@tour_id);", conn);
+                    cmd.Parameters.AddWithValue("@tour_id", tour_id);
+
+                    result = Convert.ToInt32(cmd.ExecuteScalar());
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return result;
+        }
 
         private Tournament ConvertReaderToTournament(SqlDataReader reader)
         {
