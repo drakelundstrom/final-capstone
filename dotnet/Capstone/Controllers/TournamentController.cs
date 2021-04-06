@@ -25,7 +25,7 @@ namespace Capstone.Controllers
         }
 
 
-        [Authorize(Roles = "admin")]
+        [AllowAnonymous]
         [HttpGet()]
         public ActionResult<List<Tournament>> GetAllTournaments()
         {
