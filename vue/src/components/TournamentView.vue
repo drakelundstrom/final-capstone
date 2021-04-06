@@ -5,15 +5,19 @@
       <h3>Search tournaments:</h3>
       <p>
         Tournament Name
-        <input type="text" id="tourNameFilter" /> 
+        <input
+          type="text"
+          id="tourNameFilter"
+          v-model="filter.tournamentName"
+        />
       </p>
       <p>
         Tournament ID
-        <input type="text" id="tourIdFilter"  />
+        <input type="text" id="tourIdFilter" v-model="filter.tourId" />
       </p>
       <p>
         Creator
-        <input type="text" id="creator"  />
+        <input type="text" id="creator" v-model="filter.creator" />
       </p>
       <!--v-model="filter.firstName"  v-model="filter.lastName" v-model="filter.username"
       v-model="filter.emailAddress"  v-model="filter.status">
@@ -22,12 +26,13 @@
           <option value="Disabled">Disabled</option>-->
       <p>
         Select a sport:
-         <select id="statusFilter" >
-        </select>
+        <select id="statusFilter" v-model="filter.sport"></select>
       </p>
       <p>
-        Tournament Status 
-        <select id="statusFilter" >
+        Tournament Status
+        <select id="statusFilter" v-model="filter.tournamentStatus">
+          <option value="0">OnGoing</option>
+          <option value="1">Complete</option>
         </select>
       </p>
     </div>
@@ -67,7 +72,15 @@ export default {
   name: "TournamentView",
 
   data() {
-    return {};
+    return {
+      filter: {
+        tournamentName: "",
+        tourId: "",
+        creator: "",
+        sport: "",
+        tournamentStatus: "",
+      },
+    };
   },
 
   methods: {},
@@ -87,6 +100,21 @@ export default {
         }
       });
   },
+
+computed: { 
+    filteredList() {
+      return this.users.filter(a => {
+        return (
+          a.firstName.toLowerCase().includes(this.filter.firstName.toLowerCase()) &&
+          a.lastName.toLowerCase().includes(this.filter.lastName.toLowerCase()) &&
+          a.username.toLowerCase().includes(this.filter.username.toLowerCase()) &&
+          a.emailAddress.toLowerCase().includes(this.filter.emailAddress.toLowerCase()) &&
+          (a.status.includes(this.filter.status))
+        );
+      });
+    }, 
+  },
+
 };
 </script>
 

@@ -40,7 +40,7 @@ namespace Capstone.Controllers
             }
         }
         [Authorize(Roles = "admin")]
-        [HttpPost("/create")]
+        [HttpPost()]
         public ActionResult CreateTournament(Tournament tournament)
         {
             bool result = tournamentDAO.CreateTournament(tournament);

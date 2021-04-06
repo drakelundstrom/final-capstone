@@ -21,7 +21,10 @@ export default {
     name: "TournamentCreate",
     data() {
         return{
-            newTournament: {}
+            newTournament: {
+
+              "CreatorUsername": this.$store.state.user.username,
+            }
         }
     },
     methods: {
