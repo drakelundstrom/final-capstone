@@ -1,28 +1,28 @@
 <template>
   <div>
-    <form v-on:submit.prevent="onSubmit">
+    <form v-on:submit.prevent="onSubmit" id ="createNewTournament" >
+      <label for="">Tournament Name:</label>
       <input required type="text" v-model="newTournament.tournamentName" />
-      <label for="">Tournament Name</label>
-      <input
+      <p></p>
+    <!--  <input
         type="text"
         name="Tournament"
         list="Tournaments"
         v-model="newTournament.sportName"
-      />
-      <select>
+      /> -->
+      <label for="">Sport:</label>
+      <select form="createNewTournament">
         <option
           id="Tournaments"
           v-for="(sport, index) in sports"
           v-bind:key="index"
-          
         >
           {{ sport.sportName }}
         </option>
       </select>
-      <label for="">Sport</label>
+      <p></p>
       <input type="submit" />
     </form>
-
   </div>
 </template>
 
@@ -36,7 +36,7 @@ export default {
       newTournament: {
         CreatorUsername: this.$store.state.user.username,
       },
-      sports: this.$store.state.sports,
+     // sports: this.$store.state.sports,
     };
   },
   methods: {
@@ -57,6 +57,11 @@ export default {
     SportsService.getSports().then((response) => {
       this.$store.commit("SET_SPORTS", response.data);
     });
+  },
+  computed: {
+    sports() {
+      return this.$store.state.sports;
+    },
   },
 };
 </script>

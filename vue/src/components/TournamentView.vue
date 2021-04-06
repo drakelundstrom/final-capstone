@@ -23,8 +23,16 @@
         Select a sport:
         <select id="statusFilter" v-model="filter.sportName">
           <option value="">Any Sport</option>
-          <option value="soccer">Soccer</option>
-          <option value="baseball">Baseball</option>
+         <!-- <option value="soccer">Soccer</option>
+          <option value="baseball">Baseball</option> -->
+          <option
+          id="Tournaments" 
+          v-for="(sport, index) in sports"
+          v-bind:key="index"
+          
+        >
+          {{ sport.sportName }}
+        </option>
         </select>
       </p>
       <p>
@@ -64,6 +72,7 @@
 
 <script>
 import tournamentService from "../services/TournamentService.js";
+import SportsService from "../services/SportsService.js";
 
 export default {
   name: "TournamentView",
@@ -77,6 +86,7 @@ export default {
         sportName: "",
         tourComplete: "",
       },
+      
     };
   },
 
@@ -96,6 +106,9 @@ export default {
           }
         }
       });
+         SportsService.getSports().then((response) => {
+      this.$store.commit("SET_SPORTS", response.data);
+    });
   },
 
   computed: {
@@ -119,6 +132,9 @@ export default {
           )
         );
       });
+    },
+    sports() {
+      return this.$store.state.sports;
     },
   },
 };
