@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>View and search tournaments</h1>
     <tournament-view />
   </div>
 </template>
@@ -8,11 +9,15 @@
 import TournamentView from "../components/TournamentView";
 
 export default {
+  name: "tournaments",
   components: {
     TournamentView,
+    
   },
 };
 </script>
 
 <style>
+
+
 </style>

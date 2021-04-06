@@ -39,5 +39,13 @@ namespace Capstone.Controllers
                 return NotFound();
             }
         }
+        [Authorize(Roles = "admin")]
+        [HttpPost(/Create)]
+        public ActionResult CreateTournament(Tournament tournament)
+        {
+                RestRequest request = new RestRequest ()
+
+        }
+        
     }
 }

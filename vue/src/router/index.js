@@ -8,6 +8,7 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import Tournaments from '../views/Tournaments.vue'
 import Tournament from '../views/Tournament.vue'
+import TournamentCreate from '../views/TournamentCreate.vue'
 
 
 
@@ -69,6 +70,11 @@ const router = new Router({
       path: "/tournament/:id",
       name: "Tournament",
       component: Tournament
+    },
+    {
+      path: "/tournamentcreate",
+      name: "CreateTournament",
+      component: TournamentCreate
     }
 
   ]
