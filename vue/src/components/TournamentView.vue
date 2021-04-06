@@ -5,15 +5,15 @@
       <h3>Search tournaments:</h3>
       <p>
         Tournament Name
-        <input type="text" id="firstNameFilter" /> 
+        <input type="text" id="tourNameFilter" /> 
       </p>
       <p>
         Tournament ID
-        <input type="text" id="lastNameFilter"  />
+        <input type="text" id="tourIdFilter"  />
       </p>
       <p>
         Creator
-        <input type="text" id="usernameFilter"  />
+        <input type="text" id="creator"  />
       </p>
       <!--v-model="filter.firstName"  v-model="filter.lastName" v-model="filter.username"
       v-model="filter.emailAddress"  v-model="filter.status">

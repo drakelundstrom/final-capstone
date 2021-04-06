@@ -6,7 +6,7 @@
       <router-link v-bind:to="{ name: 'Tournaments'}" > View Tournaments</router-link>&nbsp;|&nbsp;
       
 
-      <!-- <router-link v-bind:to="{ name: 'createtournament'}">Create a Tournament</router-link> -->
+      <router-link v-bind:to="{ name: 'CreateTournament'}">Create a Tournament</router-link>
     </div>
     <router-view id ="sign-in" />
     <div id="title">
