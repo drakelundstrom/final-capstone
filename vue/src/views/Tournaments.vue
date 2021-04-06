@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>View and search tournaments</h1>
     <tournament-view />
   </div>
 </template>
@@ -17,4 +18,6 @@ export default {
 </script>
 
 <style>
+
+
 </style>

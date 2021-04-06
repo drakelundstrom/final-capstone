@@ -42,6 +42,14 @@ export default new Vuex.Store({
     },
     SET_TOURNAMENTS(state, data) {
       state.tournaments = data;
-    }
+    },
+    ADD_TOURNAMENT(state, tournament) {
+      //next id
+      const nextId = state.tournaments.reduce((max, item) => {
+        return (item.id > max) ? max = item.id : max;
+      }, -1)
+      tournament.id = nextId + 1;
+      state.tournaments.push(tournament);
+    },
   }
 })
