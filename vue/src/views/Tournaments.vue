@@ -8,8 +8,10 @@
 import TournamentView from "../components/TournamentView";
 
 export default {
+  name: "tournaments",
   components: {
     TournamentView,
+    
   },
 };
 </script>
