@@ -10,7 +10,7 @@
     </div>
     <router-view id ="sign-in" />
     <div id="title">
-    <h1>Welcome to the Ultimate Tournament Hosting Site!</h1>
+    
   </div>
     
   </div>
@@ -45,4 +45,6 @@
 .footer {
   font-size: 0.9rem;
 }
+@import '../assets/styles.css';
+
 </style>

@@ -1,8 +1,38 @@
 <template>
   <div>
     <!-- message? -->
+    <div id="search-function">
+      <h3>Search tournaments:</h3>
+      <p>
+        Tournament Name
+        <input type="text" id="firstNameFilter" /> 
+      </p>
+      <p>
+        Tournament ID
+        <input type="text" id="lastNameFilter"  />
+      </p>
+      <p>
+        Creator
+        <input type="text" id="usernameFilter"  />
+      </p>
+      <!--v-model="filter.firstName"  v-model="filter.lastName" v-model="filter.username"
+      v-model="filter.emailAddress"  v-model="filter.status">
+          <option value="">Show All</option>
+          <option value="Active">Active</option>
+          <option value="Disabled">Disabled</option>-->
+      <p>
+        Select a sport:
+         <select id="statusFilter" >
+        </select>
+      </p>
+      <p>
+        Tournament Status 
+        <select id="statusFilter" >
+        </select>
+      </p>
+    </div>
 
-    <table>
+    <table id="list-of-tournaments">
       <thead>
         <tr>
           <th scope="col">Tournament Name</th>
@@ -40,26 +70,23 @@ export default {
     return {};
   },
 
-  methods: {
-    
-  },
+  methods: {},
 
   created() {
-
-      tournamentService.getTournaments().then((response) => {
-        this.$store.commit("SET_TOURNAMENTS", response.data)
+    tournamentService
+      .getTournaments()
+      .then((response) => {
+        this.$store.commit("SET_TOURNAMENTS", response.data);
       })
-      .catch(error => {
-        {const response = error.response;
-        if(response.status === 401){
-          this.invalidCredentials = true;
+      .catch((error) => {
+        {
+          const response = error.response;
+          if (response.status === 401) {
+            this.invalidCredentials = true;
+          }
         }
-
-      }
-
-      })
-    }
-
+      });
+  },
 };
 </script>
 
