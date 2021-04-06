@@ -1,5 +1,5 @@
 <template>
-  <div id="login" class="text-center">
+  <div id="login" class="text-center" >
     <form class="form-signin" @submit.prevent="login">
       <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
       <div
@@ -37,6 +37,7 @@
   </div>
 </template>
 
+
 <script>
 import authService from "../services/AuthService";
 
@@ -45,6 +46,7 @@ export default {
   components: {},
   data() {
     return {
+      
       user: {
         username: "",
         password: ""
@@ -76,6 +78,14 @@ export default {
 </script>
 
 <style>
+
+.text-center{
+  background-color:#374968 ;
+  color: #abbad3;
+  text-transform: capitalize;
+ 
+  
+}
 h1{
 font-size: 15pt;
 grid-area: signin;
@@ -84,7 +94,7 @@ grid-area: signin;
 input{
   width: 5%;
   height: 10pt;
-  grid-area: inputboxes
+  grid-area: inputboxes;
 
 }
 label{
@@ -100,6 +110,45 @@ button {
   grid-area: submitbtn;
 }
 
+.form-control{
+  grid-area: forms;
+  display: flex;
+  text-align: center;
+  width: 15%;
+}
+#username{
+  
+  grid-area: username;
+  
+}
+
+#password{
+  grid-area: password;
+}
+#username, #password{
+  display: grid;
+  grid: 'username'
+  'password';
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 40px;
+  margin-bottom: 5px;
+  background-color: #e7f4d7;
+}
+
+#register-link  {
+  font-weight: bold;
+  color:  #abbad3;
+}
+
+
+button{
+border-radius: 8px;
+background-color: #f2f2f2;
+border: 2px solid  #e7f4d7;
+}
+
+ 
 
 
 </style>

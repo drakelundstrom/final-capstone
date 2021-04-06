@@ -2,12 +2,8 @@
   <div id="app">
     <div id="nav">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
-
-
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout |</router-link>
       <router-link v-bind:to="{ name: 'Tournaments'}" > View Tournaments</router-link>
-      
-
       <router-link v-bind:to="{ name: 'CreateTournament'}" v-if="$store.state.user.role == 'admin'"> | Create a Tournament</router-link>
 
     </div>
@@ -24,12 +20,15 @@
 
 
 <style>
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Microsoft JhengHei, Calibri, Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color:  #cce1e6;
+  background-color:  #374968;
+  text-transform: uppercase;
 }
 
 #nav {
@@ -38,11 +37,11 @@
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #abbad3;
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color:#cfe9af;
 }
 
 .footer {
@@ -50,4 +49,9 @@
 }
 @import '../assets/styles.css';
 
+
+
 </style>
+
+
+
