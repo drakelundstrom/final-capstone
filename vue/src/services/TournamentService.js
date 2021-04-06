@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const path = '/tournament';
-
+//const createpath = '/create';
 
 
 export default {

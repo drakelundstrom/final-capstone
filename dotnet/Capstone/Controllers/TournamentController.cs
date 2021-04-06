@@ -40,10 +40,19 @@ namespace Capstone.Controllers
             }
         }
         [Authorize(Roles = "admin")]
-        [HttpPost(/Create)]
+        [HttpPost()]
         public ActionResult CreateTournament(Tournament tournament)
         {
-                RestRequest request = new RestRequest ()
+            bool result = tournamentDAO.CreateTournament(tournament);
+
+            if (result)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
 
         }
         
