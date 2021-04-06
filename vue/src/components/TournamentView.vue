@@ -1,6 +1,7 @@
 <template>
   <div>
     <!-- message? -->
+<!-- I would like to make the search a button to collapse, but not sure on event handling -->
     <div id="search-function">
       <h3>Search tournaments:</h3>
       <p>
@@ -71,6 +72,7 @@
 </template>
 
 <script>
+
 import tournamentService from "../services/TournamentService.js";
 import SportsService from "../services/SportsService.js";
 
@@ -141,5 +143,46 @@ export default {
 </script>
 
 <style>
+
+h3{
+  font-size: 23px;
+  color: #87b8c4;
+}
+p{
+  font-size: 15px;
+  color: #87b8c4;
+}
+input{
+  height: 17px;
+  width: 8%; 
+  border-radius: 20px;
+  background-color: #e7f4d7;
+
+}
+
+select{
+   border-radius: 20px;
+  background-color: #e7f4d7;
+
+}
+table{
+    border-collapse: collapse;
+        border-radius: 27px;
+        border-style: hidden; 
+        box-shadow: 0 0 0 3px #abd874;
+        
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+}
+th{
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+td{
+  padding-right: 10px;
+  padding-left: 10px;
+}
 </style>
 

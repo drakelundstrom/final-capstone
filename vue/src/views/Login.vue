@@ -80,7 +80,6 @@ export default {
 <style>
 
 .text-center{
-  background-color:#374968 ;
   color: #abbad3;
   text-transform: capitalize;
  
@@ -104,10 +103,15 @@ label{
 
 #register-link{
   padding: 5px;
+  font-weight: bold;
+  color:  #abbad3;
 }
 
 button {
   grid-area: submitbtn;
+  border-radius: 8px;
+background-color: #f2f2f2;
+border: 2px solid  #e7f4d7;
 }
 
 .form-control{
@@ -136,17 +140,7 @@ button {
   background-color: #e7f4d7;
 }
 
-#register-link  {
-  font-weight: bold;
-  color:  #abbad3;
-}
 
-
-button{
-border-radius: 8px;
-background-color: #f2f2f2;
-border: 2px solid  #e7f4d7;
-}
 
  
 

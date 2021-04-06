@@ -1,9 +1,11 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout |</router-link>
-      <router-link v-bind:to="{ name: 'Tournaments'}" > View Tournaments</router-link>
+      <router-link v-bind:to="{ name: 'home' }">Home |</router-link>
+      <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''"> Logout |</router-link>
+      <router-link v-bind:to="{ name: 'Tournaments'}" > View Tournaments |</router-link>
+      <router-link v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''"> Login |</router-link>
+      <router-link v-bind:to="{ name: 'register' }" v-if="$store.state.token == ''"> Register </router-link>
       <router-link v-bind:to="{ name: 'CreateTournament'}" v-if="$store.state.user.role == 'admin'"> | Create a Tournament</router-link>
 
     </div>
@@ -20,6 +22,11 @@
 
 
 <style>
+body {
+  background-image:  ;
+  background-color: #374968;
+  min-height: 100vh;
+}
 
 #app {
   font-family: Microsoft JhengHei, Calibri, Avenir, Helvetica, Arial, sans-serif;
@@ -27,7 +34,6 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color:  #cce1e6;
-  background-color:  #374968;
   text-transform: uppercase;
 }
 
@@ -47,7 +53,7 @@
 .footer {
   font-size: 0.9rem;
 }
-@import '../assets/styles.css';
+
 
 
 

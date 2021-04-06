@@ -32,8 +32,8 @@
         v-model="user.confirmPassword"
         required
       />
-      <router-link :to="{ name: 'login' }">Have an account?</router-link>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
+      <router-link :to="{ name: 'login' }" id="login-link">Have an account?</router-link>
+      <button  type="submit">
         Create Account
       </button>
     </form>
@@ -90,4 +90,35 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+#confirmPassword{
+  grid-area: confirm;
+}
+
+ #confirmPassword{
+  display: grid;
+  grid: 
+  'confirm';
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 40px;
+  margin-bottom: 5px;
+  background-color: #e7f4d7;
+}
+
+#login-link{
+  padding: 5px;
+  font-weight: bold;
+  color:  #abbad3;
+}
+
+button{
+  grid-area: submitbtn;
+  border-radius: 8px;
+background-color: #f2f2f2;
+border: 2px solid  #e7f4d7;
+}
+
+
+</style>
