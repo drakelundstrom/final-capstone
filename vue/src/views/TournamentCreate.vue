@@ -9,19 +9,26 @@
         list="Tournaments"
         v-model="newTournament.sportName"
       />
-      <datalist id="Tournaments">
-        <option value="Baseball" />
-        <option value="Soccer" />
-        <option value="Basketball" />
-      </datalist>
+      <select>
+        <option
+          id="Tournaments"
+          v-for="(sport, index) in sports"
+          v-bind:key="index"
+          
+        >
+          {{ sport.sportName }}
+        </option>
+      </select>
       <label for="">Sport</label>
       <input type="submit" />
     </form>
+
   </div>
 </template>
 
 <script>
 import TournamentService from "../services/TournamentService";
+import SportsService from "../services/SportsService";
 export default {
   name: "TournamentCreate",
   data() {
@@ -29,6 +36,7 @@ export default {
       newTournament: {
         CreatorUsername: this.$store.state.user.username,
       },
+      sports: this.$store.state.sports,
     };
   },
   methods: {
@@ -44,6 +52,11 @@ export default {
     resetForm() {
       this.newTournament = {};
     },
+  },
+  created() {
+    SportsService.getSports().then((response) => {
+      this.$store.commit("SET_SPORTS", response.data);
+    });
   },
 };
 </script>

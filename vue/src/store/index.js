@@ -20,7 +20,8 @@ export default new Vuex.Store({
   state: {
     token: currentToken || '',
     user: currentUser || {},
-    tournaments: []
+    tournaments: [],
+    sports: []
 
   },
   mutations: {
@@ -51,5 +52,8 @@ export default new Vuex.Store({
       tournament.id = nextId + 1;
       state.tournaments.push(tournament);
     },
+    SET_SPORTS(state, data){
+      state.sports = data;
+    }
   }
 })
