@@ -13,26 +13,34 @@
       </p>
       <p>
         Tournament ID
-        <input type="text" id="tourIdFilter" v-model="filter.tourId" />
+        <input type="text" id="tourIdFilter" v-model="filter.tournamentId" />
       </p>
       <p>
         Creator
-        <input type="text" id="creator" v-model="filter.creator" />
+        <input type="text" id="creator" v-model="filter.creatorUsername" />
       </p>
-      <!--v-model="filter.firstName"  v-model="filter.lastName" v-model="filter.username"
-      v-model="filter.emailAddress"  v-model="filter.status">
-          <option value="">Show All</option>
-          <option value="Active">Active</option>
-          <option value="Disabled">Disabled</option>-->
       <p>
         Select a sport:
-        <select id="statusFilter" v-model="filter.sport"></select>
+        <select id="statusFilter" v-model="filter.sportName">
+          <option value="">Any Sport</option>
+         <!-- <option value="soccer">Soccer</option>
+          <option value="baseball">Baseball</option> -->
+          <option
+          id="Tournaments" 
+          v-for="(sport, index) in sports"
+          v-bind:key="index"
+          
+        >
+          {{ sport.sportName }}
+        </option>
+        </select>
       </p>
       <p>
         Tournament Status
-        <select id="statusFilter" v-model="filter.tournamentStatus">
-          <option value="0">OnGoing</option>
-          <option value="1">Complete</option>
+        <select id="statusFilter" v-model="filter.tourComplete">
+          <option value="">Any Option</option>
+          <option value="Ongoing">OnGoing</option>
+          <option value="Complete">Complete</option>
         </select>
       </p>
     </div>
@@ -50,15 +58,12 @@
       </thead>
 
       <tbody>
-        <tr
-          v-for="(tournament, index) in $store.state.tournaments"
-          v-bind:key="index"
-        >
+        <tr v-for="(tournament, index) in this.filteredList" v-bind:key="index">
           <td>{{ tournament.tournamentName }}</td>
           <td>{{ tournament.tournamentId }}</td>
           <td>{{ tournament.sportName }}</td>
           <td>{{ tournament.creatorUsername }}</td>
-          <td>{{ tournament.tourComplete }}</td>
+          <td>{{ tournament.tourComplete ? "Complete" : "Ongoing" }}</td>
         </tr>
       </tbody>
     </table>
@@ -67,6 +72,7 @@
 
 <script>
 import tournamentService from "../services/TournamentService.js";
+import SportsService from "../services/SportsService.js";
 
 export default {
   name: "TournamentView",
@@ -75,11 +81,12 @@ export default {
     return {
       filter: {
         tournamentName: "",
-        tourId: "",
-        creator: "",
-        sport: "",
-        tournamentStatus: "",
+        tournamentId: "",
+        creatorUsername: "",
+        sportName: "",
+        tourComplete: "",
       },
+      
     };
   },
 
@@ -99,22 +106,37 @@ export default {
           }
         }
       });
+         SportsService.getSports().then((response) => {
+      this.$store.commit("SET_SPORTS", response.data);
+    });
   },
 
-computed: { 
+  computed: {
     filteredList() {
-      return this.users.filter(a => {
+      return this.$store.state.tournaments.filter((a) => {
         return (
-          a.firstName.toLowerCase().includes(this.filter.firstName.toLowerCase()) &&
-          a.lastName.toLowerCase().includes(this.filter.lastName.toLowerCase()) &&
-          a.username.toLowerCase().includes(this.filter.username.toLowerCase()) &&
-          a.emailAddress.toLowerCase().includes(this.filter.emailAddress.toLowerCase()) &&
-          (a.status.includes(this.filter.status))
+          a.tournamentName
+            .toLowerCase()
+            .includes(this.filter.tournamentName.toLowerCase()) &&
+          a.tournamentId
+            .toString()
+            .includes(this.filter.tournamentId.toString()) &&
+          a.creatorUsername
+            .toLowerCase()
+            .includes(this.filter.creatorUsername.toLowerCase()) &&
+          a.sportName
+            .toLowerCase()
+            .includes(this.filter.sportName.toLowerCase()) &&
+          (a.tourComplete ? "Complete" : "Ongoing").includes(
+            this.filter.tourComplete
+          )
         );
       });
-    }, 
+    },
+    sports() {
+      return this.$store.state.sports;
+    },
   },
-
 };
 </script>
 
