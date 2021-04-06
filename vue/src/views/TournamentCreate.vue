@@ -11,7 +11,8 @@
         v-model="newTournament.sportName"
       /> -->
       <label for="">Sport:</label>
-      <select form="createNewTournament">
+      
+      <select form="createNewTournament" v-model="newTournament.sportName">
         <option
           id="Tournaments"
           v-for="(sport, index) in sports"
