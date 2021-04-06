@@ -2,18 +2,14 @@
   <div id="app">
     <div id="nav">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
-<<<<<<< HEAD
-      <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
-      <router-link v-bind:to="{ name: 'Tournaments'}"> View Tournaments</router-link>&nbsp;|&nbsp;
-      <router-link v-bind:to="{ name: 'tournament'}">Find A Tournament</router-link>&nbsp;|&nbsp;
-      <!-- <router-link v-bind:to="{ name: 'createtournament'}">Create a Tournament</router-link> -->
-=======
+ <router-link v-bind:to="{ name: 'createtournament'}">Create a Tournament</router-link> -->
+
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout |</router-link>
       <router-link v-bind:to="{ name: 'Tournaments'}" > View Tournaments</router-link>&nbsp;|&nbsp;
       
 
       <router-link v-bind:to="{ name: 'CreateTournament'}">Create a Tournament</router-link>
->>>>>>> 8a9bfddc5d0c66462db66d6355fb428ca4ee04a5
+
     </div>
     <router-view id ="sign-in" />
     <div id="title">
