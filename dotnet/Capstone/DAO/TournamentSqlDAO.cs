@@ -22,6 +22,11 @@ namespace Capstone.DAO
             "JOIN users u ON u.user_id = t.creator_id " +
             "JOIN sports s ON s.sport_id = t.sport_id";
 
+        private string sqlCreateTournament = " INSERT INTO tournaments(creator_id , tournament_name , sport_id ) VALUES(" +
+            "(SELECT user_id FROM users WHERE username = (@creatorUsername)) " +
+            ", (@tournamentName), " +
+"(SELECT sport_id FROM sports WHERE sport_name = (@sportName)));";
+
         public List<Tournament> GetTournaments()
         {
             List<Tournament> tournaments = new List<Tournament>();
@@ -93,6 +98,39 @@ namespace Capstone.DAO
             tournament.SportName = Convert.ToString(reader["sport_name"]);
             tournament.TourComplete = Convert.ToBoolean(reader["tour_complete"]);
             return tournament;
+        }
+
+        public bool CreateTournament(Tournament tournament)
+        {
+            bool result = false;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+
+                    conn.Open
+                    ();
+                    SqlCommand cmd = new SqlCommand(sqlCreateTournament, conn);
+                    cmd.Parameters.AddWithValue("@tournamentName", tournament.TournamentName);
+                    cmd.Parameters.AddWithValue("@sportName", tournament.SportName);
+                    cmd.Parameters.AddWithValue("@creatorUsername", tournament.CreatorUsername);
+
+
+                    int rowsEffected = cmd.ExecuteNonQuery();
+                    if(rowsEffected == 1)
+                    {
+                        result = true;
+                    }
+                  
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return result;
+           
         }
     }
 }

@@ -39,5 +39,22 @@ namespace Capstone.Controllers
                 return NotFound();
             }
         }
+        [Authorize(Roles = "admin")]
+        [HttpPost()]
+        public ActionResult CreateTournament(Tournament tournament)
+        {
+            bool result = tournamentDAO.CreateTournament(tournament);
+
+            if (result)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+        }
+        
     }
 }
