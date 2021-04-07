@@ -1,27 +1,29 @@
 <template>
+<div>
+    <h1>Tournament Details:</h1>
 <table>
 <tbody>
     <tr>
-        <td>Tournament Name</td>
-        <td>{{tournament.tournament_name}}</td>
+        <td id ="descrip">Tournament Name: </td>
+        <td>{{tournament.tournamentName}}</td>
     </tr>
 
     <tr>
-        <td>Tournament ID</td>
-        <td>{{tournament.tournament_id}}</td>
-
-    </tr>
-
-    <tr>
-
-        <td>Creator</td>
-        <td>{{tournament.creator_username}}</td>
+        <td id ="descrip">Tournament ID:</td>
+        <td>{{tournament.tournamentId}}</td>
 
     </tr>
 
     <tr>
-        <td>Status</td> <!-- is completed or not --> 
-        <td>{{tournament.is_completed}}</td>
+
+        <td id ="descrip">Creator:</td>
+        <td>{{tournament.creatorUsername}}</td>
+
+    </tr>
+
+    <tr>
+        <td id ="descrip">Status: </td> <!-- is completed or not --> 
+        <td>{{tournament.tournamentStaus}}</td>
 
 
 
@@ -34,6 +36,7 @@
 </tbody>
 
 </table>
+</div>
     
 </template>
 
@@ -48,11 +51,29 @@ export default {
     },
 
     props:["id"],
+    created(){
+        let tournaments = this.$store.state.tournaments;
+        this.tournament = tournaments.find((item) =>{
+            return item.tournamentId == this.id;
+        }
+        )
+    },
 
     
 }
 </script>
 
 <style>
+h1{
+    font-size: 30px;
+}
+
+#descrip{
+    font-weight: bold;
+    text-shadow: 5px 5px 5px black;
+    
+
+    
+}
 
 </style>

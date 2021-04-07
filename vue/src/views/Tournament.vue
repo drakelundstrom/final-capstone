@@ -1,5 +1,6 @@
 <template>
-    <tournament-detail v-bind:id="tournament_id"/>
+    <tournament-detail v-bind:id="tournamentId" /> 
+     
 </template>
 
 <script>
@@ -15,12 +16,12 @@ export default {
 
     data(){
         return {
-           tournamentNumber: 0, 
+           tournamentId: 0, 
         }
     },
 
     created(){
-        this.tournamentNumber = this.$route.params.id;
+        this.tournamentId = this.$route.params.id;
     }
 
 };

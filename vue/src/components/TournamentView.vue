@@ -64,6 +64,7 @@
           <th scope="col">Sport</th>
           <th scope="col">Creator Username</th>
           <th scope="col">Status</th>
+          
           <!-- add num of participants -->
         </tr>
       </thead>
@@ -71,11 +72,12 @@
       <tbody v-if="searchActive == 'false'">
         <!-- <tr v-for="(tournament, index) in this.filteredList" v-bind:key="index"> -->
         <tr v-for="(tournament, index) in this.tournaments" v-bind:key="index">
-          <td>{{ tournament.tournamentName }}</td>
+         <router-link id="details" v-bind:to="{name: 'Tournament', params: {id: tournament.tournamentId} }"><td>{{ tournament.tournamentName }}</td></router-link>
           <td>{{ tournament.tournamentId }}</td>
           <td>{{ tournament.sportName }}</td>
           <td>{{ tournament.creatorUsername }}</td>
           <td>{{ tournament.tournamentStaus }}</td>
+          
         </tr>
       </tbody>
       <tbody v-if="searchActive == 'true'">
@@ -205,23 +207,39 @@ select {
   background-color: #e7f4d7;
 }
 table {
-  border-collapse: collapse;
+  border-collapse: collapse; 
   border-radius: 27px;
-  border-style: hidden;
-  box-shadow: 0 0 0 3px #abd874;
+  border-style: hidden; 
+  box-shadow: 0 0 0 3px #abd874; 
 
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
 }
 th {
+  font-size: 18px;
   padding-right: 10px;
   padding-left: 10px;
+  
 }
 
 td {
   padding-right: 10px;
   padding-left: 10px;
 }
+
+#details{
+   font-weight: bold;
+  color: #87b8c4;
+}
+
+#details:hover{
+  text-shadow: 5px 5px 5px black;
+}
+
+thead{
+  border-bottom: 3px solid #abd874;
+}
+
 </style>
 

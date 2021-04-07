@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link v-bind:to="{ name: 'home' }">Home |</router-link>
-      <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''"> Logout |</router-link>
-      <router-link v-bind:to="{ name: 'Tournaments'}" > View Tournaments |</router-link>
-      <router-link v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''"> Login |</router-link>
-      <router-link v-bind:to="{ name: 'register' }" v-if="$store.state.token == ''"> Register </router-link>
-      <router-link v-bind:to="{ name: 'CreateTournament'}" v-if="$store.state.user.role == 'admin'"> Create a Tournament</router-link>
+      <router-link id ="navlink" v-bind:to="{ name: 'home' }">Home |</router-link>
+      <router-link id ="navlink" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''"> Logout |</router-link>
+      <router-link id ="navlink" v-bind:to="{ name: 'Tournaments'}" > View Tournaments |</router-link>
+      <router-link id ="navlink" v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''"> Login |</router-link>
+      <router-link id ="navlink" v-bind:to="{ name: 'register' }" v-if="$store.state.token == ''"> Register </router-link>
+      <router-link id ="navlink" v-bind:to="{ name: 'CreateTournament'}" v-if="$store.state.user.role == 'admin'"> Create a Tournament</router-link>
 
     </div>
     <router-view id ="sign-in" />
@@ -44,10 +44,18 @@ body {
 #nav a {
   font-weight: bold;
   color: #abbad3;
+  text-shadow: 2px 2px 2px black;
+  
 }
+
+#navlink:hover{
+  text-shadow: 5px 5px 5px black;
+}
+
 
 #nav a.router-link-exact-active {
   color:#cfe9af;
+  
 }
 
 .footer {
