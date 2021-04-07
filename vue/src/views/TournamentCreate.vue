@@ -44,7 +44,7 @@ export default {
     onSubmit() {
       this.$store.commit("ADD_TOURNAMENT", this.newTournament);
       TournamentService.createTournament(this.newTournament)
-        .then(this.$router.push({ name: "Tournaments" }))
+        .then()//this.$router.push({ name: "Tournaments" }))
         .catch((error) => {
           console.log(error);
         });
