@@ -16,7 +16,7 @@ namespace Capstone.Models
 
         public string SportName { get; set; }
 
-        public bool TourComplete { get; set; }
+        public string TournamentStaus { get; set; }
 
         public int NumberOfParticipants { get; set; }
 

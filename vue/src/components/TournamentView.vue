@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- message? -->
-<!-- I would like to make the search a button to collapse, but not sure on event handling -->
+    <!-- I would like to make the search a button to collapse, but not sure on event handling -->
     <div id="search-function">
       <h3>Search tournaments:</h3>
       <p>
@@ -24,24 +24,24 @@
         Select a sport:
         <select id="statusFilter" v-model="filter.sportName">
           <option value="">Any Sport</option>
-         <!-- <option value="soccer">Soccer</option>
+          <!-- <option value="soccer">Soccer</option>
           <option value="baseball">Baseball</option> -->
           <option
-          id="Tournaments" 
-          v-for="(sport, index) in sports"
-          v-bind:key="index"
-          
-        >
-          {{ sport.sportName }}
-        </option>
+            id="Tournaments"
+            v-for="(sport, index) in sports"
+            v-bind:key="index"
+          >
+            {{ sport.sportName }}
+          </option>
         </select>
       </p>
       <p>
         Tournament Status
-        <select id="statusFilter" v-model="filter.tourComplete">
+        <select id="statusFilter" v-model="filter.tournamentStaus">
           <option value="">Any Option</option>
-          <option value="Ongoing">OnGoing</option>
-          <option value="Complete">Complete</option>
+          <option value="Recruiting">Recruiting</option>
+          <option value="Active">Active</option>
+          <option value="Completed">Completed</option>
         </select>
       </p>
     </div>
@@ -64,7 +64,7 @@
           <td>{{ tournament.tournamentId }}</td>
           <td>{{ tournament.sportName }}</td>
           <td>{{ tournament.creatorUsername }}</td>
-          <td>{{ tournament.tourComplete ? "Complete" : "Ongoing" }}</td>
+          <td>{{ tournament.tournamentStaus }}</td>
         </tr>
       </tbody>
     </table>
@@ -72,7 +72,6 @@
 </template>
 
 <script>
-
 import tournamentService from "../services/TournamentService.js";
 import SportsService from "../services/SportsService.js";
 
@@ -86,9 +85,8 @@ export default {
         tournamentId: "",
         creatorUsername: "",
         sportName: "",
-        tourComplete: "",
+        tournamentStaus: "",
       },
-      
     };
   },
 
@@ -108,7 +106,7 @@ export default {
           }
         }
       });
-         SportsService.getSports().then((response) => {
+    SportsService.getSports().then((response) => {
       this.$store.commit("SET_SPORTS", response.data);
     });
   },
@@ -128,10 +126,9 @@ export default {
             .includes(this.filter.creatorUsername.toLowerCase()) &&
           a.sportName
             .toLowerCase()
-            .includes(this.filter.sportName.toLowerCase()) &&
-          (a.tourComplete ? "Complete" : "Ongoing").includes(
-            this.filter.tourComplete
-          )
+            .includes(this.filter.sportName.toLowerCase())  &&
+          a.tournamentStaus.toLowerCase()
+            .includes(this.filter.tournamentStaus.toLowerCase())
         );
       });
     },
@@ -143,44 +140,41 @@ export default {
 </script>
 
 <style>
-
-h3{
+h3 {
   font-size: 23px;
   color: #87b8c4;
 }
-p{
+p {
   font-size: 15px;
   color: #87b8c4;
 }
-input{
+input {
   height: 17px;
-  width: 8%; 
+  width: 8%;
   border-radius: 20px;
   background-color: #e7f4d7;
-
 }
 
-select{
-   border-radius: 20px;
+select {
+  border-radius: 20px;
   background-color: #e7f4d7;
+}
+table {
+  border-collapse: collapse;
+  border-radius: 27px;
+  border-style: hidden;
+  box-shadow: 0 0 0 3px #abd874;
 
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
 }
-table{
-    border-collapse: collapse;
-        border-radius: 27px;
-        border-style: hidden; 
-        box-shadow: 0 0 0 3px #abd874;
-        
-        justify-content: center;
-        margin-left: auto;
-        margin-right: auto;
-}
-th{
+th {
   padding-right: 10px;
   padding-left: 10px;
 }
 
-td{
+td {
   padding-right: 10px;
   padding-left: 10px;
 }
