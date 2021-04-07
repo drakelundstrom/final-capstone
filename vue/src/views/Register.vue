@@ -32,6 +32,10 @@
         v-model="user.confirmPassword"
         required
       />
+      <select id="userRole" v-model="user.role">
+          <option value="user">Participant Only</option>
+         <option value="admin">Creator and Participant</option>
+        </select>
       <router-link :to="{ name: 'login' }" id="login-link">Have an account?</router-link>
       <button  type="submit">
         Create Account
