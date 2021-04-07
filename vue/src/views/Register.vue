@@ -123,6 +123,10 @@ button{
 background-color: #f2f2f2;
 border: 2px solid  #e7f4d7;
 }
-
+#userRole{
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+}
 
 </style>

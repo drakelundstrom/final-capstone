@@ -3,6 +3,7 @@
     <!-- message? -->
 <!-- I would like to make the search a button to collapse, but not sure on event handling -->
     <div id="search-function">
+      <!-- make something clickable btn, anchor tag bootstrap, showform var == true onclick data element showform default false v-if or v-show on container to hide -->
       <h3>Search tournaments:</h3>
       <p>
         Tournament Name
@@ -99,7 +100,7 @@ export default {
       .getTournaments()
       .then((response) => {
         this.$store.commit("SET_TOURNAMENTS", response.data);
-      })
+      })  //insert this then into the tourncreate then? 
       .catch((error) => {
         {
           const response = error.response;
@@ -115,25 +116,25 @@ export default {
 
   computed: {
     filteredList() {
+      console.log(this.$store.state.tournaments)
       return this.$store.state.tournaments.filter((a) => {
         return (
           a.tournamentName
             .toLowerCase()
-            .includes(this.filter.tournamentName.toLowerCase()) &&
-          a.tournamentId
-            .toString()
-            .includes(this.filter.tournamentId.toString()) &&
+            .includes(this.filter.tournamentName.toLowerCase())  &&
+          a.tournamentId.toString()
+            .includes(this.filter.tournamentId.toString()) && 
           a.creatorUsername
             .toLowerCase()
-            .includes(this.filter.creatorUsername.toLowerCase()) &&
+            .includes(this.filter.creatorUsername.toLowerCase()) && 
           a.sportName
             .toLowerCase()
-            .includes(this.filter.sportName.toLowerCase()) &&
+            .includes(this.filter.sportName.toLowerCase()) && 
           (a.tourComplete ? "Complete" : "Ongoing").includes(
             this.filter.tourComplete
-          )
-        );
-      });
+          )  
+        ); 
+      }); 
     },
     sports() {
       return this.$store.state.sports;

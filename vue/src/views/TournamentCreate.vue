@@ -22,7 +22,7 @@
         </option>
       </select>
       <p></p>
-      <button class="btn btn-primary" type="submit" >Submit</button>
+      <button type="submit" >Submit</button> <!-- class="btn btn-primary" -->
     </form>
   </div>
 </template>
@@ -73,6 +73,7 @@ input{
   width: 8%; 
   border-radius: 20px;
   background-color: #e7f4d7;
+ 
 
 }
 
@@ -81,4 +82,12 @@ select{
   background-color: #e7f4d7;
 
 }
+
+button {
+  border-radius: 8px;
+background-color: #f2f2f2;
+border: 2px solid  #e7f4d7;
+}
+
+
 </style>
