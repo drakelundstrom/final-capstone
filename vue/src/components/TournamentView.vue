@@ -2,7 +2,16 @@
   <div>
     <!-- message? -->
     <!-- I would like to make the search a button to collapse, but not sure on event handling -->
-    <div id="search-function">
+    <p>
+      Do you want to filter the tournament list?<select
+        id="search active"
+        v-model="searchActive"
+      >
+        <option value="true">yes</option>
+        <option value="false">no</option>
+      </select>
+    </p>
+    <div id="search-function" v-if="searchActive == 'true'">
       <!-- make something clickable btn, anchor tag bootstrap, showform var == true onclick data element showform default false v-if or v-show on container to hide -->
       <h3>Search tournaments:</h3>
       <p>
@@ -59,7 +68,17 @@
         </tr>
       </thead>
 
-      <tbody>
+      <tbody v-if="searchActive == 'false'">
+        <!-- <tr v-for="(tournament, index) in this.filteredList" v-bind:key="index"> -->
+        <tr v-for="(tournament, index) in this.tournaments" v-bind:key="index">
+          <td>{{ tournament.tournamentName }}</td>
+          <td>{{ tournament.tournamentId }}</td>
+          <td>{{ tournament.sportName }}</td>
+          <td>{{ tournament.creatorUsername }}</td>
+          <td>{{ tournament.tournamentStaus }}</td>
+        </tr>
+      </tbody>
+      <tbody v-if="searchActive == 'true'">
         <tr v-for="(tournament, index) in this.filteredList" v-bind:key="index">
           <td>{{ tournament.tournamentName }}</td>
           <td>{{ tournament.tournamentId }}</td>
@@ -88,6 +107,7 @@ export default {
         sportName: "",
         tournamentStaus: "",
       },
+      searchActive: "false",
     };
   },
 
@@ -98,7 +118,7 @@ export default {
       .getTournaments()
       .then((response) => {
         this.$store.commit("SET_TOURNAMENTS", response.data);
-      })  //insert this then into the tourncreate then? 
+      }) //insert this then into the tourncreate then?
       .catch((error) => {
         {
           const response = error.response;
@@ -111,24 +131,48 @@ export default {
       this.$store.commit("SET_SPORTS", response.data);
     });
   },
-
+  //watch: {
+  // call again the method if the route changes
+  // '$load': 'fetchData'
+  // },
+  // beforeRouteEnter(to, from, next) {
+  //  this.filteredList();
+  // },
   computed: {
+    tournaments() {
+      return this.$store.state.tournaments;
+    },
     filteredList() {
-      console.log(this.$store.state.tournaments)
-      return this.$store.state.tournaments.filter((a) => {
+      // console.log(this.$store.state.tournaments);
+      //  return this.$store.state.tournaments.filter((a) => {
+      console.log(this.tournaments);
+      return this.tournaments.filter((a) => {
         return (
+          /*   a.tournamentName
+            .toLowerCase()
+            .includes(this.filter.tournamentName.toLowerCase()) &&
+        //  a.tournamentId
+        //    .toString()
+         //   .includes(this.filter.tournamentId.toString()) &&
+          a.creatorUsername.includes(this.filter.creatorUsername) &&
+          a.sportName.includes(this.filter.sportName) &&
+          a.tournamentStaus.includes(this.filter.tournamentStaus)
+          // a.tournamentId == this.filter.tournamentId && 
+          */
           a.tournamentName
             .toLowerCase()
-            .includes(this.filter.tournamentName.toLowerCase())  &&
-          a.tournamentId.toString()
-            .includes(this.filter.tournamentId.toString()) && 
+            .includes(this.filter.tournamentName.toLowerCase()) &&
+          a.tournamentId
+            .toString()
+            .includes(this.filter.tournamentId.toString()) &&
           a.creatorUsername
             .toLowerCase()
-            .includes(this.filter.creatorUsername.toLowerCase()) && 
+            .includes(this.filter.creatorUsername.toLowerCase()) &&
           a.sportName
             .toLowerCase()
-            .includes(this.filter.sportName.toLowerCase())  &&
-          a.tournamentStaus.toLowerCase()
+            .includes(this.filter.sportName.toLowerCase()) &&
+          a.tournamentStaus
+            .toLowerCase()
             .includes(this.filter.tournamentStaus.toLowerCase())
         );
       });
