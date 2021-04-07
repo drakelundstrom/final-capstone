@@ -22,7 +22,7 @@
         </option>
       </select>
       <p></p>
-      <input type="submit" />
+      <button class="btn btn-primary" type="submit" >Submit</button>
     </form>
   </div>
 </template>
