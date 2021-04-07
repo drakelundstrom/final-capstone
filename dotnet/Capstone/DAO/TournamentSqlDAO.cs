@@ -27,6 +27,11 @@ namespace Capstone.DAO
             ", (@tournamentName), " +
 "(SELECT sport_id FROM sports WHERE sport_name = (@sportName)));";
 
+        private string sqlGetTournament = " SELECT * FROM tournaments t " +
+        "JOIN users u ON u.user_id = t.creator_id" +
+        "JOIN sports s ON s.sport_id = t.sport_id" +
+        "WHERE tournament_id = (@tournament_id));";
+
         public List<Tournament> GetTournaments()
         {
             List<Tournament> tournaments = new List<Tournament>();
@@ -96,7 +101,7 @@ namespace Capstone.DAO
             tournament.TournamentName = Convert.ToString(reader["tournament_name"]);
             tournament.SportId = Convert.ToInt32(reader["sport_id"]);
             tournament.SportName = Convert.ToString(reader["sport_name"]);
-            tournament.TournamentStaus = Convert.ToString(reader["tour_status"]);
+            tournament.TourComplete = Convert.ToBoolean(reader["tour_complete"]);
             return tournament;
         }
 
@@ -131,6 +136,39 @@ namespace Capstone.DAO
             }
             return result;
            
+        }
+        public Tournament GetTournament(int tournamentId)
+        {
+            Tournament tournament = new Tournament();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+
+                    conn.Open
+                    ();
+                    SqlCommand cmd = new SqlCommand(sqlGetTournaments, conn);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                       tournament = ConvertReaderToTournament(reader);
+                        
+
+                    }
+                    
+                    {
+                        tournament.NumberOfParticipants = GetNumberOfParticipants(tournament.TournamentId);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return tournament;
         }
     }
 }

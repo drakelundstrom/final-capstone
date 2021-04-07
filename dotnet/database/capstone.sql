@@ -120,3 +120,8 @@ INSERT INTO tournaments(creator_id , tournament_name , sport_id ) VALUES(
 (SELECT sport_id FROM sports WHERE sport_name = ('soccer')));
 
 INSERT INTO tournaments (creator_id ,tournament_name , sport_id, tour_status ) VALUES (1, 'non adminds seize power', 1, 'Recruiting');
+
+SELECT * FROM tournaments t
+JOIN users u ON u.user_id = t.creator_id
+JOIN sports s ON s.sport_id = t.sport_id
+WHERE tournament_id = 1;
