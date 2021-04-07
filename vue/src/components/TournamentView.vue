@@ -145,7 +145,7 @@ export default {
     filteredList() {
       // console.log(this.$store.state.tournaments);
       //  return this.$store.state.tournaments.filter((a) => {
-      console.log(this.tournaments);
+      
       return this.tournaments.filter((a) => {
         return (
           /*   a.tournamentName
