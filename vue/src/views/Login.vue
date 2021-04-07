@@ -82,6 +82,7 @@ export default {
 .text-center{
   color: #abbad3;
   text-transform: capitalize;
+  
  
   
 }

@@ -68,4 +68,17 @@ export default {
 </script>
 
 <style>
+input{
+  height: 30px;
+  width: 8%; 
+  border-radius: 20px;
+  background-color: #e7f4d7;
+
+}
+
+select{
+   border-radius: 20px;
+  background-color: #e7f4d7;
+
+}
 </style>
