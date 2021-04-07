@@ -6,7 +6,7 @@
       <router-link v-bind:to="{ name: 'Tournaments'}" > View Tournaments |</router-link>
       <router-link v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''"> Login |</router-link>
       <router-link v-bind:to="{ name: 'register' }" v-if="$store.state.token == ''"> Register </router-link>
-      <router-link v-bind:to="{ name: 'CreateTournament'}" v-if="$store.state.user.role == 'admin'"> | Create a Tournament</router-link>
+      <router-link v-bind:to="{ name: 'CreateTournament'}" v-if="$store.state.user.role == 'admin'"> Create a Tournament</router-link>
 
     </div>
     <router-view id ="sign-in" />
