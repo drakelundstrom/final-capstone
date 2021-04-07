@@ -12,5 +12,7 @@ namespace Capstone.DAO.Interfaces
         List<Tournament> GetTournaments();
 
         public bool CreateTournament(Tournament tournament);
+        public Tournament GetTournament(int tournamentId);
     }
+    
 }

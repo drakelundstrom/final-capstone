@@ -30,8 +30,9 @@ tournament_id int IDENTITY NOT NULL,
 creator_id int NOT NULL,
 tournament_name varchar(50) NOT NULL,
 sport_id int NOT NULL,
-tour_complete bit Default 0,
+tour_status varchar(15) Default 'Recruiting',
 CONSTRAINT  tournaments_tournament_id  PRIMARY KEY (tournament_id),
+CONSTRAINT tournaments_tour_status CHECK (tour_status IN ('Recruiting', 'Active', 'Completed'))
 );
 
 CREATE TABLE sports (
@@ -53,10 +54,10 @@ INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg4
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('admin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
 
 SET IDENTITY_INSERT tournaments ON
-INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id ) VALUES (1, 2, 'soccer is a sport', 1);
-INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id ) VALUES (2, 2, 'baseball is a sport', 2);
-INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id ) VALUES (3, 2, 'basketball is a sport', 3);
-INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id ) VALUES (4, 2, 'soccer part 2', 1);
+INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (1, 2, 'soccer is a sport', 1, 'Recruiting');
+INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (2, 2, 'baseball is a sport', 2, 'Active');
+INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (3, 2, 'basketball is a sport', 3, 'Completed');
+INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (4, 1, 'Not admin on purpose', 1, 'Recruiting');
 SET IDENTITY_INSERT tournaments OFF
 
 SET IDENTITY_INSERT sports ON
@@ -111,3 +112,16 @@ JOIN sports s ON s.sport_id = t.sport_id
 
 INSERT INTO tournaments (creator_id ,tournament_name , sport_id ) VALUES ( 2, 'soccer is a sport', 
 (SELECT sport_id FROM sports WHERE sport_name = 'soccer'));
+
+
+INSERT INTO tournaments(creator_id , tournament_name , sport_id ) VALUES(
+            (SELECT user_id FROM users WHERE username = ('admin')) 
+            , ('hi I am a tournament'), 
+(SELECT sport_id FROM sports WHERE sport_name = ('soccer')));
+
+INSERT INTO tournaments (creator_id ,tournament_name , sport_id, tour_status ) VALUES (1, 'non adminds seize power', 1, 'Recruiting');
+
+SELECT * FROM tournaments t
+JOIN users u ON u.user_id = t.creator_id
+JOIN sports s ON s.sport_id = t.sport_id
+WHERE tournament_id = 1;

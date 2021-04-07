@@ -55,6 +55,20 @@ namespace Capstone.Controllers
             }
 
         }
-        
+        [AllowAnonymous]
+        [HttpGet("{tournamentId}")]
+        public ActionResult<Tournament> GetTournament(int tournamentId)
+        {
+            Tournament tournament = tournamentDAO.GetTournament(tournamentId);
+            if (tournament != null)
+            {
+                return Ok(tournament);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
     }
 }
