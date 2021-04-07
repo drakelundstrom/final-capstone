@@ -20,7 +20,7 @@ namespace Capstone.DAO
 
         private string sqlGetTournaments = "SELECT * FROM tournaments t " +
             "JOIN users u ON u.user_id = t.creator_id " +
-            "JOIN sports s ON s.sport_id = t.sport_id";
+            "JOIN sports s ON s.sport_id = t.sport_id;";
 
         private string sqlCreateTournament = " INSERT INTO tournaments(creator_id , tournament_name , sport_id ) VALUES(" +
             "(SELECT user_id FROM users WHERE username = (@creatorUsername)) " +
