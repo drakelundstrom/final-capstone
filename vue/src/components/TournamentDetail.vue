@@ -26,7 +26,7 @@
         <td>{{tournament.tournamentStaus}}</td>
 
 
-
+        
 
 
            <!--  TournamentName TournamentId CreatorUsername IsCompleted NumberOfParticipants**** -->
@@ -36,28 +36,43 @@
 </tbody>
 
 </table>
+
+<button type="submit" id ="jointbn">Join Now!</button>
 </div>
     
 </template>
 
 <script>
+import TournamentService from '../services/TournamentService';
 export default {
     name: "TournamentDetail",
 
     data: function(){
         return{
             tournament: {},
+            participant: {},
         };
     },
 
     props:["id"],
     created(){
+    
         let tournaments = this.$store.state.tournaments;
         this.tournament = tournaments.find((item) =>{
             return item.tournamentId == this.id;
         }
         )
     },
+    methods: {
+        onSubmit() {
+            this.participant.userId = this.$store.state.userId;
+            this.participant.tournamentId = this.tournament.tournamentId;
+
+           TournamentService.joinTournament(this.participant);
+
+           //clear participant ? 
+        }
+    }
 
     
 }

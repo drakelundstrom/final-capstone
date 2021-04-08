@@ -15,5 +15,9 @@ export default {
 
     createTournament(newTournament) {
         return axios.post(path, newTournament)
+    },
+
+    joinTournament(participant){
+        return axios.post(path + '/register', participant)
     }
 }

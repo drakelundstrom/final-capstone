@@ -55,5 +55,6 @@ export default new Vuex.Store({
     SET_SPORTS(state, data){
       state.sports = data;
     }
+    
   }
 })
