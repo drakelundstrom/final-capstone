@@ -23,7 +23,7 @@
 
     <tr>
         <td id ="descrip">Status: </td> <!-- is completed or not --> 
-        <td>{{tournament.tournamentStaus}}</td>
+        <td>{{tournament.tournamentStatus}}</td>
 
 
         
@@ -37,7 +37,7 @@
 
 </table>
 
-<button type="submit" id ="jointbn" @click="onSubmit" v-if="($store.state.token != '') && (tournament.numberOfParticipants < tournament.maxNumberParticipants) && (tournament.tournamentStaus =='Recruiting')">Join Now!</button>
+<button type="submit" id ="jointbn" @click="onSubmit" v-if="($store.state.token != '') && (tournament.numberOfParticipants < tournament.maxNumberParticipants) && (tournament.tournamentStatus =='Recruiting')">Join Now!</button>
 </div>
     
 </template>

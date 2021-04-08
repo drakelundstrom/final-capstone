@@ -47,7 +47,7 @@
       </p>
       <p>
         Tournament Status
-        <select id="statusFilter" v-model="filter.tournamentStaus">
+        <select id="statusFilter" v-model="filter.tournamentStatus">
           <option value="">Any Option</option>
           <option value="Recruiting">Recruiting</option>
           <option value="Active">Active</option>
@@ -76,7 +76,7 @@
           <td>{{ tournament.tournamentId }}</td>
           <td>{{ tournament.sportName }}</td>
           <td>{{ tournament.creatorUsername }}</td>
-          <td>{{ tournament.tournamentStaus }}</td>
+          <td>{{ tournament.tournamentStatus }}</td>
           
         </tr>
       </tbody>
@@ -86,7 +86,7 @@
           <td>{{ tournament.tournamentId }}</td>
           <td>{{ tournament.sportName }}</td>
           <td>{{ tournament.creatorUsername }}</td>
-          <td>{{ tournament.tournamentStaus }}</td>
+          <td>{{ tournament.tournamentStatus }}</td>
         </tr>
       </tbody>
     </table>
@@ -107,7 +107,7 @@ export default {
         tournamentId: "",
         creatorUsername: "",
         sportName: "",
-        tournamentStaus: "",
+        tournamentStatus: "",
       },
       searchActive: "false",
     };
@@ -158,7 +158,7 @@ export default {
          //   .includes(this.filter.tournamentId.toString()) &&
           a.creatorUsername.includes(this.filter.creatorUsername) &&
           a.sportName.includes(this.filter.sportName) &&
-          a.tournamentStaus.includes(this.filter.tournamentStaus)
+          a.tournamentStatus.includes(this.filter.tournamentStatus)
           // a.tournamentId == this.filter.tournamentId && 
           */
           a.tournamentName
@@ -173,9 +173,9 @@ export default {
           a.sportName
             .toLowerCase()
             .includes(this.filter.sportName.toLowerCase()) &&
-          a.tournamentStaus
+          a.tournamentStatus
             .toLowerCase()
-            .includes(this.filter.tournamentStaus.toLowerCase())
+            .includes(this.filter.tournamentStatus.toLowerCase())
         );
       });
     },
