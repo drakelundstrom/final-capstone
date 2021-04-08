@@ -257,7 +257,7 @@ namespace Capstone.DAO
             List<Participant> original = GetParticipantsInTournament(tournamentId);
             System.Random random = new System.Random();
             List<Participant> shuffledList = original.OrderBy(x => random.Next()).ToList();
-            for(int i = 0; i<shuffledList.Count; i++)
+            for (int i = 0; i < shuffledList.Count; i++)
             {
                 bool interumResult = UpdateTeamNumber(tournamentId, shuffledList[i].UserId, i + 1);
                 if (!interumResult)
@@ -318,7 +318,7 @@ namespace Capstone.DAO
                     ();
                     SqlCommand cmd = new SqlCommand("INSERT INTO participants(tournament_id, user_id, team_number) VALUES((@tournamentId), (@userId), (@teamNumber));", conn);
                     cmd.Parameters.AddWithValue("@tournamentId", participant.TournamentId);
-                    cmd.Parameters.AddWithValue("@userId",participant.UserId);
+                    cmd.Parameters.AddWithValue("@userId", participant.UserId);
                     cmd.Parameters.AddWithValue("@teamNumber", newTeamNumber);
                     rowsEffected = cmd.ExecuteNonQuery();
 
@@ -335,7 +335,66 @@ namespace Capstone.DAO
 
             return result;
 
-            //INSERT INTO participants(tournament_id, user_id, team_number) VALUES((@tournamentId), (@userId), (@teamNumber));//
+            //UPDATE tournaments SET tour_status = (@tournamentStatus) WHERE tournament_id = (@tournamentId);//
+        }
+        public bool ChangeTournamentStatus(Tournament tournament)
+        {
+            bool result = false;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    int rowsEffected = 0;
+                    conn.Open
+                    ();
+                    SqlCommand cmd = new SqlCommand("UPDATE tournaments SET tour_status = (@tournamentStatus) WHERE tournament_id = (@tournamentId);", conn);
+                    cmd.Parameters.AddWithValue("@tournamentId", tournament.TournamentId);
+                    cmd.Parameters.AddWithValue("@tournamentStatus", tournament.TournamentStaus);
+                    rowsEffected = cmd.ExecuteNonQuery();
+
+
+                    if (rowsEffected == 1)
+                    {
+                        result = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return result;
+
+        }
+
+        //SELECT creator_id FROM tournaments WHERE tournament_id = (1);//
+        public int TournamentOwner(int tournamentId)
+        {
+            int result = -1;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    int rowsEffected = 0;
+                    conn.Open
+                    ();
+                    SqlCommand cmd = new SqlCommand("SELECT creator_id FROM tournaments WHERE tournament_id = (@tournamentId);", conn);
+                    cmd.Parameters.AddWithValue("@tournamentId", tournamentId);
+
+                    result = Convert.ToInt32(cmd.ExecuteScalar());
+
+
+                 
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return result;
+
         }
 
     }

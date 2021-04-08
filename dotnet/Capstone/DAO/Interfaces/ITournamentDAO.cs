@@ -20,6 +20,10 @@ namespace Capstone.DAO.Interfaces
 
         bool JoinParticipant(Participant participant);
 
+        bool ChangeTournamentStatus(Tournament tournament);
+
+        int TournamentOwner(int tournamentId);
+
 
     }
     
