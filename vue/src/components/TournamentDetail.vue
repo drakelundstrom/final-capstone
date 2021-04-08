@@ -37,7 +37,7 @@
 
 </table>
 
-<button type="submit" id ="jointbn" @click="onSubmit" v-if="($store.state.token != '') && (tournament.numberOfParticipants < tournament.maxNumberParticipants)">Join Now!</button>
+<button type="submit" id ="jointbn" @click="onSubmit" v-if="($store.state.token != '') && (tournament.numberOfParticipants < tournament.maxNumberParticipants) && (tournament.tournamentStaus =='Recruiting')">Join Now!</button>
 </div>
     
 </template>
