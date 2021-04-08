@@ -21,6 +21,6 @@ namespace Capstone.Models
         public int NumberOfParticipants { get; set; }
 
         public int NumberOfMatches { get; set; }
-
+        public int MaxNumberParticipants { get; set; }
     }
 }

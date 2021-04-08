@@ -48,3 +48,7 @@ WHERE user_id = 5 and tournament_id = 3;
 		INSERT INTO participants (tournament_id  , user_id, team_number ) VALUES (1, 5, 5);
 
 		select * from participants;
+
+UPDATE tournaments
+SET tour_status = 'Completed'
+WHERE tournament_id = 4;
