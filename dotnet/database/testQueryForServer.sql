@@ -23,7 +23,7 @@ INSERT INTO tournaments(creator_id , tournament_name , sport_id ) VALUES(
             , ('hi I am a tournament'), 
 (SELECT sport_id FROM sports WHERE sport_name = ('soccer')));
 
-INSERT INTO tournaments (creator_id ,tournament_name , sport_id, tour_status ) VALUES (1, 'non adminds seize power', 1, 'Recruiting');
+-- INSERT INTO tournaments (creator_id ,tournament_name , sport_id, tour_status ) VALUES (1, 'non adminds seize power', 1, 'Recruiting');
 
 SELECT * FROM tournaments t
 JOIN users u ON u.user_id = t.creator_id
@@ -52,3 +52,5 @@ WHERE user_id = 5 and tournament_id = 3;
 UPDATE tournaments
 SET tour_status = 'Completed'
 WHERE tournament_id = 4;
+
+SELECT creator_id FROM tournaments WHERE tournament_id = (1);

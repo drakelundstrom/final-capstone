@@ -89,6 +89,12 @@ namespace Capstone.Controllers
         [HttpPost("shuffle/{tournamentId}")]
         public ActionResult CreateTournament(int tournamentId)
         {
+
+            if (!(IsCorrectAdmin(tournamentId)))
+            {
+                return Unauthorized();
+            }
+
             bool result = tournamentDAO.ShuffleTournamentParticipantOrder(tournamentId);
 
             if (result)
@@ -117,6 +123,42 @@ namespace Capstone.Controllers
             }
 
 
+        }
+        [Authorize(Roles = "admin")]
+        [HttpPost("changeStatus")]
+        public ActionResult ChangeStatus(Tournament tournament)
+        {
+            if (!(IsCorrectAdmin(tournament.TournamentId)))
+            {
+                return Unauthorized();
+            }
+
+            bool result = tournamentDAO.ChangeTournamentStatus(tournament);
+
+            
+
+            if (result)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+
+        }
+
+        private bool IsCorrectAdmin(int tournamentId)
+        {
+            bool result = false;
+            int userId = int.Parse(User.FindFirst("sub").Value);
+            if (userId == tournamentDAO.TournamentOwner(tournamentId))
+            {
+                result = true;
+            }
+
+            return result;
         }
 
 
