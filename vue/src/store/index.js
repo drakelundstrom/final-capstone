@@ -21,7 +21,8 @@ export default new Vuex.Store({
     token: currentToken || '',
     user: currentUser || {},
     tournaments: [],
-    sports: []
+    sports: [],
+    participants: [],
 
   },
   mutations: {
@@ -54,7 +55,10 @@ export default new Vuex.Store({
     },
     SET_SPORTS(state, data){
       state.sports = data;
-    }
+    },
+    SET_PARTICIPANTS(state, data){
+      state.participants = data;
+    },
     
   }
 })

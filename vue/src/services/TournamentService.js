@@ -13,6 +13,10 @@ export default {
         return axios.get(path + '/' + tournamentId)
     },
 
+    getParticipantsInTournament(tournamentId) {
+        return axios.get(path + '/participants/' + tournamentId)
+    },
+
     createTournament(newTournament) {
         return axios.post(path, newTournament)
     },
