@@ -38,3 +38,13 @@ ORDER BY team_number;
 UPDATE participants
 SET team_number = 1
 WHERE user_id = 5 and tournament_id = 3;
+
+
+  SELECT * FROM tournaments t 
+        JOIN users u ON u.user_id = t.creator_id
+        JOIN sports s ON s.sport_id = t.sport_id
+        WHERE tournament_id = (1);
+
+		INSERT INTO participants (tournament_id  , user_id, team_number ) VALUES (1, 5, 5);
+
+		select * from participants;

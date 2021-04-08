@@ -101,6 +101,24 @@ namespace Capstone.Controllers
             }
 
         }
+        [Authorize()]
+        [HttpPost("join")]
+        public ActionResult JoinParticipant(Participant participant)
+        {
+            bool result = tournamentDAO.JoinParticipant(participant);
+
+            if (result)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+
+        }
+
 
     }
 }
