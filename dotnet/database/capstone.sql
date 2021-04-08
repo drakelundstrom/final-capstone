@@ -44,14 +44,44 @@ CONSTRAINT  sport_sport_id  PRIMARY KEY (sport_id),
 CREATE TABLE participants (
 	tournament_id integer NOT NULL,
 	user_id integer NOT NULL,
+	team_number integer NOT NULL,
 	CONSTRAINT participants_tournament_id_user_id PRIMARY KEY (tournament_id, user_id)
 );
 
+-- Drake edit for demo tournament
+CREATE TABLE matches (
+tournament_id integer NOT NULL,
+match_number integer NOT NULL,
+home_team_id integer NOT NULL,
+away_team_id integer NOT NULL,
+home_team_score varchar(50) DEFAULT '' NOT NULL ,
+away_team_score varchar(50) DEFAULT '' NOT NULL ,
+victor_id integer NOT NULL,
+CONSTRAINT matches_tournament_id_match_number PRIMARY KEY (tournament_id, match_number),
+CONSTRAINT matches_victor_id CHECK (victor_id IN (home_team_id, away_team_id, ''))
+);
+
 --populate default data
+SET IDENTITY_INSERT users ON
 -- user/password
-INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (1, 'user','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
 --admin/password
-INSERT INTO users (username, password_hash, salt, user_role) VALUES ('admin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (2, 'admin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
+
+
+-- Drake edit for demo tournament
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (3,	'a', '5C3f+YD3kx3mH8TQPRPqRqyqLjo=', 'MW6lnSChV1Q=', 'admin');
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (4,    'b', '0CZpWyZKkTABMliwA/0W1jaYUJE=', 'hYqPM95MXwY=', 'admin');
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (5,	'c', 'BXW4iJxq0+ZTB+ZTx66yTQpQebc=', 'FXhaCioadlQ=', 'admin');
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (6,	'd', 'cfpq6XHgRcvX+ckKCgRQX0q6/1s=', '4ZAkChsb+5Q=', 'user');
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (7,	'e', 'p1IZ+bEB992j4IQde3x1eoS+pBg=', '9EBow/9ISqI=', 'user');
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (8,	'f', 'jPCrwEvNE/yfYSa0itn5Mpz6Q9c=', 'cFK5lgDnzfk=', 'user');
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (9,	'g', 'OMghYW3jmdlJ7ffEsOCuaNDZRh0=', 'MTIex7iREik=', 'user');
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (10,	'h', 'g0Q2aeoMd40+n8vNquy6rLBvAt0=', 'NYK4oaniGzg=', 'user');
+
+SET IDENTITY_INSERT users OFF
+
+
 
 SET IDENTITY_INSERT tournaments ON
 INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (1, 2, 'soccer is a sport', 1, 'Recruiting');
@@ -67,9 +97,30 @@ INSERT INTO sports (sport_id ,sport_name ) VALUES (3, 'basketball');
 SET IDENTITY_INSERT sports OFF
 
 
-INSERT INTO participants (tournament_id , user_id ) VALUES (1, 1);
-INSERT INTO participants (tournament_id , user_id ) VALUES (2, 1);
-INSERT INTO participants (tournament_id , user_id ) VALUES (3, 1);
+INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (1, 1, 1);
+INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (1, 2, 2);
+INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (2, 1, 1);
+
+-- Drake edit for demo tournament
+INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (3, 3, 1);
+INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (3, 4, 2);
+INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (3, 5, 3);
+INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (3, 6, 4);
+INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (3, 7, 5);
+INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (3, 8, 6);
+INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (3, 9, 7);
+INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (3, 10, 8);
+
+-- Drake edit for demo tournament
+INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (3, 1, 3, 4, '2', '0', 3);
+INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (3, 2, 5, 6, '2', '5', 6);
+INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (3, 3, 7, 8, '2', '5', 8);
+INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (3, 4, 9, 10, '2', '0', 9);
+INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (3, 5, 3, 6, '7', '1', 3);
+INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (3, 6, 8, 9, '5', '6', 9);
+INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (3, 7, 3, 9, '9', '10', 9);
+
+
 
 
 GO
@@ -91,37 +142,12 @@ ADD FOREIGN KEY (tournament_id)
 REFERENCES tournaments(tournament_id);
 
 
+-- Drake edit for demo tournament
+ALTER TABLE matches
+ADD FOREIGN KEY (tournament_id)
+REFERENCES tournaments(tournament_id);
+
 
 COMMIT TRANSACTION
 
-SELECT *
-FROM tournaments;
 
-SELECT * 
-FROM users;
-
-SELECT *
-FROM participants;
-
-SELECT * 
-FROM sports;
-
-SELECT * FROM tournaments t
-JOIN users u ON u.user_id = t.creator_id
-JOIN sports s ON s.sport_id = t.sport_id
-
-INSERT INTO tournaments (creator_id ,tournament_name , sport_id ) VALUES ( 2, 'soccer is a sport', 
-(SELECT sport_id FROM sports WHERE sport_name = 'soccer'));
-
-
-INSERT INTO tournaments(creator_id , tournament_name , sport_id ) VALUES(
-            (SELECT user_id FROM users WHERE username = ('admin')) 
-            , ('hi I am a tournament'), 
-(SELECT sport_id FROM sports WHERE sport_name = ('soccer')));
-
-INSERT INTO tournaments (creator_id ,tournament_name , sport_id, tour_status ) VALUES (1, 'non adminds seize power', 1, 'Recruiting');
-
-SELECT * FROM tournaments t
-JOIN users u ON u.user_id = t.creator_id
-JOIN sports s ON s.sport_id = t.sport_id
-WHERE tournament_id = 1;

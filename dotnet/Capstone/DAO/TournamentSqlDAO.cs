@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using Capstone.DAO.Interfaces;
 using Capstone.Models;
 using Capstone.Security;
@@ -20,7 +21,8 @@ namespace Capstone.DAO
 
         private string sqlGetTournaments = "SELECT * FROM tournaments t " +
             "JOIN users u ON u.user_id = t.creator_id " +
-            "JOIN sports s ON s.sport_id = t.sport_id;";
+            "JOIN sports s ON s.sport_id = t.sport_id " +
+            "ORDER BY tournament_id;";
 
         private string sqlCreateTournament = " INSERT INTO tournaments(creator_id , tournament_name , sport_id ) VALUES(" +
             "(SELECT user_id FROM users WHERE username = (@creatorUsername)) " +
@@ -31,6 +33,15 @@ namespace Capstone.DAO
         "JOIN users u ON u.user_id = t.creator_id" +
         "JOIN sports s ON s.sport_id = t.sport_id" +
         "WHERE tournament_id = (@tournament_id));";
+
+        private string sqlGetUsersInTournament = "SELECT u.user_id, username, team_number  FROM users u " +
+        "JOIN participants p on p.user_id = u.user_id " +
+        "WHERE tournament_id = (@tournament_id) " +
+        "ORDER BY team_number;";
+
+        private string sqlUpdateTeamNumber = "UPDATE participants " +
+        "SET team_number = (@teamNumber) " +
+        "WHERE user_id = (@userId) and tournament_id = (@tournamentId);";
 
         public List<Tournament> GetTournaments()
         {
@@ -56,6 +67,7 @@ namespace Capstone.DAO
                     foreach (Tournament tournament in tournaments)
                     {
                         tournament.NumberOfParticipants = GetNumberOfParticipants(tournament.TournamentId);
+                        tournament.NumberOfMatches = CalculateNumberOfMatches(tournament.NumberOfParticipants);
                     }
                 }
             }
@@ -122,11 +134,11 @@ namespace Capstone.DAO
 
 
                     int rowsEffected = cmd.ExecuteNonQuery();
-                    if(rowsEffected == 1)
+                    if (rowsEffected == 1)
                     {
                         result = true;
                     }
-                  
+
 
                 }
             }
@@ -135,7 +147,7 @@ namespace Capstone.DAO
                 Console.WriteLine(ex.Message);
             }
             return result;
-           
+
         }
         public Tournament GetTournament(int tournamentId)
         {
@@ -148,19 +160,20 @@ namespace Capstone.DAO
 
                     conn.Open
                     ();
-                    SqlCommand cmd = new SqlCommand(sqlGetTournaments, conn);
-
+                    SqlCommand cmd = new SqlCommand(sqlGetTournament, conn);
+                    cmd.Parameters.AddWithValue("@tournament_id", tournamentId);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
-                       tournament = ConvertReaderToTournament(reader);
-                        
+                        tournament = ConvertReaderToTournament(reader);
+
 
                     }
-                    
+
                     {
                         tournament.NumberOfParticipants = GetNumberOfParticipants(tournament.TournamentId);
+                        tournament.NumberOfMatches = CalculateNumberOfMatches(tournament.NumberOfParticipants);
                     }
                 }
             }
@@ -170,5 +183,124 @@ namespace Capstone.DAO
             }
             return tournament;
         }
+
+        // Drake edit for demo tournament
+        private int CalculateNumberOfMatches(int numberOfTeams)
+        {
+            int result = 0;
+            if (numberOfTeams > 0)
+            {
+                result = numberOfTeams - 1;
+            }
+            return result;
+            /*
+            int result = 0;
+            int twoCounter = -1;
+            while (numberOfTeams >= (Math.Pow(2, twoCounter)))
+            {
+                twoCounter++;
+            }
+            result += numberOfTeams - (int)(Math.Pow(2, (twoCounter)));
+            for (int i = 0; i < twoCounter; i++)
+            {
+                result += (int)(Math.Pow(2, i));
+            }
+            return result; */
+        }
+        //  Drake edit for demo tournament
+        public List<Participant> GetParticipantsInTournament(int tournamentId)
+        {
+            List<Participant> result = new List<Participant>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+
+                    conn.Open
+                    ();
+                    SqlCommand cmd = new SqlCommand(sqlGetUsersInTournament, conn);
+                    cmd.Parameters.AddWithValue("@tournament_id", tournamentId);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Participant participant = ConvertReaderToParticipant(reader);
+                        participant.TournamentId = tournamentId;
+                        result.Add(participant);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return result;
+        }
+
+        //  Drake edit for demo tournament
+        private Participant ConvertReaderToParticipant(SqlDataReader reader)
+        {
+            Participant participant = new Participant();
+            participant.UserId = Convert.ToInt32(reader["user_id"]);
+            participant.Username = Convert.ToString(reader["username"]);
+            participant.TeamNumber = Convert.ToInt32(reader["team_number"]);
+            return participant;
+        }
+
+        //  Drake edit for demo tournament
+        public bool ShuffleTournamentParticipantOrder(int tournamentId)
+        {
+            bool result = true;
+            List<Participant> original = GetParticipantsInTournament(tournamentId);
+            System.Random random = new System.Random();
+            List<Participant> shuffledList = original.OrderBy(x => random.Next()).ToList();
+            for(int i = 0; i<shuffledList.Count; i++)
+            {
+                bool interumResult = UpdateTeamNumber(tournamentId, shuffledList[i].UserId, i + 1);
+                if (!interumResult)
+                {
+                    result = interumResult;
+                }
+            }
+
+
+            return result;
+        }
+
+        //  Drake edit for demo tournament
+        private bool UpdateTeamNumber(int tournamentId, int userId, int newTeamNumber)
+        {
+            bool result = false;
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    int rowsEffected = 0;
+                    conn.Open
+                    ();
+                    SqlCommand cmd = new SqlCommand(sqlUpdateTeamNumber, conn);
+                    cmd.Parameters.AddWithValue("@tournamentId", tournamentId);
+                    cmd.Parameters.AddWithValue("@userId", userId);
+                    cmd.Parameters.AddWithValue("@teamNumber", newTeamNumber);
+                    rowsEffected = cmd.ExecuteNonQuery();
+
+                    if (rowsEffected == 1)
+                    {
+                        result = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+
+            return result;
+        }
+
     }
 }
