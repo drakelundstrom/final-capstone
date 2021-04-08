@@ -3,7 +3,7 @@
     <!-- message? -->
     <!-- I would like to make the search a button to collapse, but not sure on event handling -->
     <p>
-      Do you want to filter the tournament list?<select
+      Look for a Specific Tournament?<select
         id="search active"
         v-model="searchActive"
       >
