@@ -82,7 +82,7 @@
       </tbody>
       <tbody v-if="searchActive == 'true'">
         <tr v-for="(tournament, index) in this.filteredList" v-bind:key="index">
-          <td>{{ tournament.tournamentName }}</td>
+          <router-link id="details" v-bind:to="{name: 'Tournament', params: {id: tournament.tournamentId} }"> <td>{{ tournament.tournamentName }}</td></router-link>
           <td>{{ tournament.tournamentId }}</td>
           <td>{{ tournament.sportName }}</td>
           <td>{{ tournament.creatorUsername }}</td>
