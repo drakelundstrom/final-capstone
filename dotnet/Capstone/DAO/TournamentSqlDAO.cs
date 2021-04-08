@@ -113,7 +113,7 @@ namespace Capstone.DAO
             tournament.TournamentName = Convert.ToString(reader["tournament_name"]);
             tournament.SportId = Convert.ToInt32(reader["sport_id"]);
             tournament.SportName = Convert.ToString(reader["sport_name"]);
-            tournament.TournamentStaus = Convert.ToString(reader["tour_status"]);
+            tournament.TournamentStatus = Convert.ToString(reader["tour_status"]);
             tournament.MaxNumberParticipants = Convert.ToInt32(reader["max_number_participants"]);
             return tournament;
         }

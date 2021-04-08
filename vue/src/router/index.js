@@ -75,7 +75,13 @@ const router = new Router({
       path: "/tournamentcreate",
       name: "CreateTournament",
       component: TournamentCreate
-    }
+    }, 
+    //^^??? do we use that 
+    /* {
+      path: "/tournament/join",
+      name: "JoinTournament",
+      component: 
+    } */
 
   ]
 })
