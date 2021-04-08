@@ -349,7 +349,7 @@ namespace Capstone.DAO
                     ();
                     SqlCommand cmd = new SqlCommand("UPDATE tournaments SET tour_status = (@tournamentStatus) WHERE tournament_id = (@tournamentId);", conn);
                     cmd.Parameters.AddWithValue("@tournamentId", tournament.TournamentId);
-                    cmd.Parameters.AddWithValue("@tournamentStatus", tournament.TournamentStaus);
+                    cmd.Parameters.AddWithValue("@tournamentStatus", tournament.TournamentStatus);
                     rowsEffected = cmd.ExecuteNonQuery();
 
 
