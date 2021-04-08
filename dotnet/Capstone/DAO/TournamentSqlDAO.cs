@@ -302,5 +302,40 @@ namespace Capstone.DAO
             return result;
         }
 
+        public bool JoinParticipant(Participant participant)
+        {
+            bool result = false;
+
+            int newTeamNumber = GetNumberOfParticipants(participant.TournamentId) + 1;
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    int rowsEffected = 0;
+                    conn.Open
+                    ();
+                    SqlCommand cmd = new SqlCommand("INSERT INTO participants(tournament_id, user_id, team_number) VALUES((@tournamentId), (@userId), (@teamNumber));", conn);
+                    cmd.Parameters.AddWithValue("@tournamentId", participant.TournamentId);
+                    cmd.Parameters.AddWithValue("@userId",participant.UserId);
+                    cmd.Parameters.AddWithValue("@teamNumber", newTeamNumber);
+                    rowsEffected = cmd.ExecuteNonQuery();
+
+                    if (rowsEffected == 1)
+                    {
+                        result = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return result;
+
+            //INSERT INTO participants(tournament_id, user_id, team_number) VALUES((@tournamentId), (@userId), (@teamNumber));//
+        }
+
     }
 }
