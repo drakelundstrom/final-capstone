@@ -37,7 +37,7 @@
 
 </table>
 
-<button type="submit" id ="jointbn" @click="onSubmit" v-if="$store.state.token != ''">Join Now!</button>
+<button type="submit" id ="jointbn" @click="onSubmit" v-if="($store.state.token != '') && (tournament.numberOfParticipants < tournament.maxNumberParticipants)">Join Now!</button>
 </div>
     
 </template>
@@ -68,7 +68,17 @@ export default {
             this.participant.userId = this.$store.state.user.userId;
             this.participant.tournamentId = this.tournament.tournamentId;
 
-           TournamentService.joinTournament(this.participant);
+           TournamentService.joinTournament(this.participant)
+           .then((response) =>{
+               if(response.status >= 200 && response.status < 300){
+                    window.alert(`Successfully joined ${this.tournament.tournamentName}`)
+               }
+               
+           }
+            )
+           .catch((error) => {
+               window.alert("Something went wrong :/ " + error)
+           })
 
            //clear participant ? 
         }
