@@ -6,25 +6,25 @@
         {{ registrationErrorMsg }}
       </div>
       <label for="username" class="sr-only">Username</label>
-      <input
+      <input :maxlength="max"
         type="text"
         id="username"
         class="form-control"
-        placeholder="Username"
+        placeholder="Username(50 char max)"
         v-model="user.username"
         required
         autofocus
       />
       <label for="password" class="sr-only">Password</label>
-      <input
+      <input :maxlength="max"
         type="password"
         id="password"
         class="form-control"
-        placeholder="Password"
+        placeholder="Password(50 char max)"
         v-model="user.password"
         required
       />
-      <input
+      <input :maxlength="max"
         type="password"
         id="confirmPassword"
         class="form-control"
@@ -51,6 +51,7 @@ export default {
   name: 'register',
   data() {
     return {
+      max: 50,
       user: {
         username: '',
         password: '',

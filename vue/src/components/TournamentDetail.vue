@@ -77,7 +77,7 @@ export default {
            }
             )
            .catch((error) => {
-               window.alert("Something went wrong :/ " + error)
+               window.alert("Something went wrong :/\nAre you sure you didn't already join this one? \n" + error)
            })
 
            //clear participant ? 
