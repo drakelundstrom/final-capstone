@@ -30,9 +30,11 @@ tournament_id int IDENTITY NOT NULL,
 creator_id int NOT NULL,
 tournament_name varchar(50) NOT NULL,
 sport_id int NOT NULL,
+max_number_participants int NOT NULL DEFAULT 8,
 tour_status varchar(15) Default 'Recruiting',
 CONSTRAINT  tournaments_tournament_id  PRIMARY KEY (tournament_id),
-CONSTRAINT tournaments_tour_status CHECK (tour_status IN ('Recruiting', 'Active', 'Completed'))
+CONSTRAINT tournaments_tour_status CHECK (tour_status IN ('Recruiting', 'Active', 'Completed')),
+CONSTRAINT tournaments_max_number_participants CHECK ((max_number_participants >=2) and (max_number_participants <=64))
 );
 
 CREATE TABLE sports (
@@ -87,7 +89,7 @@ SET IDENTITY_INSERT tournaments ON
 INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (1, 2, 'soccer is a sport', 1, 'Recruiting');
 INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (2, 2, 'baseball is a sport', 2, 'Active');
 INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (3, 2, 'basketball is a sport', 3, 'Completed');
-INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (4, 1, 'Not admin on purpose', 1, 'Recruiting');
+INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (4, 4, 'b is an admin', 1, 'Recruiting');
 SET IDENTITY_INSERT tournaments OFF
 
 SET IDENTITY_INSERT sports ON

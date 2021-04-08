@@ -18,6 +18,12 @@ namespace Capstone.DAO.Interfaces
         // Drake edit for demo tournament
         bool ShuffleTournamentParticipantOrder(int tournamentId);
 
+        bool JoinParticipant(Participant participant);
+
+        bool ChangeTournamentStatus(Tournament tournament);
+
+        int TournamentOwner(int tournamentId);
+
 
     }
     

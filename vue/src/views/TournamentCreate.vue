@@ -2,7 +2,7 @@
   <div>
     <form v-on:submit.prevent="onSubmit" id ="createNewTournament" >
       <label for="">Tournament Name:</label>
-      <input required type="text" v-model="newTournament.tournamentName" />
+      <input :maxlength="max" type="text" placeholder="(50 char max)" v-model="newTournament.tournamentName" />
       <p></p>
     <!--  <input
         type="text"
@@ -33,10 +33,12 @@ import SportsService from "../services/SportsService";
 export default {
   name: "TournamentCreate",
   data() {
+    
     return {
       newTournament: {
         CreatorUsername: this.$store.state.user.username,
       },
+      max: 50,
      // sports: this.$store.state.sports,
     };
   },

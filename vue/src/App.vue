@@ -2,19 +2,26 @@
   <div id="app">
     <div id="nav">
       <router-link id ="navlink" v-bind:to="{ name: 'home' }">Home |</router-link>
-      <router-link id ="navlink" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''"> Logout |</router-link>
       <router-link id ="navlink" v-bind:to="{ name: 'Tournaments'}" > View Tournaments |</router-link>
       <router-link id ="navlink" v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''"> Login |</router-link>
       <router-link id ="navlink" v-bind:to="{ name: 'register' }" v-if="$store.state.token == ''"> Register </router-link>
-      <router-link id ="navlink" v-bind:to="{ name: 'CreateTournament'}" v-if="$store.state.user.role == 'admin'"> Create a Tournament</router-link>
+      <router-link id ="navlink" v-bind:to="{ name: 'CreateTournament'}" v-if="$store.state.user.role == 'admin'"> Create a Tournament |</router-link>
+      <router-link id ="navlink" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''"> Logout </router-link>
 
     </div>
     <router-view id ="sign-in" />
-    <div id="title">
+    <footer>
+   <div class="tcontainer"><div class="ticker-wrap"><div class="ticker-move">
+  <div class="ticker-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+  <div class="ticker-item">Aliquam consequat varius consequat.</div>
+  <div class="ticker-item">Fusce dapibus turpis vel nisi malesuada sollicitudin.</div>
+  <div class="ticker-item">Pellentesque auctor molestie orci ut blandit.</div>
+  <!-- make ticker smoother ending-->
+</div></div></div> </footer>
     
   </div>
-    
-  </div>
+
+  
 
   
 </template>
@@ -58,11 +65,52 @@ body {
   
 }
 
-.footer {
-  font-size: 0.9rem;
+footer {
+  width: 100%;
+  font-size: 30px;
+   position: absolute;
+  bottom: 5px;
 }
 
+/* OUTER CONTAINER */
+.tcontainer {
+  width: 100%;
+  overflow: hidden; /* Hide scroll bar */
+}
+ 
+/* MIDDLE CONTAINER */
+.ticker-wrap {
+  width: 100%;
+  padding-left: 100%; /* Push contents to right side of screen */
+  background-color: #cce1e6;
+}
 
+/* INNER CONTAINER */
+@keyframes ticker {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-100%, 0, 0); }
+}
+.ticker-move {
+  /* Basically move items from right side of screen to left in infinite loop */
+  display: inline-block;
+  white-space: nowrap;
+  padding-right: 100%;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-name: ticker;
+  animation-duration: 20s;
+}
+.ticker-move:hover{
+  animation-play-state: paused; /* Pause scroll on mouse hover */
+}
+
+/* ITEMS */
+.ticker-item{
+  display: inline-block; /* Lay items in a horizontal line */
+  padding: 0 2rem;
+  color: #4c8a9a;
+  text-shadow: 2px 2px 2px #374968;
+}
 
 
 </style>
