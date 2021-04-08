@@ -18,6 +18,6 @@ export default {
     },
 
     joinTournament(participant){
-        return axios.post(path + '/register', participant)
+        return axios.post(path + '/join', participant)
     }
 }

@@ -37,7 +37,7 @@
 
 </table>
 
-<button type="submit" id ="jointbn">Join Now!</button>
+<button type="submit" id ="jointbn" @click="onSubmit" v-if="$store.state.token != ''">Join Now!</button>
 </div>
     
 </template>
@@ -65,7 +65,7 @@ export default {
     },
     methods: {
         onSubmit() {
-            this.participant.userId = this.$store.state.userId;
+            this.participant.userId = this.$store.state.user.userId;
             this.participant.tournamentId = this.tournament.tournamentId;
 
            TournamentService.joinTournament(this.participant);
