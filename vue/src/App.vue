@@ -12,10 +12,14 @@
     <router-view id ="sign-in" />
     <footer>
    <div class="tcontainer"><div class="ticker-wrap"><div class="ticker-move">
-  <div class="ticker-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
-  <div class="ticker-item">Aliquam consequat varius consequat.</div>
-  <div class="ticker-item">Fusce dapibus turpis vel nisi malesuada sollicitudin.</div>
-  <div class="ticker-item">Pellentesque auctor molestie orci ut blandit.</div>
+  <div class="ticker-item"><i>"No one man should have all that power"</i> -John ; </div>
+  <div class="ticker-item">Rachelle always wins.  </div>
+  <div class="ticker-item"><i>"If you ain't first, you're last"</i> -Tom Cruise </div>
+  <div class="ticker-item"><i>“Kowabunga dudettes. I’m so pumped to be on this surfing kick. Who else surfs out there? Gnarly day in the H20. Ridin’ waves!”</i> -Rachelle </div>
+  <div class="ticker-item">It depends. &nbsp;&nbsp; </div>
+  <div id ="hide" class="ticker-item">  Lorem ipsum dolor sit amet, consectetur adipiscing elit,  </div>
+  <div id ="hide" class="ticker-item">     Lorem ipsum dolor sit amet, consectetur adipiscing elit,        </div>
+  <div id ="hide" class="ticker-item">           Lorem ipsum dolor sit amet, consectetur adipiscing elit,   </div>
   <!-- make ticker smoother ending-->
 </div></div></div> </footer>
     
@@ -110,6 +114,11 @@ footer {
   padding: 0 2rem;
   color: #4c8a9a;
   text-shadow: 2px 2px 2px #374968;
+}
+
+#hide{
+  color:#cce1e6;
+  text-shadow: none;
 }
 
 
