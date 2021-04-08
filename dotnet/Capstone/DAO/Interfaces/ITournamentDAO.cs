@@ -13,6 +13,12 @@ namespace Capstone.DAO.Interfaces
 
         public bool CreateTournament(Tournament tournament);
         public Tournament GetTournament(int tournamentId);
+        //  Drake edit for demo tournament
+        List<Participant> GetParticipantsInTournament(int tournamentId);
+        // Drake edit for demo tournament
+        bool ShuffleTournamentParticipantOrder(int tournamentId);
+
+
     }
     
 }

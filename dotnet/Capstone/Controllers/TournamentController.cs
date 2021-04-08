@@ -69,6 +69,38 @@ namespace Capstone.Controllers
                 return NotFound();
             }
         }
+        //  Drake edit for demo tournament
+        [AllowAnonymous]
+        [HttpGet("participants/{tournamentId}")]
+        public ActionResult<List<Participant>> GetParticipantsInTournament(int tournamentId)
+        {
+            List<Participant> participants = tournamentDAO.GetParticipantsInTournament(tournamentId);
+            if (participants != null)
+            {
+                return Ok(participants);
+            } 
+            else
+            {
+                return NotFound();
+            }
+        }
+        //  Drake edit for demo tournament
+        [Authorize(Roles = "admin")]
+        [HttpPost("shuffle/{tournamentId}")]
+        public ActionResult CreateTournament(int tournamentId)
+        {
+            bool result = tournamentDAO.ShuffleTournamentParticipantOrder(tournamentId);
+
+            if (result)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+        }
 
     }
 }

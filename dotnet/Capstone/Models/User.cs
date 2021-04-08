@@ -20,6 +20,17 @@
     }
 
     /// <summary>
+    /// Model of user data to return as tournament Participant
+    /// </summary>
+    public class Participant
+    {
+        public int UserId { get; set; }
+        public string Username { get; set; }
+        public int TeamNumber { get; set; }
+        public int TournamentId { get; set; }
+    }
+
+    /// <summary>
     /// Model to return upon successful login (user data + token)
     /// </summary>
     public class LoginResponse
