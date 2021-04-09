@@ -21,7 +21,7 @@ export default {
 
     data(){
         return {
-           tournamentId: 0, 
+           tournamentId: this.$route.params.id, 
         }
     },
 
