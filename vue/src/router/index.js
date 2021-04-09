@@ -9,6 +9,7 @@ import Register from '../views/Register.vue'
 import Tournaments from '../views/Tournaments.vue'
 import Tournament from '../views/Tournament.vue'
 import TournamentCreate from '../views/TournamentCreate.vue'
+import AboutUs from '../views/AboutUs.vue'
 
 
 
@@ -76,6 +77,12 @@ const router = new Router({
       name: "CreateTournament",
       component: TournamentCreate
     }, 
+
+    {
+      path: "/aboutus",
+      name: "AboutUs",
+      component: AboutUs
+    }
     //^^??? do we use that 
     /* {
       path: "/tournament/join",
