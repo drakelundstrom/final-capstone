@@ -43,6 +43,24 @@ namespace Capstone.DAO
         "SET team_number = (@teamNumber) " +
         "WHERE user_id = (@userId) and tournament_id = (@tournamentId);";
 
+
+        private string sqlGetMatchesInTournament = "SELECT DISTINCT m.tournament_id, match_number, " +
+ "home_team_id, home_team_score,  home.team_number AS 'home_team_number'  , home_users.username AS 'home_name', " +
+ " away_team_id, away_team_score, away.team_number AS 'away_team_number'  , away_users.username AS 'away_name', " +
+ "victor_id, victor.team_number AS 'victor_team_number'  , victor_users.username AS 'victor_name' " +
+ " FROM matches m " +
+ " JOIN participants away ON away.user_id = m.away_team_id " +
+ " JOIN users away_users ON away_users.user_id = m.away_team_id " +
+ " JOIN participants home ON home.user_id = m.home_team_id " +
+ " JOIN users home_users ON home_users.user_id = m.home_team_id " +
+ " JOIN participants victor ON victor.user_id = m.victor_id " +
+ " JOIN users victor_users ON victor_users.user_id = m.victor_id " +
+ " WHERE m.tournament_id = (@tournament_id) " +
+ " ORDER BY match_number;";
+
+
+
+
         public List<Tournament> GetTournaments()
         {
             List<Tournament> tournaments = new List<Tournament>();
@@ -385,7 +403,7 @@ namespace Capstone.DAO
                     result = Convert.ToInt32(cmd.ExecuteScalar());
 
 
-                 
+
                 }
             }
             catch (Exception ex)
@@ -397,5 +415,65 @@ namespace Capstone.DAO
 
         }
 
+
+        public List<Match> GetMatches(int tournamentId)
+        {
+            List<Match> matches = new List<Match>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+
+                    conn.Open
+                    ();
+                    SqlCommand cmd = new SqlCommand(sqlGetMatchesInTournament, conn);
+                    cmd.Parameters.AddWithValue("@tournament_id", tournamentId);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Match match = ConvertReaderToMatch(reader);
+                        matches.Add(match);
+
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Match match = new Match();
+                match.MatchNumber = -1;
+                matches.Add(match);
+            }
+            return matches;
+        }
+
+
+        private Match ConvertReaderToMatch(SqlDataReader reader)
+        {
+            Match match = new Match();
+            match.TournamentId = Convert.ToInt32(reader["tournament_id"]);
+            match.MatchNumber = Convert.ToInt32(reader["match_number"]);
+
+            match.HomeTeamId = Convert.ToInt32(reader["home_team_id"]);
+            match.HomeTeamScore = Convert.ToString(reader["home_team_score"]);
+            match.HomeTeamNumber = Convert.ToInt32(reader["home_team_number"]);
+            match.HomeTeamName = Convert.ToString(reader["home_name"]);
+
+            match.AwayTeamId = Convert.ToInt32(reader["away_team_id"]);
+            match.AwayTeamScore = Convert.ToString(reader["away_team_score"]);
+            match.AwayTeamNumber = Convert.ToInt32(reader["away_team_number"]);
+            match.AwayTeamName = Convert.ToString(reader["away_name"]);
+
+            match.VictorTeamId = Convert.ToInt32(reader["victor_id"]);
+            match.VictorTeamNumber = Convert.ToInt32(reader["victor_team_number"]);
+            match.VictorTeamName = Convert.ToString(reader["victor_name"]);
+
+            return match;
+        }
     }
 }
+
