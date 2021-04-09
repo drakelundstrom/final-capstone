@@ -1,6 +1,6 @@
 <template>
   <main id="tournament">
-    <h1>Tournament Schedule</h1>
+    
     <ul class="round round-2">
       <li class="spacer">&nbsp;</li>
 
@@ -291,11 +291,15 @@ export default {
 </script>
 
 <style>
+#title{
+    justify-items: center;
+}
 main {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
+
 .round {
   display: flex;
   flex-direction: column;
