@@ -161,6 +161,21 @@ namespace Capstone.Controllers
             return result;
         }
 
+        [AllowAnonymous]
+        [HttpGet("matches/{tournamentId}")]
+        public ActionResult<List<Match>> GetMatches(int tournamentId)
+        {
+            List<Match> matches = tournamentDAO.GetMatches(tournamentId);
+       //     if (matches.Count >= 1)
+      //      {
+       //         if (matches[0].MatchNumber == -1)
+        //        {
+        //            return NotFound();
+         //       }    
+                
+        //    }
+            return Ok(matches);
+        }
 
     }
 }
