@@ -72,14 +72,14 @@ INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (2,
 
 
 -- Drake edit for demo tournament
-INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (3,	'a', '5C3f+YD3kx3mH8TQPRPqRqyqLjo=', 'MW6lnSChV1Q=', 'admin');
-INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (4,    'b', '0CZpWyZKkTABMliwA/0W1jaYUJE=', 'hYqPM95MXwY=', 'admin');
-INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (5,	'c', 'BXW4iJxq0+ZTB+ZTx66yTQpQebc=', 'FXhaCioadlQ=', 'admin');
-INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (6,	'd', 'cfpq6XHgRcvX+ckKCgRQX0q6/1s=', '4ZAkChsb+5Q=', 'user');
-INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (7,	'e', 'p1IZ+bEB992j4IQde3x1eoS+pBg=', '9EBow/9ISqI=', 'user');
-INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (8,	'f', 'jPCrwEvNE/yfYSa0itn5Mpz6Q9c=', 'cFK5lgDnzfk=', 'user');
-INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (9,	'g', 'OMghYW3jmdlJ7ffEsOCuaNDZRh0=', 'MTIex7iREik=', 'user');
-INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (10,	'h', 'g0Q2aeoMd40+n8vNquy6rLBvAt0=', 'NYK4oaniGzg=', 'user');
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (3,	'Aaron', '5C3f+YD3kx3mH8TQPRPqRqyqLjo=', 'MW6lnSChV1Q=', 'admin');
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (4,    'Bob', '0CZpWyZKkTABMliwA/0W1jaYUJE=', 'hYqPM95MXwY=', 'admin');
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (5,	'Conner', 'BXW4iJxq0+ZTB+ZTx66yTQpQebc=', 'FXhaCioadlQ=', 'admin');
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (6,	'Doug', 'cfpq6XHgRcvX+ckKCgRQX0q6/1s=', '4ZAkChsb+5Q=', 'user');
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (7,	'Elizabeth', 'p1IZ+bEB992j4IQde3x1eoS+pBg=', '9EBow/9ISqI=', 'user');
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (8,	'Frank', 'jPCrwEvNE/yfYSa0itn5Mpz6Q9c=', 'cFK5lgDnzfk=', 'user');
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (9,	'Gloria', 'OMghYW3jmdlJ7ffEsOCuaNDZRh0=', 'MTIex7iREik=', 'user');
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (10,	'Henry', 'g0Q2aeoMd40+n8vNquy6rLBvAt0=', 'NYK4oaniGzg=', 'user');
 
 SET IDENTITY_INSERT users OFF
 
