@@ -26,6 +26,6 @@ export default {
     },
 
     getMatchesInTournament(tournamentId){
-        return axios.post(path + '/matches/', tournamentId)
+        return axios.get(path + '/matches/'+ tournamentId)
     },
 }
