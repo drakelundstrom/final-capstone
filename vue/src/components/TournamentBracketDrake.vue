@@ -1,61 +1,24 @@
 <template>
-  <main id="tournament">
+  <div>
     <h1>Tournament Schedule</h1>
-    <ul class="round round-2">
-      <li class="spacer">&nbsp;</li>
-
-      <li class="game game-top winner">{{this.quarterFinal1}}</li>
-      <li class="game game-spacer">&nbsp;</li>
-      <li class="game game-bottom">{{this.quarterFinal2}}</li>
-
-      <li class="spacer1">&nbsp;</li>
-
-      <li class="game game-top winner">{{this.quarterFinal3}}</li>
-      <li class="game game-spacer">&nbsp;</li>
-      <li class="game game-bottom">{{this.quarterFinal4}}   </li>
-
-      <li class="spacer1">&nbsp;</li>
-
-      <li class="game game-top">{{this.quarterFinal5}}   </li>
-      <li class="game game-spacer">&nbsp;</li>
-      <li class="game game-bottom winner">{{this.quarterFinal6}}   </li>
-
-      <li class="spacer1">&nbsp;</li>
-
-      <li class="game game-top">{{this.quarterFinal7}}   </li>
-      <li class="game game-spacer">&nbsp;</li>
-      <li class="game game-bottom winner">{{this.quarterFinal8}}   </li>
-
-      <li class="spacer">&nbsp;</li>
-    </ul>
-    <ul class="round round-3">
-      <li class="spacer">&nbsp;</li>
-
-      <li class="game game-top winner">{{this.semiFinal1}}   </li>
-      <li id="spacing1" class="game game-spacer">&nbsp;</li>
-      <li class="game game-bottom">{{this.semiFinal2}}   </li>
-
-      <li class="spacer">&nbsp;</li>
-
-      <li class="game game-top">{{this.semiFinal3}}   </li>
-      <li id="spacing1" class="game game-spacer">&nbsp;</li>
-      <li class="game game-bottom winner">{{this.semiFinal4}}   </li>
-
-      <li class="spacer">&nbsp;</li>
-    </ul>
-    <ul class="round round-4">
-      <li class="spacer">&nbsp;</li>
-
-      <li class="game game-top winner">{{ this.final1 }}   </li>
-      <li id="spacefinal" class="game game-spacer">&nbsp;</li>
-      <li class="game game-bottom">{{ this.final2 }}   </li>
-
-      <li class="spacer">&nbsp;</li>
-    </ul>
-    <ul class="round round-5">
-      <li class="game winner">{{( (this.winner == "")? "???"  : this.winner )}} WINS!!!</li>
-    </ul>
-  </main>
+    <div class="bracketContainer" id="eightTeams">
+      <div class="box quarterfinals1">{{this.quarterFinal1}}</div>
+      <div class="box quarterfinals2">{{this.quarterFinal2}}</div>
+      <div class="box quarterfinals3">{{this.quarterFinal3}}</div>
+      <div class="box quarterfinals4">{{this.quarterFinal4}}</div>
+      <div class="box quarterfinals5">{{this.quarterFinal5}}</div>
+      <div class="box quarterfinals6">{{this.quarterFinal6}}</div>
+      <div class="box quarterfinals7">{{this.quarterFinal7}}</div>
+      <div class="box quarterfinals8">{{this.quarterFinal8}}</div>
+      <div class="box semifinals1">{{this.semiFinal1}}</div>
+      <div class="box semifinals2">{{this.semiFinal2}}</div>
+      <div class="box semifinals3">{{this.semiFinal3}}</div>
+      <div class="box semifinals4">{{this.semiFinal4}}</div>
+      <div class="box finals1">{{ this.final1 }}</div>
+      <div class="box finals2">{{ this.final2 }}</div>
+      <div class="box winner">{{ this.winner }}</div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -291,74 +254,68 @@ export default {
 </script>
 
 <style>
-main {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+#eightTeams {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "quarterfinals1 semifinals1 finals1 winner"
+    "quarterfinals2 semifinals1 finals1 winner"
+    "quarterfinals3 semifinals2 finals1 winner"
+    "quarterfinals4 semifinals2 finals1 winner"
+    "quarterfinals5 semifinals3 finals2 winner"
+    "quarterfinals6 semifinals3 finals2 winner"
+    "quarterfinals7 semifinals4 finals2 winner"
+    "quarterfinals8 semifinals4 finals2 winner";
 }
-.round {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 200px;
-  list-style: none;
-  padding: 0;
+.box {
+  align-content: center;
+  text-justify: center;
+  text-align: center;
+  vertical-align: middle;
 }
-.round .spacer {
-  flex-grow: 1;
+.quarterfinals1 {
+  grid-area: quarterfinals1;
 }
-.round .spacer:first-child,
-.round .spacer:last-child {
-  flex-grow: 0.5;
+.quarterfinals2 {
+  grid-area: quarterfinals2;
 }
-
-.spacer1 {
-  padding: 10px;
+.quarterfinals3 {
+  grid-area: quarterfinals3;
 }
-
-.round .game-spacer {
-  flex-grow: 1;
+.quarterfinals4 {
+  grid-area: quarterfinals4;
 }
-
-#spacing1 {
-  flex-grow: 1.6;
+.quarterfinals5 {
+  grid-area: quarterfinals5;
 }
-
-#spacefinal {
-  flex-grow: 1.37;
+.quarterfinals6 {
+  grid-area: quarterfinals6;
 }
-
-/*
- *  General Styles
-*/
-body {
-  padding: 10px;
-  line-height: 1.4em;
+.quarterfinals7 {
+  grid-area: quarterfinals7;
 }
-
-li.game {
-  padding-left: 20px;
+.quarterfinals8 {
+  grid-area: quarterfinals8;
 }
-
-li.game.winner {
-  font-weight: bold;
+.semifinals1 {
+  grid-area: semifinals1;
 }
-
-li.game span {
-  float: right;
-  margin-right: 5px;
+.semifinals2 {
+  grid-area: semifinals2;
 }
-
-li.game-top {
-  border-bottom: 1px solid #aaa;
+.semifinals3 {
+  grid-area: semifinals3;
 }
-
-li.game-spacer {
-  border-right: 1px solid #aaa;
-  min-height: 40px;
+.semifinals4 {
+  grid-area: semifinals4;
 }
-
-li.game-bottom {
-  border-top: 1px solid #aaa;
+.finals1 {
+  grid-area: finals1;
+}
+.finals2 {
+  grid-area: finals2;
+}
+.winner {
+  grid-area: winner;
 }
 </style>

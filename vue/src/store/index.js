@@ -24,7 +24,7 @@ export default new Vuex.Store({
     sports: [],
     participants: [],
     tournament: {},
-
+matches: [],
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -63,6 +63,8 @@ export default new Vuex.Store({
     SET_TOURNAMENT(state, data){
       state.tournament = data;
     },
-    
+    SET_MATCHES(state, data){
+      state.matches = data;
+    },
   }
 })

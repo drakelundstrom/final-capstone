@@ -23,5 +23,9 @@ export default {
 
     joinTournament(participant){
         return axios.post(path + '/join', participant)
-    }
+    },
+
+    getMatchesInTournament(tournamentId){
+        return axios.get(path + '/matches/'+ tournamentId)
+    },
 }
