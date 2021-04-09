@@ -54,3 +54,32 @@ SET tour_status = 'Completed'
 WHERE tournament_id = 4;
 
 SELECT creator_id FROM tournaments WHERE tournament_id = (1);
+
+
+ SELECT * FROM tournaments t JOIN users u ON u.user_id = t.creator_id JOIN sports s ON s.sport_id = t.sport_id WHERE tournament_id = (1);
+ 
+ select * from participants
+
+ SELECT DISTINCT m.tournament_id, match_number, 
+ home_team_id, home_team_score,  home.team_number AS 'home_team_number'  , home_users.username AS 'home_name',
+ away_team_id, away_team_score,  away.team_number AS 'away_team_number'  , away_users.username AS 'away_name',
+ victor_id, victor.team_number AS 'victor_team_number'  , victor_users.username AS 'victor_name'
+ FROM matches m
+ JOIN participants away ON away.user_id = m.away_team_id
+ JOIN users away_users ON away_users.user_id = m.away_team_id
+ JOIN participants home ON home.user_id = m.home_team_id
+ JOIN users home_users ON home_users.user_id = m.home_team_id
+ JOIN participants victor ON victor.user_id = m.victor_id
+ JOIN users victor_users ON victor_users.user_id = m.victor_id
+ WHERE m.tournament_id = 3
+ ORDER BY match_number;
+
+
+ SELECT DISTINCT m.tournament_id, match_number, home_team_id, home_team_score,  home.team_number AS 'home_team_number'  , home_users.username AS 'home_name',  away_team_id, away_team_score, away.team_number AS 'away_team_number'  , away_users.username AS 'away_name', victor_id, victor.team_number AS 'victor_team_number'  , victor_users.username AS 'victor_name'  FROM matches m  JOIN participants away ON away.user_id = m.away_team_id  JOIN users away_users ON away_users.user_id = m.away_team_id  JOIN participants home ON home.user_id = m.home_team_id  JOIN users home_users ON home_users.user_id = m.home_team_id  JOIN participants victor ON victor.user_id = m.victor_id  JOIN users victor_users ON victor_users.user_id = m.victor_id  WHERE m.tournament_id = (tournament_id)  ORDER BY match_number;
+
+
+
+
+
+
+

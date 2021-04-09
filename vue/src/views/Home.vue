@@ -7,11 +7,16 @@
 
     
     <!-- <p> perhaps display past and current tournaments for current user?  </p> -->
+
   </div>
 </template>
 
 <script>
+
 export default {
-  name: "home"
+  name: "home",
+  components: {
+
+  }
 };
 </script>
