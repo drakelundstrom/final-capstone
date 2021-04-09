@@ -23,6 +23,7 @@ export default new Vuex.Store({
     tournaments: [],
     sports: [],
     participants: [],
+    tournament: {},
 
   },
   mutations: {
@@ -58,6 +59,9 @@ export default new Vuex.Store({
     },
     SET_PARTICIPANTS(state, data){
       state.participants = data;
+    },
+    SET_TOURNAMENT(state, data){
+      state.tournament = data;
     },
     
   }

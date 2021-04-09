@@ -60,7 +60,7 @@ namespace Capstone.Controllers
         public ActionResult<Tournament> GetTournament(int tournamentId)
         {
             Tournament tournament = tournamentDAO.GetTournament(tournamentId);
-            if (tournament != null)
+            if ((tournament != null) && (tournament.TournamentId != 0))
             {
                 return Ok(tournament);
             }

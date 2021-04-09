@@ -30,9 +30,9 @@ namespace Capstone.DAO
 "(SELECT sport_id FROM sports WHERE sport_name = (@sportName)));";
 
         private string sqlGetTournament = " SELECT * FROM tournaments t " +
-        "JOIN users u ON u.user_id = t.creator_id" +
-        "JOIN sports s ON s.sport_id = t.sport_id" +
-        "WHERE tournament_id = (@tournament_id));";
+        "JOIN users u ON u.user_id = t.creator_id " +
+        "JOIN sports s ON s.sport_id = t.sport_id " +
+        "WHERE tournament_id = (@tournament_id);";
 
         private string sqlGetUsersInTournament = "SELECT u.user_id, username, team_number  FROM users u " +
         "JOIN participants p on p.user_id = u.user_id " +
@@ -165,7 +165,7 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@tournament_id", tournamentId);
                     SqlDataReader reader = cmd.ExecuteReader();
 
-                    while (reader.Read())
+                    if (reader.HasRows && reader.Read())
                     {
                         tournament = ConvertReaderToTournament(reader);
 

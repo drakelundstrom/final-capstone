@@ -40,10 +40,10 @@
     >
       Join Now!
     </button>
+    <button v-if="isTournamentOwner">Shuffle</button>
     <table>
       <tr v-for="part in this.participants" v-bind:key="part.username">
-          <td>{{part.username}}</td>
-          
+        <td>{{ part.username }}</td>
       </tr>
     </table>
   </div>
@@ -56,24 +56,26 @@ export default {
 
   data: function () {
     return {
-      tournament: {},
       participant: {},
     };
   },
 
   props: ["id"],
   created() {
-    let tournaments = this.$store.state.tournaments;
-    this.tournament = tournaments.find(
-      (item) => {
+    TournamentService.getParticipantsInTournament(this.id).then((response) => {
+      this.$store.commit("SET_PARTICIPANTS", response.data);
+    });
+
+    TournamentService.getTournament(this.id).then((response) => {
+      this.$store.commit("SET_TOURNAMENT", response.data);
+    });
+    //let tournaments = this.$store.state.tournaments;
+    //this.tournament = tournaments.find(
+    /*  (item) => {
         return item.tournamentId == this.id;
-      },
-      TournamentService.getParticipantsInTournament(this.id).then(
-        (response) => {
-          this.$store.commit("SET_PARTICIPANTS", response.data);
-        }
-      )
-    );
+      }, */
+
+    //);
   },
   methods: {
     onSubmit() {
@@ -102,6 +104,18 @@ export default {
     participants() {
       return this.$store.state.participants;
     },
+    tournament() {
+      return this.$store.state.tournament;
+    },
+    isTournamentOwner() {
+        if (!(this.$store.state.user)) {
+            return false;
+        }
+        if (this.$store.state.user.userId != this.tournament.creatorId) {
+            return false;
+        }
+        return true;
+    }
   },
 };
 </script>
