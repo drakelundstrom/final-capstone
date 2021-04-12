@@ -35,7 +35,7 @@
 
 <style>
 body {
-  background-image:  ;
+  
   background-color: #374968;
   min-height: 100vh;
 }

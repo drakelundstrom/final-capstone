@@ -2,21 +2,21 @@
   <div>
     <h1>Tournament Schedule</h1>
     <div class="bracketContainer" id="eightTeams">
-      <div class="box quarterfinals1">{{this.quarterFinal1}}</div>
-      <div class="box quarterfinals2">{{this.quarterFinal2}}</div>
-      <div class="box quarterfinals3">{{this.quarterFinal3}}</div>
-      <div class="box quarterfinals4">{{this.quarterFinal4}}</div>
-      <div class="box quarterfinals5">{{this.quarterFinal5}}</div>
-      <div class="box quarterfinals6">{{this.quarterFinal6}}</div>
-      <div class="box quarterfinals7">{{this.quarterFinal7}}</div>
-      <div class="box quarterfinals8">{{this.quarterFinal8}}</div>
-      <div class="box semifinals1">{{this.semiFinal1}}</div>
-      <div class="box semifinals2">{{this.semiFinal2}}</div>
-      <div class="box semifinals3">{{this.semiFinal3}}</div>
-      <div class="box semifinals4">{{this.semiFinal4}}</div>
-      <div class="box finals1">{{ this.final1 }}</div>
-      <div class="box finals2">{{ this.final2 }}</div>
-      <div class="box winner">{{ this.winner }}</div>
+      <div class="box quarterfinals1">{{ this.position8 }}</div>
+      <div class="box quarterfinals2">{{ this.position9 }}</div>
+      <div class="box quarterfinals3">{{ this.position10 }}</div>
+      <div class="box quarterfinals4">{{ this.position11 }}</div>
+      <div class="box quarterfinals5">{{ this.position12 }}</div>
+      <div class="box quarterfinals6">{{ this.position13 }}</div>
+      <div class="box quarterfinals7">{{ this.position14 }}</div>
+      <div class="box quarterfinals8">{{ this.position15 }}</div>
+      <div class="box semifinals1">{{ this.position4 }}</div>
+      <div class="box semifinals2">{{ this.position5 }}</div>
+      <div class="box semifinals3">{{ this.position6 }}</div>
+      <div class="box semifinals4">{{ this.position7 }}</div>
+      <div class="box finals1">{{ this.position2 }}</div>
+      <div class="box finals2">{{ this.position3 }}</div>
+      <div class="box winner">{{ this.position1 }}</div>
     </div>
   </div>
 </template>
@@ -71,7 +71,7 @@ export default {
       if (this.matches.length >= this.tournament.numberOfMatches - 2) {
         return this.matches[this.tournament.numberOfMatches - 3].victorTeamName;
       }
-     return "";
+      return "";
     },
     final2() {
       if (this.participants.length < 2) {
@@ -89,7 +89,7 @@ export default {
       if (this.participants.length < 3) {
         return "";
       }
-      if (this.participants.length >= 3 && this.participants.length <5) {
+      if (this.participants.length >= 3 && this.participants.length < 5) {
         return this.participants[0].username;
       }
       if (this.matches.length >= this.tournament.numberOfMatches - 6) {
@@ -101,7 +101,7 @@ export default {
       if (this.participants.length < 3) {
         return "";
       }
-      if (this.participants.length >= 3 && this.participants.length <6) {
+      if (this.participants.length >= 3 && this.participants.length < 6) {
         return this.participants[1].username;
       }
       if (this.matches.length >= this.tournament.numberOfMatches - 5) {
@@ -113,7 +113,7 @@ export default {
       if (this.participants.length < 4) {
         return "";
       }
-      if (this.participants.length >= 4 && this.participants.length <7) {
+      if (this.participants.length >= 4 && this.participants.length < 7) {
         return this.participants[2].username;
       }
       if (this.matches.length >= this.tournament.numberOfMatches - 4) {
@@ -125,7 +125,7 @@ export default {
       if (this.participants.length < 4) {
         return "";
       }
-      if (this.participants.length >= 4 && this.participants.length <8) {
+      if (this.participants.length >= 4 && this.participants.length < 8) {
         return this.participants[3].username;
       }
       if (this.matches.length >= this.tournament.numberOfMatches - 3) {
@@ -137,11 +137,12 @@ export default {
       if (this.participants.length < 5) {
         return "";
       }
-      if (this.participants.length >= 5 && this.participants.length <9) {
+      if (this.participants.length >= 5 && this.participants.length < 9) {
         return this.participants[0].username;
       }
       if (this.matches.length >= this.tournament.numberOfMatches - 14) {
-        return this.matches[this.tournament.numberOfMatches - 15].victorTeamName;
+        return this.matches[this.tournament.numberOfMatches - 15]
+          .victorTeamName;
       }
       return "";
     },
@@ -149,11 +150,12 @@ export default {
       if (this.participants.length < 5) {
         return "";
       }
-      if (this.participants.length >= 5 && this.participants.length <10) {
+      if (this.participants.length >= 5 && this.participants.length < 10) {
         return this.participants[1].username;
       }
       if (this.matches.length >= this.tournament.numberOfMatches - 13) {
-        return this.matches[this.tournament.numberOfMatches - 14].victorTeamName;
+        return this.matches[this.tournament.numberOfMatches - 14]
+          .victorTeamName;
       }
       return "";
     },
@@ -161,11 +163,12 @@ export default {
       if (this.participants.length < 6) {
         return "";
       }
-      if (this.participants.length >= 6 && this.participants.length <11) {
+      if (this.participants.length >= 6 && this.participants.length < 11) {
         return this.participants[2].username;
       }
       if (this.matches.length >= this.tournament.numberOfMatches - 12) {
-        return this.matches[this.tournament.numberOfMatches - 13].victorTeamName;
+        return this.matches[this.tournament.numberOfMatches - 13]
+          .victorTeamName;
       }
       return "";
     },
@@ -173,11 +176,12 @@ export default {
       if (this.participants.length < 6) {
         return "";
       }
-      if (this.participants.length >= 6 && this.participants.length <12) {
+      if (this.participants.length >= 6 && this.participants.length < 12) {
         return this.participants[3].username;
       }
       if (this.matches.length >= this.tournament.numberOfMatches - 11) {
-        return this.matches[this.tournament.numberOfMatches - 12].victorTeamName;
+        return this.matches[this.tournament.numberOfMatches - 12]
+          .victorTeamName;
       }
       return "";
     },
@@ -185,11 +189,12 @@ export default {
       if (this.participants.length < 7) {
         return "";
       }
-      if (this.participants.length >= 7 && this.participants.length <13) {
+      if (this.participants.length >= 7 && this.participants.length < 13) {
         return this.participants[4].username;
       }
       if (this.matches.length >= this.tournament.numberOfMatches - 10) {
-        return this.matches[this.tournament.numberOfMatches - 11].victorTeamName;
+        return this.matches[this.tournament.numberOfMatches - 11]
+          .victorTeamName;
       }
       return "";
     },
@@ -197,11 +202,12 @@ export default {
       if (this.participants.length < 7) {
         return "";
       }
-      if (this.participants.length >= 7 && this.participants.length <14) {
+      if (this.participants.length >= 7 && this.participants.length < 14) {
         return this.participants[5].username;
       }
       if (this.matches.length >= this.tournament.numberOfMatches - 9) {
-        return this.matches[this.tournament.numberOfMatches - 10].victorTeamName;
+        return this.matches[this.tournament.numberOfMatches - 10]
+          .victorTeamName;
       }
       return "";
     },
@@ -209,7 +215,7 @@ export default {
       if (this.participants.length < 8) {
         return "";
       }
-      if (this.participants.length >= 8 && this.participants.length <15) {
+      if (this.participants.length >= 8 && this.participants.length < 15) {
         return this.participants[6].username;
       }
       if (this.matches.length >= this.tournament.numberOfMatches - 8) {
@@ -221,7 +227,7 @@ export default {
       if (this.participants.length < 8) {
         return "";
       }
-      if (this.participants.length >= 8 && this.participants.length <16) {
+      if (this.participants.length >= 8 && this.participants.length < 16) {
         return this.participants[7].username;
       }
       if (this.matches.length >= this.tournament.numberOfMatches - 7) {
@@ -229,9 +235,63 @@ export default {
       }
       return "";
     },
+    position1() {
+      if (this.participants.length == 0) {
+        return "";
+      }
+      if (this.participants.length == 1) {
+        return this.participants[0].username;
+      }
+      if (this.matches.length == this.tournament.numberOfMatches) {
+        return this.matches[this.tournament.numberOfMatches - 1].victorTeamName;
+      }
+      return "";
+    },
+    position2() {
+      return this.nameInBracket(2);
+    },
+    position3() {
+      return this.nameInBracket(3);
+    },
+    position4() {
+      return this.nameInBracket(4);
+    },
+    position5() {
+      return this.nameInBracket(5);
+    },
+    position6() {
+      return this.nameInBracket(6);
+    },
+    position7() {
+      return this.nameInBracket(7);
+    },
+    position8() {
+      return this.nameInBracket(8);
+    },
+    position9() {
+      return this.nameInBracket(9);
+    },
+    position10() {
+      return this.nameInBracket(10);
+    },
+    position11() {
+      return this.nameInBracket(11);
+    },
+    position12() {
+      return this.nameInBracket(12);
+    },
+    position13() {
+      return this.nameInBracket(13);
+    },
+    position14() {
+      return this.nameInBracket(14);
+    },
+    position15() {
+      return this.nameInBracket(15);
+    },
   },
- /* methods: {
-  nameInBracket(locationNumber) {
+  methods: {
+    nameInBracket(locationNumber) {
       // removing extra participants
       if (locationNumber > 2 * this.participants.length - 1) {
         return "";
@@ -240,16 +300,102 @@ export default {
         locationNumber - this.tournament.numberOfMatches <=
         this.participants.length
       ) {
-        return this.participants[locationNumber - numberOfMatches].username;
+        return this.participants[
+          locationNumber - this.tournament.numberOfMatches
+        ].username;
       }
-      if (GetMatchNumber(locationNumber) != -1) {
-        return this.matches[GetMatchNumber(locationNumber)].victorTeamName;
+
+      switch (locationNumber) {
+        case 2:
+          if (this.matches.length >= this.tournament.numberOfMatches - 2) {
+            return this.matches[this.tournament.numberOfMatches - 3]
+              .victorTeamName;
+          }
+          break;
+        case 3:
+          if (this.matches.length >= this.tournament.numberOfMatches - 1) {
+            return this.matches[this.tournament.numberOfMatches - 2]
+              .victorTeamName;
+          }
+          break;
+        case 4:
+          if (this.matches.length >= this.tournament.numberOfMatches - 6) {
+            return this.matches[this.tournament.numberOfMatches - 7]
+              .victorTeamName;
+          }
+          break;
+        case 5:
+          if (this.matches.length >= this.tournament.numberOfMatches - 5) {
+            return this.matches[this.tournament.numberOfMatches - 6]
+              .victorTeamName;
+          }
+          break;
+        case 6:
+          if (this.matches.length >= this.tournament.numberOfMatches - 4) {
+            return this.matches[this.tournament.numberOfMatches - 5]
+              .victorTeamName;
+          }
+          break;
+        case 7:
+          if (this.matches.length >= this.tournament.numberOfMatches - 3) {
+            return this.matches[this.tournament.numberOfMatches - 4]
+              .victorTeamName;
+          }
+          break;
+        case 8:
+          if (this.matches.length >= this.tournament.numberOfMatches - 14) {
+            return this.matches[this.tournament.numberOfMatches - 15]
+              .victorTeamName;
+          }
+          break;
+        case 9:
+          if (this.matches.length >= this.tournament.numberOfMatches - 13) {
+            return this.matches[this.tournament.numberOfMatches - 14]
+              .victorTeamName;
+          }
+          break;
+        case 10:
+          if (this.matches.length >= this.tournament.numberOfMatches - 12) {
+            return this.matches[this.tournament.numberOfMatches - 13]
+              .victorTeamName;
+          }
+          break;
+        case 11:
+          if (this.matches.length >= this.tournament.numberOfMatches - 11) {
+            return this.matches[this.tournament.numberOfMatches - 12]
+              .victorTeamName;
+          }
+          break;
+        case 12:
+          if (this.matches.length >= this.tournament.numberOfMatches - 10) {
+            return this.matches[this.tournament.numberOfMatches - 11]
+              .victorTeamName;
+          }
+
+          break;
+        case 13:
+          if (this.matches.length >= this.tournament.numberOfMatches - 9) {
+            return this.matches[this.tournament.numberOfMatches - 10]
+              .victorTeamName;
+          }
+          break;
+        case 14:
+          if (this.matches.length >= this.tournament.numberOfMatches - 8) {
+            return this.matches[this.tournament.numberOfMatches - 9]
+              .victorTeamName;
+          }
+          break;
+        case 15:
+          if (this.matches.length >= this.tournament.numberOfMatches - 7) {
+            return this.matches[this.tournament.numberOfMatches - 8]
+              .victorTeamName;
+          }
+          break;
       }
 
       return "";
     },
-   
-  }, */
+  },
 };
 </script>
 
