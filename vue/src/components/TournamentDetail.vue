@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Tournament Details:</h1>
-    <table>
+    <table class ="table style">
       <tbody>
         <tr>
           <td id="descrip">Tournament Name:</td>
@@ -139,4 +139,6 @@ button {
 table{
   margin-bottom: 15px;
 }
+
+
 </style>

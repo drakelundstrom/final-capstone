@@ -56,7 +56,7 @@
       </p>
     </div>
 
-    <table id="list-of-tournaments">
+    <table class ="table style" id="list-of-tournaments">
       <thead>
         <tr>
           <th scope="col">Tournament Name</th>
@@ -72,7 +72,7 @@
       <tbody v-if="searchActive == 'false'">
         <!-- <tr v-for="(tournament, index) in this.filteredList" v-bind:key="index"> -->
         <tr v-for="(tournament, index) in this.tournaments" v-bind:key="index">
-         <router-link id="details" v-bind:to="{name: 'Tournament', params: {id: tournament.tournamentId} }"><td>{{ tournament.tournamentName }}</td></router-link>
+         <td><router-link id="details" v-bind:to="{name: 'Tournament', params: {id: tournament.tournamentId} }">{{ tournament.tournamentName }}</router-link></td>
           <td>{{ tournament.tournamentId }}</td>
           <td>{{ tournament.sportName }}</td>
           <td>{{ tournament.creatorUsername }}</td>
@@ -102,6 +102,7 @@ export default {
 
   data() {
     return {
+
       filter: {
         tournamentName: "",
         tournamentId: "",
@@ -231,6 +232,7 @@ td {
 #details{
    font-weight: bold;
   color: #87b8c4;
+  text-decoration: underline;
 }
 
 #details:hover{
@@ -241,5 +243,17 @@ thead{
   border-bottom: 3px solid #abd874;
 }
 
+.style th{
+  color: #cce1e6;
+}
+
+.style td{
+  color: #cce1e6;
+  border-color: #abd874;
+}
+
+.style th{
+  color: #cce1e6;
+}
 </style>
 

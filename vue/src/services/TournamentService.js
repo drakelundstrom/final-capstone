@@ -28,4 +28,14 @@ export default {
     getMatchesInTournament(tournamentId){
         return axios.get(path + '/matches/'+ tournamentId)
     },
+
+    getTournamentByParticipant(){
+        return axios.get(path + '/participant')
+
+    },
+    
+    getTournamentByCreator(){
+        return axios.get(path + '/creator')
+
+    },
 }
