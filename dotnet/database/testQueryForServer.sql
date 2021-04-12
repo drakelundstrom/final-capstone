@@ -79,7 +79,15 @@ SELECT creator_id FROM tournaments WHERE tournament_id = (1);
 
 
 
+ SELECT * FROM tournaments t 
+        JOIN users u ON u.user_id = t.creator_id 
+        JOIN sports s ON s.sport_id = t.sport_id 
+        WHERE tournament_id IN (SELECT tournament_id
+								FROM participants
+								WHERE user_id = 1);
 
-
-
+SELECT * FROM tournaments t 
+        JOIN users u ON u.user_id = t.creator_id 
+        JOIN sports s ON s.sport_id = t.sport_id 
+        WHERE t.creator_id = 2;
 

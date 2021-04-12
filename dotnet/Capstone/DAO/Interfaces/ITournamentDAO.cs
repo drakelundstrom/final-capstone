@@ -26,6 +26,10 @@ namespace Capstone.DAO.Interfaces
 
         List<Match> GetMatches(int tournamentId);
 
+
+        List<Tournament> GetTournamentsByCreator(int creatorId);
+        List<Tournament> GetTournamentsByParticipant(int userId);
+
     }
     
 }

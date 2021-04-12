@@ -58,7 +58,17 @@ namespace Capstone.DAO
  " WHERE m.tournament_id = (@tournament_id) " +
  " ORDER BY match_number;";
 
+        private string sqlGetTournamentsByCreator = "SELECT * FROM tournaments t " +
+        "JOIN users u ON u.user_id = t.creator_id " +
+        "JOIN sports s ON s.sport_id = t.sport_id " +
+        "WHERE t.creator_id = (@creatorId);";
 
+        private string sqlGetTournamentsByParticipant = " SELECT * FROM tournaments t  " +
+        "JOIN users u ON u.user_id = t.creator_id " +
+        "JOIN sports s ON s.sport_id = t.sport_id " +
+        " WHERE tournament_id IN (SELECT tournament_id " +
+                          "  FROM participants " +
+                          " WHERE user_id = (@userId));";
 
 
         public List<Tournament> GetTournaments()
@@ -473,6 +483,82 @@ namespace Capstone.DAO
             match.VictorTeamName = Convert.ToString(reader["victor_name"]);
 
             return match;
+        }
+
+        public List<Tournament> GetTournamentsByCreator(int creatorId)
+        {
+            List<Tournament> tournaments = new List<Tournament>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+
+                    conn.Open
+                    ();
+                    SqlCommand cmd = new SqlCommand(sqlGetTournamentsByCreator, conn);
+                    cmd.Parameters.AddWithValue("@creatorId", creatorId);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Tournament tournament = ConvertReaderToTournament(reader);
+                        tournaments.Add(tournament);
+
+                    }
+                    foreach (Tournament tournament in tournaments)
+                    {
+                        tournament.NumberOfParticipants = GetNumberOfParticipants(tournament.TournamentId);
+                        tournament.NumberOfMatches = CalculateNumberOfMatches(tournament.NumberOfParticipants);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Tournament tournament = new Tournament();
+                tournament.TournamentId = -1;
+                tournaments.Add(tournament);
+            }
+            return tournaments;
+        }
+
+        public List<Tournament> GetTournamentsByParticipant(int userId)
+        {
+            List<Tournament> tournaments = new List<Tournament>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+
+                    conn.Open
+                    ();
+                    SqlCommand cmd = new SqlCommand(sqlGetTournamentsByParticipant, conn);
+                    cmd.Parameters.AddWithValue("@userId", userId);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Tournament tournament = ConvertReaderToTournament(reader);
+                        tournaments.Add(tournament);
+
+                    }
+                    foreach (Tournament tournament in tournaments)
+                    {
+                        tournament.NumberOfParticipants = GetNumberOfParticipants(tournament.TournamentId);
+                        tournament.NumberOfMatches = CalculateNumberOfMatches(tournament.NumberOfParticipants);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Tournament tournament = new Tournament();
+                tournament.TournamentId = -1;
+                tournaments.Add(tournament);
+            }
+            return tournaments;
         }
     }
 }

@@ -166,16 +166,58 @@ namespace Capstone.Controllers
         public ActionResult<List<Match>> GetMatches(int tournamentId)
         {
             List<Match> matches = tournamentDAO.GetMatches(tournamentId);
-       //     if (matches.Count >= 1)
-      //      {
-       //         if (matches[0].MatchNumber == -1)
-        //        {
-        //            return NotFound();
-         //       }    
+            if (matches.Count >= 1)
+            {
+                if (matches[0].MatchNumber == -1)
+                {
+                    return NotFound();
+                }    
                 
-        //    }
+            }
             return Ok(matches);
         }
+
+        [Authorize()]
+        [HttpGet("creator")]
+        public ActionResult<List<Tournament>> GetTournamentsByCreator()
+        {
+            
+            int userId = int.Parse(User.FindFirst("sub").Value);
+            List<Tournament> tournaments = tournamentDAO.GetTournamentsByCreator(userId);
+            if (tournaments.Count >= 1)
+            {
+                if (tournaments[0].TournamentId == -1)
+                {
+                    return NotFound();
+                }
+
+            }
+            
+            {
+                return Ok(tournaments);
+            }
+        }
+        [Authorize()]
+        [HttpGet("participant")]
+        public ActionResult<List<Tournament>> GetTournamentsByParticipant()
+        {
+
+            int userId = int.Parse(User.FindFirst("sub").Value);
+            List<Tournament> tournaments = tournamentDAO.GetTournamentsByParticipant(userId);
+            if (tournaments.Count >= 1)
+            {
+                if (tournaments[0].TournamentId == -1)
+                {
+                    return NotFound();
+                }
+
+            }
+
+            {
+                return Ok(tournaments);
+            }
+        }
+
 
     }
 }
