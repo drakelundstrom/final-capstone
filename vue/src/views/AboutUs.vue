@@ -67,14 +67,14 @@ export default {
 }
 .card{
 
-    color: #cfe9af;
+    color:  #dfff99;
     
     
-    background-color: #abbad3;
+    background-color: #651fff;
 }
 
 .card-text{
-     text-shadow: .5px .5px .5px #abd874;
+     text-shadow: .5px .5px .5px #b9ff1f;
     color: #e7f4d7;
     font-size: 15px;
     

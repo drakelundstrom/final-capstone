@@ -354,15 +354,15 @@ li.game span {
 }
 
 li.game-top {
-  border-bottom: 1px solid #aaa;
+  border-bottom: 1px solid #b9ff1f;
 }
 
 li.game-spacer {
-  border-right: 1px solid #aaa;
+  border-right: 1px solid #b9ff1f;
   min-height: 40px;
 }
 
 li.game-bottom {
-  border-top: 1px solid #aaa;
+  border-top: 1px solid #b9ff1f;
 }
 </style>

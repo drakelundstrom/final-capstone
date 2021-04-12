@@ -11,18 +11,7 @@
 
     </div>
     <router-view id ="sign-in" />
-    <footer>
-   <div class="tcontainer"><div class="ticker-wrap"><div class="ticker-move">
-  <div class="ticker-item"><i>"No one man should have all that power"</i> -John ; </div>
-  <div class="ticker-item">Rachelle always wins.  </div>
-  <div class="ticker-item"><i>"If you ain't first, you're last"</i> -Tom Cruise </div>
-  <div class="ticker-item"><i>“Kowabunga dudettes. I’m so pumped to be on this surfing kick. Who else surfs out there? Gnarly day in the H20. Ridin’ waves!”</i> -Rachelle </div>
-  <div class="ticker-item">It depends. &nbsp;&nbsp; </div>
-  <div id ="hide" class="ticker-item">  Lorem ipsum dolor sit amet, consectetur adipiscing elit,  </div>
-  <div id ="hide" class="ticker-item">     Lorem ipsum dolor sit amet, consectetur adipiscing elit,        </div>
-  <div id ="hide" class="ticker-item">           Lorem ipsum dolor sit amet, consectetur adipiscing elit,   </div>
-  <!-- make ticker smoother ending-->
-</div></div></div> </footer>
+  
     
   </div>
 
@@ -36,7 +25,7 @@
 <style>
 body {
   
-  background-color: #374968;
+  background-image: linear-gradient(to right, #201980, #500c6f);
   min-height: 100vh;
 }
 
@@ -45,7 +34,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color:  #cce1e6;
+  color:  #eee6ff;
   text-transform: uppercase;
 }
 
@@ -55,7 +44,7 @@ body {
 
 #nav a {
   font-weight: bold;
-  color: #abbad3;
+  color:   #a379ff;
   text-shadow: 2px 2px 2px black;
   
 }
@@ -66,7 +55,7 @@ body {
 
 
 #nav a.router-link-exact-active {
-  color:#cfe9af;
+  color: #4cff84;
   
 }
 
@@ -77,50 +66,8 @@ footer {
   bottom: 5px;
 }
 
-/* OUTER CONTAINER */
-.tcontainer {
-  width: 100%;
-  overflow: hidden; /* Hide scroll bar */
-}
- 
-/* MIDDLE CONTAINER */
-.ticker-wrap {
-  width: 100%;
-  padding-left: 100%; /* Push contents to right side of screen */
-  background-color: #cce1e6;
-}
 
-/* INNER CONTAINER */
-@keyframes ticker {
-  0% { transform: translate3d(0, 0, 0); }
-  100% { transform: translate3d(-100%, 0, 0); }
-}
-.ticker-move {
-  /* Basically move items from right side of screen to left in infinite loop */
-  display: inline-block;
-  white-space: nowrap;
-  padding-right: 100%;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  animation-name: ticker;
-  animation-duration: 40s;
-}
-.ticker-move:hover{
-  animation-play-state: paused; /* Pause scroll on mouse hover */
-}
 
-/* ITEMS */
-.ticker-item{
-  display: inline-block; /* Lay items in a horizontal line */
-  padding: 0 2rem;
-  color: #4c8a9a;
-  text-shadow: 2px 2px 2px #374968;
-}
-
-#hide{
-  color:#cce1e6;
-  text-shadow: none;
-}
 
 
 </style>
