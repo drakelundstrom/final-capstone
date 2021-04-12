@@ -29,7 +29,7 @@ namespace Capstone.DAO.Interfaces
 
         List<Tournament> GetTournamentsByCreator(int creatorId);
         List<Tournament> GetTournamentsByParticipant(int userId);
-
+        bool IsTournamentCompleted(int tournamentId);
     }
     
 }
