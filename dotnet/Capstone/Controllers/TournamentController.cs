@@ -95,6 +95,11 @@ namespace Capstone.Controllers
                 return Unauthorized();
             }
 
+            if (tournamentDAO.IsTournamentCompleted(tournamentId))
+            {
+                return Forbid();
+            }
+
             bool result = tournamentDAO.ShuffleTournamentParticipantOrder(tournamentId);
 
             if (result)
@@ -112,6 +117,10 @@ namespace Capstone.Controllers
         public ActionResult JoinParticipant(Participant participant)
         {
             bool result = tournamentDAO.JoinParticipant(participant);
+            if (tournamentDAO.IsTournamentCompleted(participant.TournamentId))
+            {
+                return Forbid();
+            }
 
             if (result)
             {
@@ -131,6 +140,10 @@ namespace Capstone.Controllers
             if (!(IsCorrectAdmin(tournament.TournamentId)))
             {
                 return Unauthorized();
+            }
+            if (tournamentDAO.IsTournamentCompleted(tournament.TournamentId))
+            {
+                return Forbid();
             }
 
             bool result = tournamentDAO.ChangeTournamentStatus(tournament);

@@ -560,6 +560,36 @@ namespace Capstone.DAO
             }
             return tournaments;
         }
+
+        public bool IsTournamentCompleted(int tournamentId)
+        {
+            bool result = false;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+
+                    conn.Open
+                    ();
+                    SqlCommand cmd = new SqlCommand("SELECT tour_status FROM tournaments WHERE tournament_id = (@tournamentId)", conn);
+                    cmd.Parameters.AddWithValue("@tournamentId", tournamentId);
+                    string status = Convert.ToString(cmd.ExecuteScalar());
+
+                    if (status.ToLower() == "completed")
+                    {
+                        result = true;
+                    }
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                result = true;
+            }
+
+            return result;
+        }
     }
 }
 
