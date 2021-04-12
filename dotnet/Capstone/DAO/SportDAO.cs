@@ -12,7 +12,7 @@ namespace Capstone.DAO
     {
         private readonly string connectionString;
 
-        private string sqlGetSports = "SELECT * FROM sports";
+        private string sqlGetSports = "SELECT * FROM sports ORDER BY sport_name";
 
         public SportDAO(string dbConnectionString)
         {

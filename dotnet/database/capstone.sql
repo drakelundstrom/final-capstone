@@ -98,6 +98,35 @@ INSERT INTO sports (sport_id ,sport_name ) VALUES (2, 'baseball');
 INSERT INTO sports (sport_id ,sport_name ) VALUES (3, 'basketball');
 SET IDENTITY_INSERT sports OFF
 
+INSERT INTO sports (sport_name ) VALUES ('Tennis');
+INSERT INTO sports (sport_name ) VALUES ('Football (American)');
+INSERT INTO sports (sport_name ) VALUES ('Soccer');
+INSERT INTO sports (sport_name ) VALUES ('VolleyBall');
+INSERT INTO sports (sport_name ) VALUES ('Cricket');
+INSERT INTO sports (sport_name ) VALUES ('Dodgeball');
+INSERT INTO sports (sport_name ) VALUES ('Jujitsu');
+INSERT INTO sports (sport_name ) VALUES ('Wrestling');
+INSERT INTO sports (sport_name ) VALUES ('Sumo');
+INSERT INTO sports (sport_name ) VALUES ('Boxing');
+INSERT INTO sports (sport_name ) VALUES ('MMA');
+INSERT INTO sports (sport_name ) VALUES ('Kendo');
+INSERT INTO sports (sport_name ) VALUES ('Fencing');
+INSERT INTO sports (sport_name ) VALUES ('Judo');
+INSERT INTO sports (sport_name ) VALUES ('Pool');
+INSERT INTO sports (sport_name ) VALUES ('Bridge');
+INSERT INTO sports (sport_name ) VALUES ('PingPong');
+INSERT INTO sports (sport_name ) VALUES ('Foosball');
+INSERT INTO sports (sport_name ) VALUES ('Ultimate');
+INSERT INTO sports (sport_name ) VALUES ('Rugby');
+INSERT INTO sports (sport_name ) VALUES ('Roller Derby');
+INSERT INTO sports (sport_name ) VALUES ('Ice Hockey');
+INSERT INTO sports (sport_name ) VALUES ('Squash');
+INSERT INTO sports (sport_name ) VALUES ('Roller Hockey');
+INSERT INTO sports (sport_name ) VALUES ('Lacrosse');
+INSERT INTO sports (sport_name ) VALUES ('Flag Football');
+
+
+
 
 INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (1, 1, 1);
 INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (1, 2, 2);
