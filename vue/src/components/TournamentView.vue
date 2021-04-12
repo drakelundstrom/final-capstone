@@ -20,7 +20,7 @@
           type="text"
           id="tourNameFilter"
           v-model="filter.tournamentName"
-        />
+        />np
       </p>
       <p>
         Tournament ID
