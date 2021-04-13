@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div >
     <!-- message? -->
     <!-- I would like to make the search a button to collapse, but not sure on event handling -->
-    <p>
+    <p id>
       Look for a Specific Tournament?<select
         id="search active"
         v-model="searchActive"
@@ -20,7 +20,7 @@
           type="text"
           id="tourNameFilter"
           v-model="filter.tournamentName"
-        />
+        />np
       </p>
       <p>
         Tournament ID
@@ -56,7 +56,7 @@
       </p>
     </div>
 
-    <table class ="table style" id="list-of-tournaments">
+    <table class ="table w-auto style" id="list-of-tournaments">
       <thead>
         <tr>
           <th scope="col">Tournament Name</th>
@@ -190,28 +190,28 @@ export default {
 <style>
 h3 {
   font-size: 23px;
-  color: #87b8c4;
+  color: #9666ff;
 }
 p {
   font-size: 15px;
-  color: #87b8c4;
+  color:  #cbb3ff;
 }
 input {
   height: 17px;
   width: 8%;
   border-radius: 20px;
-  background-color: #e7f4d7;
+  background-color: #cbb3ff;
 }
 
 select {
   border-radius: 20px;
-  background-color: #e7f4d7;
+  background-color: #cbb3ff;
 }
 table {
   border-collapse: collapse; 
   border-radius: 27px;
   border-style: hidden; 
-  box-shadow: 0 0 0 3px #abd874; 
+  box-shadow: 0 0 0 3px #1fff65; 
 
   justify-content: center;
   margin-left: auto;
@@ -231,7 +231,7 @@ td {
 
 #details{
    font-weight: bold;
-  color: #87b8c4;
+  color: #ff844c;
   text-decoration: underline;
 }
 
@@ -240,20 +240,27 @@ td {
 }
 
 thead{
-  border-bottom: 3px solid #abd874;
+  border-bottom: 3px solid #1fff65;
 }
 
 .style th{
-  color: #cce1e6;
+  color: #ff844c
 }
 
 .style td{
-  color: #cce1e6;
-  border-color: #abd874;
+  color: #ffc1a5;
+  border-color: #1fff65;
 }
 
-.style th{
-  color: #cce1e6;
-}
+
+
+
+
+/* #alltournaments{
+  background-image: url("../../assets/sportsPhotos/trophy-picture.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  
+} */
 </style>
 

@@ -1,7 +1,7 @@
 <template>
   <div id="login" class="text-center" >
     <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+      <h1 id="plssignin" class="h3 mb-3 font-weight-normal">Please Sign In</h1>
       <div
         class="alert alert-danger"
         role="alert"
@@ -32,7 +32,7 @@
         required
       />
       <router-link :to="{ name: 'register' }" id ="register-link">Need an account?</router-link>
-      <button type="submit">Sign in</button>
+      <button id = "signinbtn" type="submit">Sign in</button>
     </form>
   </div>
 </template>
@@ -80,7 +80,7 @@ export default {
 <style>
 
 .text-center{
-  color: #abbad3;
+  color: #eee6ff;
   text-transform: capitalize;
   
  
@@ -105,14 +105,15 @@ label{
 #register-link{
   padding: 5px;
   font-weight: bold;
-  color:  #abbad3;
+  color:  black;
+
+  text-shadow: white 20px 0 10px;
 }
 
 button {
   grid-area: submitbtn;
   border-radius: 8px;
-background-color: #f2f2f2;
-border: 2px solid  #e7f4d7;
+
 }
 
 .form-control{
@@ -120,6 +121,10 @@ border: 2px solid  #e7f4d7;
   display: flex;
   text-align: center;
   width: 15%;
+}
+
+#signinbtn{
+  background-color: #d2ffe0;
 }
 #username{
   
@@ -138,8 +143,24 @@ border: 2px solid  #e7f4d7;
   margin-right: auto;
   border-radius: 40px;
   margin-bottom: 5px;
-  background-color: #e7f4d7;
+  background-color:  #d2ffe0;
 }
+
+
+ .text-center {
+  background-image: url("../../assets/sportsPhotos/trophy-picture.jpg"); /* The image used */
+  background-color: #cccccc; /* Used if the image is unavailable */
+  height: 90vh; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+} 
+
+#plssignin{
+  text-shadow: 1px 1px 2px black, 0 0 1em #651fff  , 0 0 0.2em #651fff  ;
+  color: white;
+}
+
 
 
 

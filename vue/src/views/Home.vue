@@ -17,22 +17,23 @@
 
           </tr>
       </thead>
-      <tbody> <!-- filter by user id here? -->
+      <tbody>
          <tr v-for="(tournament, index) in this.participantTournament" v-bind:key="index">
       <th scope="row">{{ tournament.tournamentId }}</th>
       <td>{{ tournament.tournamentName }}</td>
       <td>{{ tournament.sportName }}</td>
       <td>{{ tournament.tournamentStatus }}</td>
-      <td><router-link id="details" v-bind:to="{name: 'Tournament', params: {id: tournament.tournamentId} }">View Details</router-link></td>
+      <td><router-link id="details" v-bind:to="{name: 'Tournament', params: {id: tournament.tournamentId} }" >View Details</router-link></td>
     </tr>
     
       </tbody>
       
       
        </table>
+       <div v-if="$store.state.user.role == 'admin'"> 
 
-        <h2>Tournments You've Hosted</h2>
-    <table class="table style">
+        <h2 >Tournments You've Hosted</h2>
+    <table  class="table style">
       
       <thead>
         <tr>
@@ -49,13 +50,14 @@
       <td>{{ tournament.tournamentName }}</td>
       <td>{{ tournament.sportName }}</td>
       <td>{{ tournament.tournamentStatus }}</td>
-      <td> <!-- router link here--> </td>
+      <td><router-link id="details" v-bind:to="{name: 'EditTournament', params: {id: tournament.tournamentId} }" v-if="tournament.tournamentStatus != 'Completed'">Edit</router-link></td>
     </tr>
     
       </tbody>
       
       
        </table>
+       </div>
 
        
 
@@ -111,15 +113,15 @@ export default {
 <style>
 
 .style {
-  background-color: #5875a7 ;
+  background-color:   #5b1ce6;
 }
 .style th{
-  color: #cce1e6;
+  color: #ff844c;
 }
 
 .style td{
-  color: #cce1e6;
-  border-color: #abd874;
+  color: #ffc1a5;
+  border-color: #1fff65;
 }
 
 .home h2{

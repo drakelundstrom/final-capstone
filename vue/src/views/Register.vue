@@ -1,7 +1,7 @@
 <template>
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
-      <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
+      <h1 id ="plscreateaccnt" class="h3 mb-3 font-weight-normal">Create Account</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         {{ registrationErrorMsg }}
       </div>
@@ -109,25 +109,33 @@ export default {
   margin-right: auto;
   border-radius: 40px;
   margin-bottom: 5px;
-  background-color: #e7f4d7;
+  background-color:  #d2ffe0;
 }
 
 #login-link{
   padding: 5px;
   font-weight: bold;
-  color:  #abbad3;
+  color:  black;
+
+  text-shadow: white 20px 0 10px;
 }
 
 button{
   grid-area: submitbtn;
   border-radius: 8px;
-background-color: #f2f2f2;
-border: 2px solid  #e7f4d7;
+background-color: #d2ffe0;
+border: 2px solid  #d2ffe0;
 }
 #userRole{
   margin-left: auto;
   margin-right: auto;
   display: grid;
+  background-color:  #d2ffe0;
+}
+
+#plscreateaccnt{
+  text-shadow: 1px 1px 2px black, 0 0 1em #651fff  , 0 0 0.2em #651fff  ;
+  color: white;
 }
 
 </style>

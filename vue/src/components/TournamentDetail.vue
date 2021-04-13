@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Tournament Details:</h1>
-    <table class ="table style">
+    <table class ="table style w-auto ">
       <tbody>
         <tr>
           <td id="descrip">Tournament Name:</td>
@@ -14,6 +14,12 @@
         </tr>
 
         <tr>
+          <td id="descrip">Sport:</td>
+          <!-- is completed or not -->
+          <td>{{ tournament.sportName}}</td>
+        </tr>
+
+        <tr>
           <td id="descrip">Creator:</td>
           <td>{{ tournament.creatorUsername }}</td>
         </tr>
@@ -22,8 +28,6 @@
           <td id="descrip">Status:</td>
           <!-- is completed or not -->
           <td>{{ tournament.tournamentStatus }}</td>
-
-          <!--  TournamentName TournamentId CreatorUsername IsCompleted NumberOfParticipants**** -->
         </tr>
       </tbody>
     </table>
