@@ -32,14 +32,7 @@
       </tbody>
     </table>
 
-    <h2>Current Participants:</h2>
-    <ul
-      id="listpartic"
-      v-for="part in this.participants"
-      v-bind:key="part.username"
-    >
-      <li id="partic">{{ part.username }}</li>
-    </ul>
+    
 
     <h2 id="editdescrip">Change Tournament Status</h2>
     <form v-on:submit.prevent="onSubmit">
@@ -92,6 +85,30 @@
       </table>
     </div>
     <bracket v-bind:id="tournamentId" />
+
+    <table class ="table w-auto style" id="tblallmatches">
+      <thead>
+        <tr>
+          <th scope="col">Match Number</th>
+          <th scope="col">Home Team</th>
+          <th scope="col">Home Score</th>
+          <th scope="col">Away Team</th>
+          <th scope="col">Away Score</th>
+          <th scope="col">Match Victor</th>
+        </tr>
+      </thead>
+      <tbody >
+        <tr v-for="(round, index) in this.matchResults" v-bind:key="index">
+           <td>{{round.matchNumber}}</td>
+          <td>{{round.homeTeamName}}</td>
+          <td>{{round.homeTeamScore}}</td>
+          <td>{{round.awayTeamName}}</td>
+         <td>{{round.awayTeamScore}}</td>
+         <td>{{round.victorTeamName}}</td>
+        </tr>
+      </tbody>
+    </table>
+    
   </div>
 </template>
 
@@ -125,6 +142,9 @@ export default {
     TournamentService.getNextMatch(this.$route.params.id).then((response) => {
       this.$store.commit("SET_NEXT_MATCH", response.data);
     });
+    TournamentService.getMatchesInTournament(this.$route.params.id).then((response) =>{
+      this.$store.commit("SET_MATCHES", response.data);
+    })
   },
   computed: {
     tournament() {
@@ -136,6 +156,9 @@ export default {
     nextMatch() {
       return this.$store.state.match;
     },
+    matchResults(){
+      return this.$store.state.matches;
+    }
   },
   methods: {
     onSubmit() {
@@ -183,22 +206,8 @@ button {
   margin-bottom: 50px;
 }
 
-#partic {
-  list-style: none;
-  color: #ff844c;
-}
 
-#partic:before {
-  content: "";
-  display: inline-block;
-  height: 20px;
-  width: 20px;
-  background-size: contain;
-  background-image: url("../../assets/sportsPhotos/icon.png");
-}
-
-#homescore,
-#awayscore {
+#homescore, #awayscore {
   display: grid;
   margin-left: auto;
   margin-right: auto;
