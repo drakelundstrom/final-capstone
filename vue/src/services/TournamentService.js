@@ -47,6 +47,10 @@ export default {
 
     editTournament(tournament){
         return axios.post(path + '/changeStatus', tournament)
+    },
+
+    getNextMatch(id){
+        return axios.get(path + '/getNextMatch/' + id)
     }
 
 }

@@ -28,6 +28,7 @@ export default new Vuex.Store({
     creatorTournaments: [],
     participantTournaments: [],
     bracket: [],
+    match: {}
   },
   mutations: {
     SET_AUTH_TOKEN(state, token) {
@@ -78,6 +79,9 @@ export default new Vuex.Store({
     SET_BRACKET(state, data) {
       state.bracket = data;
     },
+    SET_NEXT_MATCH(state, data) {
+      state.match = data
+    }
 
 
   }

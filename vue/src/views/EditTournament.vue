@@ -56,125 +56,41 @@
       <table>
         <thead>
           <th> <!-- for each for matches so only current matches display? perhaps?  -->
-         Match 1 
+         Match {{nextMatch.matchNumber}} 
           </th>
-          <th> match 2</th>
-          <th> match 3</th>
-          <th> match 4</th>
           </thead>
 
           <tbody>
             <td> <form>
-        Home team
+        {{nextMatch.homeTeamName}} {{nextMatch.homeTeamId}}
           <input
         type="number"
         id="homescore"
         class="form-control"
         placeholder="Score"
+        v-model="nextMatch.homeTeamScore"
         
       />
-       Away team
+       {{nextMatch.awayTeamName}} {{nextMatch.awayTeamId}}
           <input
         type="number"
         id="awayscore"
         class="form-control"
         placeholder="Score"
-        
+        v-model="nextMatch.awayTeamScore"
       />
 
       Who won? 
-      <select>
-        <option>Home</option>
-        <option>Away</option>
+      <select v-model="nextMatch.victorTeamId">
+        <option>{{nextMatch.homeTeamId}}</option>
+        <option>{{nextMatch.awayTeamId}}</option>
       </select>
       <button type="submit">Submit</button>
         </form>
       
   </td>
 
-  <td> <form>
-        Home team
-          <input
-        type="number"
-        id="homescore"
-        class="form-control"
-        placeholder="Score"
-        
-      />
-       Away team
-          <input
-        type="number"
-        id="awayscore"
-        class="form-control"
-        placeholder="Score"
-        
-      />
 
-      Who won? 
-      <select>
-        <option>Home</option>
-        <option>Away</option>
-      </select>
-      <button type="submit">Submit</button>
-        </form>
-      
-  </td>
-
-  <td> <form>
-        <p id="hometeam">Home team</p>
-          <input
-        type="number"
-        id="homescore"
-        class="form-control"
-        placeholder="Score"
-        
-      />
-       <p id ="awayteam">Away team</p>
-          <input
-        type="number"
-        id="awayscore"
-        class="form-control"
-        placeholder="Score"
-        
-      />
-
-      Who won? 
-      <select>
-        <option>Home</option>
-        <option>Away</option>
-      </select>
-      <button type="submit">Submit</button>
-        </form>
-      
-  </td>
-
-  <td> <form>
-        Home team
-          <input
-        type="number"
-        id="homescore"
-        class="form-control"
-        placeholder="Score"
-        
-      />
-       Away team
-          <input
-        type="number"
-        id="awayscore"
-        class="form-control"
-        placeholder="Score"
-        
-      />
-
-      Who won? 
-      <select>
-        <option>Home</option>
-        <option>Away</option>
-      </select>
-      <button type="submit">Submit</button>
-        </form>
-      
-  </td>
           </tbody>
         </table>
      
@@ -202,6 +118,9 @@ export default {
     TournamentService.getParticipantsInTournament(this.$route.params.id).then((response) => {
       this.$store.commit("SET_PARTICIPANTS", response.data);
     });
+    TournamentService.getNextMatch(this.$route.params.id).then((response) => {
+        this.$store.commit("SET_NEXT_MATCH", response.data)
+    });
   },
   computed: {
     tournament() {
@@ -209,6 +128,9 @@ export default {
     },
      participants() {
       return this.$store.state.participants;
+    },
+    nextMatch() {
+        return this.$store.state.match;
     },
 
   },
