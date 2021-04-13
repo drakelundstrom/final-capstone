@@ -141,10 +141,10 @@ namespace Capstone.Controllers
             {
                 return Unauthorized();
             }
-            if (tournamentDAO.IsTournamentCompleted(tournament.TournamentId))
-            {
-                return Forbid();
-            }
+            //if (tournamentDAO.IsTournamentCompleted(tournament.TournamentId))
+            //{
+            //    return Forbid();
+            //}
 
             bool result = tournamentDAO.ChangeTournamentStatus(tournament);
 
@@ -253,10 +253,10 @@ namespace Capstone.Controllers
             {
                 return Unauthorized();
             }
-            if (!(tournamentDAO.IsTournamentActive(tournamentId)))
-            {
-                return Forbid();
-            }
+            //if (!(tournamentDAO.IsTournamentActive(tournamentId)))
+            //{
+            //    return Forbid();
+            //}
 
             Match match = tournamentDAO.GetNextMatch(tournamentId);
 
@@ -275,10 +275,10 @@ namespace Capstone.Controllers
             {
                 return Unauthorized();
             }
-            if (!(tournamentDAO.IsTournamentActive(match.TournamentId)))
-            {
-                return Forbid();
-            }
+           //// if (!(tournamentDAO.IsTournamentActive(match.TournamentId)))
+           // {
+           //     return Forbid();
+           // }
 
             bool result = tournamentDAO.AddNextMatch(match);
 
