@@ -19,7 +19,7 @@ namespace Capstone.Controllers
     {
         private readonly ITournamentDAO tournamentDAO;
 
-        public TournamentController (ITournamentDAO _tournamentDAO)
+        public TournamentController(ITournamentDAO _tournamentDAO)
         {
             tournamentDAO = _tournamentDAO;
         }
@@ -78,7 +78,7 @@ namespace Capstone.Controllers
             if (participants != null)
             {
                 return Ok(participants);
-            } 
+            }
             else
             {
                 return NotFound();
@@ -148,7 +148,7 @@ namespace Capstone.Controllers
 
             bool result = tournamentDAO.ChangeTournamentStatus(tournament);
 
-            
+
 
             if (result)
             {
@@ -184,8 +184,8 @@ namespace Capstone.Controllers
                 if (matches[0].MatchNumber == -1)
                 {
                     return NotFound();
-                }    
-                
+                }
+
             }
             return Ok(matches);
         }
@@ -194,7 +194,7 @@ namespace Capstone.Controllers
         [HttpGet("creator")]
         public ActionResult<List<Tournament>> GetTournamentsByCreator()
         {
-            
+
             int userId = int.Parse(User.FindFirst("sub").Value);
             List<Tournament> tournaments = tournamentDAO.GetTournamentsByCreator(userId);
             if (tournaments.Count >= 1)
@@ -205,7 +205,7 @@ namespace Capstone.Controllers
                 }
 
             }
-            
+
             {
                 return Ok(tournaments);
             }
@@ -238,11 +238,58 @@ namespace Capstone.Controllers
             List<Participant> participants = tournamentDAO.GetBracketLocations(tournamentId);
             if (participants.Count == 0)
             {
-                    return NotFound();
-                
+                return NotFound();
+
 
             }
             return Ok(participants);
+        }
+
+        [Authorize(Roles = "admin")]
+        [HttpGet("getNextMatch/{tournamentId}")]
+        public ActionResult GetNextMatch(int tournamentId)
+        {
+            if (!(IsCorrectAdmin(tournamentId)))
+            {
+                return Unauthorized();
+            }
+            if (!(tournamentDAO.IsTournamentCompleted(tournamentId)))
+            {
+                return Forbid();
+            }
+
+            Match match = tournamentDAO.GetNextMatch(tournamentId);
+
+            if (match.MatchNumber == -1)
+            {
+                return NotFound();
+            }
+            return Ok(match);
+        }
+
+        [Authorize(Roles = "admin")]
+        [HttpPost("addNextMatch/")]
+        public ActionResult AddNextMatch(Match match)
+        {
+            if (!(IsCorrectAdmin(match.TournamentId)))
+            {
+                return Unauthorized();
+            }
+            if (!(tournamentDAO.IsTournamentCompleted(match.TournamentId)))
+            {
+                return Forbid();
+            }
+
+            bool result = tournamentDAO.AddNextMatch(match);
+
+            if (result)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
     }
 }
