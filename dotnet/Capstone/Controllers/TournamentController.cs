@@ -268,7 +268,7 @@ namespace Capstone.Controllers
         }
 
         [Authorize(Roles = "admin")]
-        [HttpPost("addNextMatch/")]
+        [HttpPost("addNextMatch")]
         public ActionResult AddNextMatch(Match match)
         {
             if (!(IsCorrectAdmin(match.TournamentId)))

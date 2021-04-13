@@ -51,6 +51,11 @@ export default {
 
     getNextMatch(id){
         return axios.get(path + '/getNextMatch/' + id)
+    },
+
+    addNextMatch(match){
+        return axios.post(path + '/addNextMatch', match)
     }
+
 
 }
