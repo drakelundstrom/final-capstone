@@ -30,7 +30,8 @@ namespace Capstone.DAO.Interfaces
         List<Tournament> GetTournamentsByCreator(int creatorId);
         List<Tournament> GetTournamentsByParticipant(int userId);
         bool IsTournamentCompleted(int tournamentId);
-
+        bool IsTournamentActive(int tournamentId);
+        bool IsTournamentRecruiting(int tournamentId);
         List<Participant> GetBracketLocations(int tournamentId);
         Match GetNextMatch(int tournamentId);
         bool AddNextMatch(Match match);

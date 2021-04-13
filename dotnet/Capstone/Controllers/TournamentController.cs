@@ -95,7 +95,7 @@ namespace Capstone.Controllers
                 return Unauthorized();
             }
 
-            if (tournamentDAO.IsTournamentCompleted(tournamentId))
+            if (!(tournamentDAO.IsTournamentRecruiting(tournamentId)))
             {
                 return Forbid();
             }
@@ -117,7 +117,7 @@ namespace Capstone.Controllers
         public ActionResult JoinParticipant(Participant participant)
         {
             bool result = tournamentDAO.JoinParticipant(participant);
-            if (tournamentDAO.IsTournamentCompleted(participant.TournamentId))
+            if (!(tournamentDAO.IsTournamentRecruiting(participant.TournamentId)))
             {
                 return Forbid();
             }
@@ -253,7 +253,7 @@ namespace Capstone.Controllers
             {
                 return Unauthorized();
             }
-            if (!(tournamentDAO.IsTournamentCompleted(tournamentId)))
+            if (!(tournamentDAO.IsTournamentActive(tournamentId)))
             {
                 return Forbid();
             }
@@ -275,7 +275,7 @@ namespace Capstone.Controllers
             {
                 return Unauthorized();
             }
-            if (!(tournamentDAO.IsTournamentCompleted(match.TournamentId)))
+            if (!(tournamentDAO.IsTournamentActive(match.TournamentId)))
             {
                 return Forbid();
             }
