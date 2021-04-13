@@ -33,9 +33,9 @@
     </table>
 
     <h2>Current Participants:</h2>
-    <ul class="list-group" v-for="part in this.participants" v-bind:key="part.username">
+    <ul id="listpartic" v-for="part in this.participants" v-bind:key="part.username">
      
-        <li class="list-group-item">{{part.username }}</li>
+        <li id="partic" >{{part.username }}</li>
       
     </ul>
 
@@ -123,10 +123,23 @@ button {
   margin-bottom: 50px;
 }
 
-.list-group{
-  justify-items: center;
-      max-width: 35%;
-      margin-left: auto;
-      margin-right: auto;
- }
+
+
+  #partic{
+  list-style: none;
+  color: #ff844c;
+  
+}
+
+#partic:before {
+  content: "";
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-size: contain;
+  background-image: url("../../assets/sportsPhotos/icon.png");
+}
+
+
+
 </style>
