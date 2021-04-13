@@ -45,18 +45,18 @@ namespace Capstone.DAO
 
 
         private string sqlGetMatchesInTournament = "SELECT DISTINCT m.tournament_id, match_number, " +
- "home_team_id, home_team_score,  home.team_number AS 'home_team_number'  , home_users.username AS 'home_name', " +
- " away_team_id, away_team_score, away.team_number AS 'away_team_number'  , away_users.username AS 'away_name', " +
- "victor_id, victor.team_number AS 'victor_team_number'  , victor_users.username AS 'victor_name' " +
- " FROM matches m " +
- " JOIN participants away ON away.user_id = m.away_team_id " +
- " JOIN users away_users ON away_users.user_id = m.away_team_id " +
- " JOIN participants home ON home.user_id = m.home_team_id " +
- " JOIN users home_users ON home_users.user_id = m.home_team_id " +
- " JOIN participants victor ON victor.user_id = m.victor_id " +
- " JOIN users victor_users ON victor_users.user_id = m.victor_id " +
- " WHERE m.tournament_id = (@tournament_id) " +
- " ORDER BY match_number;";
+             "home_team_id, home_team_score,  home.team_number AS 'home_team_number'  , home_users.username AS 'home_name', " +
+             " away_team_id, away_team_score, away.team_number AS 'away_team_number'  , away_users.username AS 'away_name', " +
+             "victor_id, victor.team_number AS 'victor_team_number'  , victor_users.username AS 'victor_name' " +
+             " FROM matches m " +
+             " JOIN participants away ON (away.user_id = m.away_team_id  and away.tournament_id = m.tournament_id) " +
+             " JOIN users away_users ON away_users.user_id = m.away_team_id " +
+             " JOIN participants home ON (home.user_id = m.home_team_id  and home.tournament_id = m.tournament_id) " +
+             " JOIN users home_users ON home_users.user_id = m.home_team_id " +
+             " JOIN participants victor ON (victor.user_id = m.victor_id  and victor.tournament_id = m.tournament_id) " +
+             " JOIN users victor_users ON victor_users.user_id = m.victor_id " +
+             " WHERE m.tournament_id = (@tournament_id) " +
+             " ORDER BY match_number;";
 
         private string sqlGetTournamentsByCreator = "SELECT * FROM tournaments t " +
         "JOIN users u ON u.user_id = t.creator_id " +
@@ -69,6 +69,11 @@ namespace Capstone.DAO
         " WHERE tournament_id IN (SELECT tournament_id " +
                           "  FROM participants " +
                           " WHERE user_id = (@userId));";
+
+
+        private string sqlAddMatch = "  INSERT INTO matches " +
+            "(tournament_id, match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id) " +
+            "VALUES((@tournamentId), (@matchNumber), (@homeId), (@awayId), (@homeScore), (@awayScore), (@victorId));";
 
 
         public List<Tournament> GetTournaments()
@@ -579,7 +584,7 @@ namespace Capstone.DAO
                     {
                         result = true;
                     }
-                    
+
                 }
             }
             catch (Exception ex)
@@ -590,6 +595,396 @@ namespace Capstone.DAO
 
             return result;
         }
+
+        public List<Participant> GetBracketLocations(int tournamentId)
+        {
+            List<Participant> result = new List<Participant>();
+            List<Participant> teams = GetParticipantsInTournament(tournamentId);
+            Tournament tournament = GetTournament(tournamentId);
+            List<Match> matches = GetMatches(tournamentId);
+
+            for (int i = 1; i < 16; i++)
+            {
+                Participant participant = new Participant();
+                if (i == 1)
+                {
+
+                    if (teams.Count == 0)
+                    {
+                        participant.Username = "";
+                    }
+                    else if (teams.Count == 1)
+                    {
+                        participant.Username = teams[0].Username;
+                    }
+                    else if (matches.Count == tournament.NumberOfMatches)
+                    {
+                        participant.Username = matches[matches.Count - 1].VictorTeamName;
+                    }
+                    else
+                    {
+                        participant.Username = "";
+                    }
+                }
+                else
+                {
+                    if ((i) > (2 * teams.Count - 1))
+                    {
+                        participant.Username = "";
+                    }
+                    else if ((i - tournament.NumberOfMatches) <= teams.Count && (i - tournament.NumberOfMatches) > 0)
+                    {
+                        participant.Username = teams[i - tournament.NumberOfMatches - 1].Username;
+                    }
+                    else
+                    {
+                        participant.Username = "";
+                        switch (i)
+                        {
+                            case 2:
+                                switch (teams.Count)
+                                {
+                                    case 3:
+                                    case 4:
+                                        if (matches.Count > 0)
+                                        {
+                                            participant.Username = matches[0].VictorTeamName;
+                                        }
+                                        break;
+                                    case 5:
+                                        if (matches.Count > 1)
+                                        {
+                                            participant.Username = matches[1].VictorTeamName;
+                                        }
+                                        break;
+                                    case 6:
+                                        if (matches.Count > 2)
+                                        {
+                                            participant.Username = matches[2].VictorTeamName;
+                                        }
+                                        break;
+                                    case 7:
+                                        if (matches.Count > 3)
+                                        {
+                                            participant.Username = matches[3].VictorTeamName;
+                                        }
+                                        break;
+                                    case 8:
+                                        if (matches.Count > 4)
+                                        {
+                                            participant.Username = matches[4].VictorTeamName;
+                                        }
+                                        break;
+                                }
+
+                                //if (matches.Count >= tournament.NumberOfMatches - 1)
+                                //{
+                                //    participant.Username = matches[tournament.NumberOfMatches - 3].VictorTeamName;
+                                //}
+                                break;
+                            case 3:
+                                switch (teams.Count)
+                                {
+                                    case 4:
+                                        if (matches.Count > 1)
+                                        {
+                                            participant.Username = matches[1].VictorTeamName;
+                                        }
+                                        break;
+                                    case 5:
+                                        if (matches.Count > 2)
+                                        {
+                                            participant.Username = matches[2].VictorTeamName;
+                                        }
+                                        break;
+                                    case 6:
+                                        if (matches.Count > 3)
+                                        {
+                                            participant.Username = matches[3].VictorTeamName;
+                                        }
+                                        break;
+                                    case 7:
+                                        if (matches.Count > 4)
+                                        {
+                                            participant.Username = matches[4].VictorTeamName;
+                                        }
+                                        break;
+                                    case 8:
+                                        if (matches.Count > 5)
+                                        {
+                                            participant.Username = matches[5].VictorTeamName;
+                                        }
+                                        break;
+                                }
+
+                                // if (matches.Count >= tournament.NumberOfMatches - 1)
+                                // {
+                                //     participant.Username = matches[tournament.NumberOfMatches - 2].VictorTeamName;
+                                //  }
+                                break;
+                            case 4:
+                                if (teams.Count > 4 && matches.Count >0)
+                                {
+                                    participant.Username = matches[0].VictorTeamName;
+                                }
+                                break;
+                            case 5:
+                                if (teams.Count > 5 && matches.Count > 1)
+                                {
+                                    participant.Username = matches[1].VictorTeamName;
+                                }
+                                break;
+                            case 6:
+                                if (teams.Count > 6 && matches.Count > 2)
+                                {
+                                    participant.Username = matches[2].VictorTeamName;
+                                }
+                                break;
+                            case 7:
+                                if (teams.Count > 7 && matches.Count > 3)
+                                {
+                                    participant.Username = matches[3].VictorTeamName;
+                                }
+                                break;
+                        }
+                    }
+
+                }
+
+                result.Add(participant);
+            }
+            return result;
+        }
+
+        public Match GetNextMatch(int tournamentId)
+        {
+            Match match = new Match();
+
+            List<Participant> teams = GetParticipantsInTournament(tournamentId);
+            Tournament tournament = GetTournament(tournamentId);
+            List<Match> matches = GetMatches(tournamentId);
+
+            if ((tournament.NumberOfMatches <= matches.Count) || (tournament.NumberOfMatches <= 0))
+            {
+                match.MatchNumber = -1;
+            }
+            else
+            {
+                match.TournamentId = tournamentId;
+                match.MatchNumber = matches.Count + 1;
+                switch (match.MatchNumber)
+                {
+
+                    case 1:
+                        switch (teams.Count)
+                        {
+                            case 2:
+                            case 4:
+                            case 8:
+                                match.HomeTeamId = teams[0].UserId;
+                                match.HomeTeamName = teams[0].Username;
+                                match.AwayTeamId = teams[1].UserId;
+                                match.AwayTeamName = teams[1].Username;
+                                break;
+                            case 3:
+                            case 7:
+                                match.HomeTeamId = teams[1].UserId;
+                                match.HomeTeamName = teams[1].Username;
+                                match.AwayTeamId = teams[2].UserId;
+                                match.AwayTeamName = teams[2].Username;
+                                break;
+                            case 6:
+                                match.HomeTeamId = teams[2].UserId;
+                                match.HomeTeamName = teams[2].Username;
+                                match.AwayTeamId = teams[3].UserId;
+                                match.AwayTeamName = teams[3].Username;
+                                break;
+                            case 5:
+                                match.HomeTeamId = teams[3].UserId;
+                                match.HomeTeamName = teams[3].Username;
+                                match.AwayTeamId = teams[4].UserId;
+                                match.AwayTeamName = teams[4].Username;
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (teams.Count)
+                        {
+                            case 3:
+                            case 5:
+                                match.HomeTeamId = matches[0].VictorTeamId;
+                                match.HomeTeamName = matches[0].VictorTeamName;
+                                match.AwayTeamId = teams[0].UserId;
+                                match.AwayTeamName = teams[0].Username;
+                                break;
+                            case 4:
+                            case 8:
+                                match.HomeTeamId = teams[2].UserId;
+                                match.HomeTeamName = teams[2].Username;
+                                match.AwayTeamId = teams[3].UserId;
+                                match.AwayTeamName = teams[3].Username;
+                                break;
+                            case 6:
+                                match.HomeTeamId = teams[4].UserId;
+                                match.HomeTeamName = teams[4].Username;
+                                match.AwayTeamId = teams[5].UserId;
+                                match.AwayTeamName = teams[5].Username;
+                                break;
+                            case 7:
+                                match.HomeTeamId = teams[3].UserId;
+                                match.HomeTeamName = teams[3].Username;
+                                match.AwayTeamId = teams[4].UserId;
+                                match.AwayTeamName = teams[4].Username;
+                                break;
+                        }
+                        break;
+                    case 3:
+                        switch (teams.Count)
+                        {
+                            case 4:
+                            case 6:
+                                match.HomeTeamId = matches[0].VictorTeamId;
+                                match.HomeTeamName = matches[0].VictorTeamName;
+                                match.AwayTeamId = matches[1].VictorTeamId;
+                                match.AwayTeamName = matches[1].VictorTeamName;
+                                break;
+                            case 5:
+                                match.HomeTeamId = teams[2].UserId;
+                                match.HomeTeamName = teams[2].Username;
+                                match.AwayTeamId = teams[3].UserId;
+                                match.AwayTeamName = teams[3].Username;
+                                break;
+                            case 7:
+                                match.HomeTeamId = teams[5].UserId;
+                                match.HomeTeamName = teams[5].Username;
+                                match.AwayTeamId = teams[6].UserId;
+                                match.AwayTeamName = teams[6].Username;
+                                break;
+                            case 8:
+                                match.HomeTeamId = teams[4].UserId;
+                                match.HomeTeamName = teams[4].Username;
+                                match.AwayTeamId = teams[5].UserId;
+                                match.AwayTeamName = teams[5].Username;
+                                break;
+                        }
+                        break;
+                    case 4:
+                        switch (teams.Count)
+                        {
+                            case 5:
+                                match.HomeTeamId = matches[1].VictorTeamId;
+                                match.HomeTeamName = matches[1].VictorTeamName;
+                                match.AwayTeamId = matches[2].VictorTeamId;
+                                match.AwayTeamName = matches[2].VictorTeamName;
+                                break;
+                            case 6:
+                                match.HomeTeamId = teams[0].UserId;
+                                match.HomeTeamName = teams[0].Username;
+                                match.AwayTeamId = teams[1].UserId;
+                                match.AwayTeamName = teams[1].Username;
+                                break;
+
+                            case 7:
+                                match.HomeTeamId = matches[0].VictorTeamId;
+                                match.HomeTeamName = matches[0].VictorTeamName;
+                                match.AwayTeamId = matches[1].VictorTeamId;
+                                match.AwayTeamName = matches[1].VictorTeamName;
+                                break;
+                            case 8:
+                                match.HomeTeamId = teams[6].UserId;
+                                match.HomeTeamName = teams[6].Username;
+                                match.AwayTeamId = teams[7].UserId;
+                                match.AwayTeamName = teams[7].Username;
+                                break;
+                        }
+                        break;
+                    case 5:
+                        switch (teams.Count)
+                        {
+                            case 6:
+                                match.HomeTeamId = matches[2].VictorTeamId;
+                                match.HomeTeamName = matches[2].VictorTeamName;
+                                match.AwayTeamId = matches[3].VictorTeamId;
+                                match.AwayTeamName = matches[3].VictorTeamName;
+                                break;
+
+                            case 7:
+                                match.HomeTeamId = matches[2].VictorTeamId;
+                                match.HomeTeamName = matches[2].VictorTeamName;
+                                match.AwayTeamId = teams[0].UserId;
+                                match.AwayTeamName = teams[0].Username;
+                                break;
+                            case 8:
+                                match.HomeTeamId = matches[0].VictorTeamId;
+                                match.HomeTeamName = matches[0].VictorTeamName;
+                                match.AwayTeamId = matches[1].VictorTeamId;
+                                match.AwayTeamName = matches[1].VictorTeamName;
+                                break;
+                        }
+                        break;
+                    case 6:
+                        switch (teams.Count)
+                        {
+                            case 7:
+                                match.HomeTeamId = matches[3].VictorTeamId;
+                                match.HomeTeamName = matches[3].VictorTeamName;
+                                match.AwayTeamId = matches[4].VictorTeamId;
+                                match.AwayTeamName = matches[4].VictorTeamName;
+                                break;
+                            case 8:
+                                match.HomeTeamId = matches[2].VictorTeamId;
+                                match.HomeTeamName = matches[2].VictorTeamName;
+                                match.AwayTeamId = matches[3].VictorTeamId;
+                                match.AwayTeamName = matches[3].VictorTeamName;
+                                break;
+                        }
+                        break;
+                    case 7:
+                        match.HomeTeamId = matches[4].VictorTeamId;
+                        match.HomeTeamName = matches[4].VictorTeamName;
+                        match.AwayTeamId = matches[5].VictorTeamId;
+                        match.AwayTeamName = matches[5].VictorTeamName;
+                        break;
+                }
+            }
+            return match;
+        }
+
+        public bool AddNextMatch(Match match)
+        {
+            bool result = false;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+
+                    conn.Open
+                    ();
+                    SqlCommand cmd = new SqlCommand(sqlAddMatch, conn);
+                    cmd.Parameters.AddWithValue("@tournamentId", match.TournamentId);
+                    cmd.Parameters.AddWithValue("@matchNumber", match.MatchNumber);
+                    cmd.Parameters.AddWithValue("@homeId", match.HomeTeamId);
+                    cmd.Parameters.AddWithValue("@awayId", match.AwayTeamId);
+                    cmd.Parameters.AddWithValue("@homeScore", match.HomeTeamScore);
+                    cmd.Parameters.AddWithValue("@awayScore", match.AwayTeamScore);
+                    cmd.Parameters.AddWithValue("@victorId", match.VictorTeamId);
+
+                    int rowsEffected = cmd.ExecuteNonQuery();
+                    if (rowsEffected == 1)
+                    {
+                        result = true;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return result;
+
+        }
+
     }
 }
 

@@ -38,4 +38,24 @@ export default {
         return axios.get(path + '/creator')
 
     },
+
+
+    getBracketForTournament(tournamentId){
+        return axios.get(path + '/fillbracket/'+ tournamentId)
+
+    },
+
+    editTournament(tournament){
+        return axios.post(path + '/changeStatus', tournament)
+    },
+
+    getNextMatch(id){
+        return axios.get(path + '/getNextMatch/' + id)
+    },
+
+    addNextMatch(match){
+        return axios.post(path + '/addNextMatch', match)
+    }
+
+
 }
