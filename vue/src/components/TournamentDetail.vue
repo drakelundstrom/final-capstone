@@ -1,6 +1,9 @@
 <template>
   <div>
     <h1>Tournament Details:</h1>
+    <!--<img  src="../../assets/sportsPhotos/Soccer.jpg" alt ="picture of sport">-->
+
+
     <table class ="table style w-auto ">
       <tbody>
         <tr>
