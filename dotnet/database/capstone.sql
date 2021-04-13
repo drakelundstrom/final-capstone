@@ -248,6 +248,14 @@ ALTER TABLE matches
 ADD FOREIGN KEY (tournament_id)
 REFERENCES tournaments(tournament_id);
 
+ALTER TABLE matches
+ADD FOREIGN KEY (home_team_id)
+REFERENCES users(user_id);
+
+ALTER TABLE matches
+ADD FOREIGN KEY (away_team_id)
+REFERENCES users(user_id);
+
 
 COMMIT TRANSACTION
 

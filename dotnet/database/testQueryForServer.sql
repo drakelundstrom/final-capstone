@@ -51,7 +51,7 @@ WHERE user_id = 5 and tournament_id = 3;
 
 UPDATE tournaments
 SET tour_status = 'Completed'
-WHERE tournament_id = 4;
+WHERE tournament_id = 10;
 
 SELECT creator_id FROM tournaments WHERE tournament_id = (1);
 
@@ -117,3 +117,7 @@ SELECT * FROM tournaments t
   ORDER BY match_number;
 
   select * from matches
+
+  INSERT INTO matches 
+  (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) 
+  VALUES (7, 1, 3, 4, '2', '0', 3);

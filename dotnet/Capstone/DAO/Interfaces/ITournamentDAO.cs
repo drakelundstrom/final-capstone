@@ -32,6 +32,8 @@ namespace Capstone.DAO.Interfaces
         bool IsTournamentCompleted(int tournamentId);
 
         List<Participant> GetBracketLocations(int tournamentId);
+        Match GetNextMatch(int tournamentId);
+        bool AddNextMatch(Match match);
     }
     
 }
