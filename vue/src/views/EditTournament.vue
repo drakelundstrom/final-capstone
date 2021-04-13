@@ -51,6 +51,135 @@
       <button type="submit">Change</button>
     </form>
 
+    <div id="matches">
+
+      <table>
+        <thead>
+          <th> <!-- for each for matches so only current matches display? perhaps?  -->
+         Match 1 
+          </th>
+          <th> match 2</th>
+          <th> match 3</th>
+          <th> match 4</th>
+          </thead>
+
+          <tbody>
+            <td> <form>
+        Home team
+          <input
+        type="number"
+        id="homescore"
+        class="form-control"
+        placeholder="Score"
+        
+      />
+       Away team
+          <input
+        type="number"
+        id="awayscore"
+        class="form-control"
+        placeholder="Score"
+        
+      />
+
+      Who won? 
+      <select>
+        <option>Home</option>
+        <option>Away</option>
+      </select>
+      <button type="submit">Submit</button>
+        </form>
+      
+  </td>
+
+  <td> <form>
+        Home team
+          <input
+        type="number"
+        id="homescore"
+        class="form-control"
+        placeholder="Score"
+        
+      />
+       Away team
+          <input
+        type="number"
+        id="awayscore"
+        class="form-control"
+        placeholder="Score"
+        
+      />
+
+      Who won? 
+      <select>
+        <option>Home</option>
+        <option>Away</option>
+      </select>
+      <button type="submit">Submit</button>
+        </form>
+      
+  </td>
+
+  <td> <form>
+        <p id="hometeam">Home team</p>
+          <input
+        type="number"
+        id="homescore"
+        class="form-control"
+        placeholder="Score"
+        
+      />
+       <p id ="awayteam">Away team</p>
+          <input
+        type="number"
+        id="awayscore"
+        class="form-control"
+        placeholder="Score"
+        
+      />
+
+      Who won? 
+      <select>
+        <option>Home</option>
+        <option>Away</option>
+      </select>
+      <button type="submit">Submit</button>
+        </form>
+      
+  </td>
+
+  <td> <form>
+        Home team
+          <input
+        type="number"
+        id="homescore"
+        class="form-control"
+        placeholder="Score"
+        
+      />
+       Away team
+          <input
+        type="number"
+        id="awayscore"
+        class="form-control"
+        placeholder="Score"
+        
+      />
+
+      Who won? 
+      <select>
+        <option>Home</option>
+        <option>Away</option>
+      </select>
+      <button type="submit">Submit</button>
+        </form>
+      
+  </td>
+          </tbody>
+        </table>
+     
+      </div>
+
 
   </div>
 </template>
@@ -101,12 +230,12 @@ input {
   height: 30px;
   width: 8%;
   border-radius: 20px;
-  background-color: #e7f4d7;
+  background-color: #d2ffe0;
 }
 
 select {
   border-radius: 20px;
-  background-color: #e7f4d7;
+  background-color: #d2ffe0
 }
 
 button {
@@ -138,6 +267,40 @@ button {
   width: 20px;
   background-size: contain;
   background-image: url("../../assets/sportsPhotos/icon.png");
+}
+
+
+#homescore, #awayscore{
+  display: grid;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 40px;
+  margin-bottom: 5px;
+  background-color:  #d2ffe0;
+  min-width: 70px;
+}
+
+#homescore{
+  grid-area: homesc;
+}
+
+#awayscore{
+  grid-area: awaysc;
+}
+
+#hometeam{
+  display: grid;
+  grid-area: homet
+}
+
+#awayteam{
+  display: grid;
+  grid-area: awayt;
+}
+
+#matches{
+    grid: 'homet homesc'
+  'awayt awaysc';
 }
 
 
