@@ -1,13 +1,57 @@
 <template>
   <div>
+    <h1>Tournament Details:</h1>
+    <table id="deets" class ="table style w-auto ">
+      <tbody>
+        <tr>
+          <td id="descrip">Tournament Name:</td>
+          <td>{{ tournament.tournamentName }}</td>
+        </tr>
+
+        <tr>
+          <td id="descrip">Tournament ID:</td>
+          <td>{{ tournament.tournamentId }}</td>
+        </tr>
+
+        <tr>
+          <td id="descrip">Sport:</td>
+          <!-- is completed or not -->
+          <td>{{ tournament.sportName}}</td>
+        </tr>
+
+        <tr>
+          <td id="descrip">Creator:</td>
+          <td>{{ tournament.creatorUsername }}</td>
+        </tr>
+
+        <tr>
+          <td id="descrip">Status:</td>
+          <!-- is completed or not -->
+          <td>{{ tournament.tournamentStatus }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Current Participants:</h2>
+    <ul class="list-group" v-for="part in this.participants" v-bind:key="part.username">
+     
+        <li class="list-group-item">{{part.username }}</li>
+      
+    </ul>
+
+
+
+    <h2 id="editdescrip">Change Tournament Status</h2>
     <form v-on:submit.prevent="onSubmit">
       <select v-model="editTournament.tournamentStatus">
         <option value="Recruiting">Recruiting</option>
         <option value="Active">Active</option>
         <option value="Completed">Completed</option>
       </select>
-      <button type="submit">Edit Tournament</button>
+      <button type="submit">Change</button>
     </form>
+
+
   </div>
 </template>
 
@@ -26,14 +70,21 @@ export default {
     TournamentService.getTournament(this.$route.params.id).then((response) => {
       this.$store.commit("SET_TOURNAMENT", response.data);
     });
+    TournamentService.getParticipantsInTournament(this.$route.params.id).then((response) => {
+      this.$store.commit("SET_PARTICIPANTS", response.data);
+    });
   },
   computed: {
-
-  },
-  methods: {
     tournament() {
       return this.$store.state.tournament;
     },
+     participants() {
+      return this.$store.state.participants;
+    },
+
+  },
+  methods: {
+    
     onSubmit() {
         TournamentService.editTournament(this.editTournament)
         .then(window.alert(`Tournament status successfully updated`))
@@ -63,4 +114,19 @@ button {
   background-color: #f2f2f2;
   border: 2px solid #e7f4d7;
 }
+
+#editdescrip{
+  margin-bottom: 1px;
+}
+
+#deets{
+  margin-bottom: 50px;
+}
+
+.list-group{
+  justify-items: center;
+      max-width: 35%;
+      margin-left: auto;
+      margin-right: auto;
+ }
 </style>

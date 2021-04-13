@@ -48,7 +48,7 @@
     <h1>List of Participants:</h1>
     <table>
       <tr v-for="part in this.participants" v-bind:key="part.username">
-        <td>{{ part.username }}</td>
+        <td>{{part.username }}</td>
       </tr>
     </table>
     <h1 id="title">Tournament Schedule</h1>
