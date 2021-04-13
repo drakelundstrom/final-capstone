@@ -91,21 +91,29 @@
         </tbody>
       </table>
     </div>
+    <bracket v-bind:id="tournamentId" />
   </div>
 </template>
 
 <script>
 import TournamentService from "../services/TournamentService";
+import Bracket from "../components/Bracket.vue";
 export default {
+      components: {
+    Bracket,
+  },
+
   data() {
     return {
       editTournament: {
         tournamentId: parseInt(this.$route.params.id),
       },
+      tournamentId: 0,
     };
   },
 
   created() {
+      this.tournamentId = this.$route.params.id;
     TournamentService.getTournament(this.$route.params.id).then((response) => {
       this.$store.commit("SET_TOURNAMENT", response.data);
     });
@@ -132,7 +140,7 @@ export default {
   methods: {
     onSubmit() {
       TournamentService.editTournament(this.editTournament)
-        .then(window.alert(`Tournament status successfully updated`))
+        .then(location.reload())
         .catch((error) => {
           console.log(error);
         });
