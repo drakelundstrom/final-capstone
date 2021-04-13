@@ -3,7 +3,7 @@
     <!-- message? -->
     <!-- I would like to make the search a button to collapse, but not sure on event handling -->
     <p id>
-      Look for a Specific Tournament?<select
+      Looking for a Specific Tournament?<select
         id="search active"
         v-model="searchActive"
       >
@@ -20,7 +20,7 @@
           type="text"
           id="tourNameFilter"
           v-model="filter.tournamentName"
-        />np
+        />
       </p>
       <p>
         Tournament ID
