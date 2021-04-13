@@ -231,6 +231,18 @@ namespace Capstone.Controllers
             }
         }
 
+        [AllowAnonymous]
+        [HttpGet("fillbracket/{tournamentId}")]
+        public ActionResult<List<Participant>> GetBracketLocations(int tournamentId)
+        {
+            List<Participant> participants = tournamentDAO.GetBracketLocations(tournamentId);
+            if (participants.Count == 0)
+            {
+                    return NotFound();
+                
 
+            }
+            return Ok(participants);
+        }
     }
 }
