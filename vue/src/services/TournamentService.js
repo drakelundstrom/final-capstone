@@ -38,4 +38,8 @@ export default {
         return axios.get(path + '/creator')
 
     },
+
+    editTournament(tournament){
+        return axios.post(path + '/changeStatus', tournament)
+    }
 }

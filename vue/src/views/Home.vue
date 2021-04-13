@@ -23,7 +23,7 @@
       <td>{{ tournament.tournamentName }}</td>
       <td>{{ tournament.sportName }}</td>
       <td>{{ tournament.tournamentStatus }}</td>
-      <td><router-link id="details" v-bind:to="{name: 'Tournament', params: {id: tournament.tournamentId} }">View Details</router-link></td>
+      <td><router-link id="details" v-bind:to="{name: 'Tournament', params: {id: tournament.tournamentId} }" >View Details</router-link></td>
     </tr>
     
       </tbody>
@@ -50,7 +50,7 @@
       <td>{{ tournament.tournamentName }}</td>
       <td>{{ tournament.sportName }}</td>
       <td>{{ tournament.tournamentStatus }}</td>
-      <td> <!-- router link here--> </td>
+      <td><router-link id="details" v-bind:to="{name: 'EditTournament', params: {id: tournament.tournamentId} }" v-if="tournament.tournamentStatus != 'Completed'">Edit</router-link></td>
     </tr>
     
       </tbody>
