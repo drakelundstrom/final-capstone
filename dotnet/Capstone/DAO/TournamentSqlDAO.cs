@@ -579,7 +579,7 @@ namespace Capstone.DAO
                     {
                         result = true;
                     }
-                    
+
                 }
             }
             catch (Exception ex)
@@ -588,6 +588,145 @@ namespace Capstone.DAO
                 result = true;
             }
 
+            return result;
+        }
+
+        public List<Participant> GetBracketLocations(int tournamentId)
+        {
+            List<Participant> result = new List<Participant>();
+            List<Participant> teams = GetParticipantsInTournament(tournamentId);
+            Tournament tournament = GetTournament(tournamentId);
+            List<Match> matches = GetMatches(tournamentId);
+
+            for (int i = 1; i < 16; i++)
+            {
+                Participant participant = new Participant();
+                if (i == 1)
+                {
+
+                    if (teams.Count == 0)
+                    {
+                        participant.Username = "";
+                    }
+                    else if (teams.Count == 1)
+                    {
+                        participant.Username = teams[0].Username;
+                    }
+                    else if (matches.Count == tournament.NumberOfMatches)
+                    {
+                        participant.Username = matches[matches.Count - 1].VictorTeamName;
+                    }
+                    else
+                    {
+                        participant.Username = "";
+                    }
+                }
+                else
+                {
+                    if ((i) > (2 * teams.Count - 1))
+                    {
+                        participant.Username = "";
+                    }
+                    else if ((i - tournament.NumberOfMatches) <= teams.Count && (i - tournament.NumberOfMatches) >0)
+                    {
+                        participant.Username = teams[i - tournament.NumberOfMatches-1].Username;
+                    }
+                    else
+                    {
+                        participant.Username = "";
+                        switch (i)
+                        {
+                            case 2:
+                                if (matches.Count >= tournament.NumberOfMatches - 1)
+                                {
+                                    participant.Username = matches[tournament.NumberOfMatches - 3].VictorTeamName;
+                                }
+                                break;
+                            case 3:
+                                if (matches.Count >= tournament.NumberOfMatches - 1)
+                                {
+                                    participant.Username = matches[tournament.NumberOfMatches - 2].VictorTeamName;
+                                }
+                                break;
+                            case 4:
+                                if (matches.Count >= tournament.NumberOfMatches - 3)
+                                {
+                                    participant.Username = matches[tournament.NumberOfMatches - 7].VictorTeamName;
+                                }
+                                break;
+                            case 5:
+                                if (matches.Count >= tournament.NumberOfMatches - 4)
+                                {
+                                    participant.Username = matches[tournament.NumberOfMatches - 6].VictorTeamName;
+                                }
+                                break;
+                            case 6:
+                                if (matches.Count >= tournament.NumberOfMatches - 4)
+                                {
+                                    participant.Username = matches[tournament.NumberOfMatches - 5].VictorTeamName;
+                                }
+                                break;
+                            case 7:
+                                if (matches.Count >= tournament.NumberOfMatches - 3)
+                                {
+                                    participant.Username = matches[tournament.NumberOfMatches - 4].VictorTeamName;
+                                }
+                                break;
+                          /*  case 8:
+                                if (matches.Count >= tournament.NumberOfMatches - 14)
+                                {
+                                    participant.Username = matches[tournament.NumberOfMatches - 15].VictorTeamName;
+                                }
+                                break;
+                            case 9:
+                                if (matches.Count >= tournament.NumberOfMatches - 13)
+                                {
+                                    participant.Username = matches[tournament.NumberOfMatches - 14].VictorTeamName;
+                                }
+                                break;
+                            case 10:
+                                if (matches.Count >= tournament.NumberOfMatches - 12)
+                                {
+                                    participant.Username = matches[tournament.NumberOfMatches - 13].VictorTeamName;
+                                }
+                                break;
+                            case 11:
+                                if (matches.Count >= tournament.NumberOfMatches - 11)
+                                {
+                                    participant.Username = matches[tournament.NumberOfMatches - 12].VictorTeamName;
+                                }
+                                break;
+                            case 12:
+                                if (matches.Count >= tournament.NumberOfMatches - 10)
+                                {
+                                    participant.Username = matches[tournament.NumberOfMatches - 9].VictorTeamName;
+                                }
+                                break;
+                            case 13:
+                                if (matches.Count >= tournament.NumberOfMatches - 9)
+                                {
+                                    participant.Username = matches[tournament.NumberOfMatches - 8].VictorTeamName;
+                                }
+                                break;
+                            case 14:
+                                if (matches.Count >= tournament.NumberOfMatches - 8)
+                                {
+                                    participant.Username = matches[tournament.NumberOfMatches - 7].VictorTeamName;
+                                }
+                                break;
+                            case 15:
+                                if (matches.Count >= tournament.NumberOfMatches - 7)
+                                {
+                                    participant.Username = matches[tournament.NumberOfMatches - 6].VictorTeamName;
+                                }
+                                break; */
+                        }
+                    }
+
+                }
+
+                result.Add(participant);
+            }
             return result;
         }
     }

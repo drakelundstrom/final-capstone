@@ -38,4 +38,9 @@ export default {
         return axios.get(path + '/creator')
 
     },
+
+    getBracketForTournament(tournamentId){
+        return axios.get(path + '/fillbracket/'+ tournamentId)
+
+    },
 }
