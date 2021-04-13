@@ -74,21 +74,21 @@ input{
   height: 30px;
   width: 8%; 
   border-radius: 20px;
-  background-color: #e7f4d7;
+  background-color:  #d2ffe0;
  
 
 }
 
 select{
    border-radius: 20px;
-  background-color: #e7f4d7;
+  background-color:  #d2ffe0;
 
 }
 
 button {
   border-radius: 8px;
-background-color: #f2f2f2;
-border: 2px solid  #e7f4d7;
+background-color: #d2ffe0;
+border: 2px solid   #d2ffe0;
 }
 
 
