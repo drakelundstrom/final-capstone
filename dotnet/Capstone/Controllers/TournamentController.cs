@@ -116,11 +116,12 @@ namespace Capstone.Controllers
         [HttpPost("join")]
         public ActionResult JoinParticipant(Participant participant)
         {
-            bool result = tournamentDAO.JoinParticipant(participant);
+            
             if (!(tournamentDAO.IsTournamentRecruiting(participant.TournamentId)))
             {
                 return Forbid();
             }
+            bool result = tournamentDAO.JoinParticipant(participant);
 
             if (result)
             {
