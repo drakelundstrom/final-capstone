@@ -102,9 +102,9 @@ INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id ,
 SET IDENTITY_INSERT tournaments OFF
 
 SET IDENTITY_INSERT sports ON
-INSERT INTO sports (sport_id ,sport_name ) VALUES (1, 'soccer');
-INSERT INTO sports (sport_id ,sport_name ) VALUES (2, 'baseball');
-INSERT INTO sports (sport_id ,sport_name ) VALUES (3, 'basketball');
+INSERT INTO sports (sport_id ,sport_name ) VALUES (1, 'Soccer');
+INSERT INTO sports (sport_id ,sport_name ) VALUES (2, 'Baseball');
+INSERT INTO sports (sport_id ,sport_name ) VALUES (3, 'Basketball');
 SET IDENTITY_INSERT sports OFF
 
 INSERT INTO sports (sport_name ) VALUES ('Tennis');
