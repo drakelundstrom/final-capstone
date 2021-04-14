@@ -1,14 +1,8 @@
 <template>
    
-      <div id ="aboutus">
+      <div class ="aboutus">
        
-        <div id ="banner"> </div>
-        
-        
-        <div id ="features">
-          
-          
-        </div>
+        <h1 id="aboutheader"> ABOUT US</h1>
 
         <div id="profiles" >
 <div class="card shadow-lg p-3 mb-5 bg-body rounded" style="width: 18rem;">
@@ -61,11 +55,16 @@ export default {
 
 <style>
 
-#aboutus{
+.aboutus{
   background-image: url("../../assets/bnwbackground.png");
+  background-color: #cccccc; /* Used if the image is unavailable */
+  height: 90vh; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
 }
 #profiles{
+  margin-top: 25px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     justify-items: center;
@@ -106,6 +105,11 @@ footer{
 
 }
 
+
+#aboutheader{
+    text-shadow: 2px 3px 2px black;
+    font-size: 35px;
+}
 
 
 
