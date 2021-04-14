@@ -2,6 +2,7 @@
   <div>
     <h1>Tournament Details:</h1>
     <!--<img  src="../../assets/sportsPhotos/Soccer.jpg" alt ="picture of sport">-->
+    <img :src="required(`../../assets/sportsPhotos/Soccer.jpg"${this.sportName}.svg`)"/>
 
 
     <table class ="table style w-auto ">
