@@ -126,3 +126,5 @@ SELECT * FROM tournaments t
   UPDATE tournaments SET tour_status = ('Active') WHERE tournament_id = (10);
 
   SELECT * FROM tournaments
+
+  DELETE FROM matches WHERE tournament_id = 3;
