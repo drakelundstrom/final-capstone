@@ -1,10 +1,8 @@
 <template>
   <div>
     <h1>Tournament Details:</h1>
-    <!--<img  src="../../assets/sportsPhotos/Soccer.jpg" alt ="picture of sport">-->
-
-
-    <table class ="table style w-auto ">
+    <img :src="this.imageLink" alt="picture of sport" width="30%" />
+    <table class="table style w-auto">
       <tbody>
         <tr>
           <td id="descrip">Tournament Name:</td>
@@ -19,7 +17,7 @@
         <tr>
           <td id="descrip">Sport:</td>
           <!-- is completed or not -->
-          <td>{{ tournament.sportName}}</td>
+          <td>{{ tournament.sportName }}</td>
         </tr>
 
         <tr>
@@ -32,8 +30,6 @@
           <!-- is completed or not -->
           <td>{{ tournament.tournamentStatus }}</td>
         </tr>
-        
-        
       </tbody>
     </table>
 
@@ -53,7 +49,7 @@
     <h1>List of Participants:</h1>
     <table>
       <tr v-for="part in this.participants" v-bind:key="part.username">
-        <td>{{part.username }}</td>
+        <td>{{ part.username }}</td>
       </tr>
     </table>
     <h1 id="title">Tournament Schedule</h1>
@@ -119,14 +115,21 @@ export default {
       return this.$store.state.tournament;
     },
     isTournamentOwner() {
-        if (!(this.$store.state.user)) {
-            return false;
-        }
-        if (this.$store.state.user.userId != this.tournament.creatorId) {
-            return false;
-        }
-        return true;
-    }
+      if (!this.$store.state.user) {
+        return false;
+      }
+      if (this.$store.state.user.userId != this.tournament.creatorId) {
+        return false;
+      }
+      return true;
+    },
+    imageLink() {
+      let startLink = "/sportsPhotos/";
+      let endLink = ".jpg";
+      let fullLink = startLink + this.tournament.sportName + endLink;
+      console.log(fullLink);
+      return fullLink;
+    },
   },
 };
 </script>
@@ -145,9 +148,7 @@ button {
   margin-top: 10px;
 }
 
-table{
+table {
   margin-bottom: 15px;
 }
-
-
 </style>
