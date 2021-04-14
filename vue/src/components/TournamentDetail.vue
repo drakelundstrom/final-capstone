@@ -2,7 +2,8 @@
   <div>
     <h1>Tournament Details:</h1>
 
-    <img :src="this.imageLink" alt="picture of sport" width="30%" />
+    <img :src="this.imageLink" alt="picture of sport" width="30%"  class="shadow-lg p-3 mb-5 bg-body rounded" />
+
     <table class="table style w-auto">
       <tbody>
         <tr>
@@ -38,15 +39,10 @@
       type="submit"
       id="jointbn"
       @click="onSubmit"
-      v-if="
-        $store.state.token != '' &&
-        tournament.numberOfParticipants < tournament.maxNumberParticipants &&
-        tournament.tournamentStatus == 'Recruiting'
-      "
+      v-if="!showJoin"
     >
       Join Now!
     </button>
-    <button v-if="isTournamentOwner">Shuffle</button>
     <h1>List of Participants:</h1>
     <table>
       <tr v-for="part in this.participants" v-bind:key="part.username">
@@ -65,6 +61,7 @@ export default {
   data: function () {
     return {
       participant: {},
+      participantUsername: [],
     };
   },
 
@@ -97,6 +94,7 @@ export default {
               `Successfully joined ${this.tournament.tournamentName}`
             );
           }
+            this.refresh();
         })
         .catch((error) => {
           window.alert(
@@ -107,6 +105,9 @@ export default {
 
       //clear participant ?
     },
+    refresh(){
+      location.reload();
+    }
   },
   computed: {
     participants() {
@@ -130,6 +131,25 @@ export default {
       let fullLink = startLink + this.tournament.sportName + endLink;
       console.log(fullLink);
       return fullLink;
+    },
+    showJoin() {
+
+this.participants.forEach(person => {
+  this.participantUsername.push(person.username)
+});
+
+      if (
+        this.$store.state.token != "" &&
+        this.tournament.numberOfParticipants <
+          this.tournament.maxNumberParticipants &&
+        this.tournament.tournamentStatus == "Recruiting" &&
+        this.participantUsername.includes(this.$store.state.user.username)
+      ) {
+        return true;
+      }
+      else{
+      return false;
+      }
     },
   },
 };

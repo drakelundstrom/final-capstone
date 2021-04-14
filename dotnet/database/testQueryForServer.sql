@@ -121,3 +121,8 @@ SELECT * FROM tournaments t
   INSERT INTO matches 
   (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) 
   VALUES (7, 1, 3, 4, '2', '0', 3);
+
+
+  UPDATE tournaments SET tour_status = ('Active') WHERE tournament_id = (10);
+
+  SELECT * FROM tournaments
