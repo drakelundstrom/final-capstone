@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Tournament Details:</h1>
-    <img :src="this.imageLink" alt="picture of sport" width="30%" />
+    <img :src="this.imageLink" alt="picture of sport" width="30%"  class="shadow-lg p-3 mb-5 bg-body rounded" />
     <table class="table style w-auto">
       <tbody>
         <tr>
