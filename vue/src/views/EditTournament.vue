@@ -191,7 +191,7 @@ export default {
         });
     },
     shuffleTeams() {
-      TournamentService.shuffleTeams(this.id)
+      TournamentService.shuffleTeams(this.$route.params.id)
         .then()//location.reload())
         .catch((error) => {
           console.log(error);
