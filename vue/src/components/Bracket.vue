@@ -2,7 +2,7 @@
    <div class= "bracket">
  
 
- <img clss="bracketimage" src="https://i.postimg.cc/DZmtxYwK/croppedbracket-removebg-preview-1.png" alt="Bracket" style="width:50%"> 
+ <img clss="bracketimage" src="../../assets/bracketimage.png" alt="Bracket" style="width:50%"> 
 <div class="zero" v-if="this.bracket[0].username != ''"> {{ this.bracket[0].username }} WINS!</div> 
 <div class="one"> {{ this.bracket[1].username }}</div> 
 <div class="two"> {{ this.bracket[2].username }}</div> 
