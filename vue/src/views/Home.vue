@@ -2,7 +2,6 @@
   <div class="home">
     <h1>Welcome back, {{ $store.state.user.username }}!</h1>
     <h1>View your tournaments here</h1>
-    <p>You must be authenticated to see this</p>
 
     <h2>Tournments You're In</h2>
     <table class="table style">
