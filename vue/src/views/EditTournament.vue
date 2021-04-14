@@ -42,7 +42,7 @@
       <button type="submit">Change</button>
     </form>
 
-<form v-on:submit.prevent="shuffleTeams">
+<form v-on:submit.prevent="shuffleTeams" v-if="this.isRecruiting">
   <button type="submit">Shuffle Teams</button>
 </form>
 
@@ -169,6 +169,13 @@ export default {
 
     isActive(){
       if (this.tournament.tournamentStatus == 'Active') {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    isRecruiting(){
+      if (this.tournament.tournamentStatus == 'Recruiting') {
         return true;
       } else {
         return false;
