@@ -44,7 +44,11 @@
       <button type="submit">Change</button>
     </form>
 
-    <div id="matches">
+<form v-on:submit.prevent="shuffleTeams">
+  <button type="submit">Shuffle Teams</button>
+</form>
+
+    <div id="matches" v-if="this.isActive">
       <table>
         <thead>
           <th>
@@ -158,19 +162,33 @@ export default {
     },
     matchResults(){
       return this.$store.state.matches;
-    }
+    },
+    isActive(){
+      if (this.tournament.tournamentStatus == 'Active') {
+        return true;
+      } else {
+        return false;
+      }
+    },
   },
   methods: {
     onSubmit() {
       TournamentService.editTournament(this.editTournament)
-        .then(location.reload())
+        .then()//location.reload())
         .catch((error) => {
           console.log(error);
         });
     },
     addNextMatch() {
       TournamentService.addNextMatch(this.nextMatch)
-        .then(location.reload())
+        .then()//location.reload())
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    shuffleTeams() {
+      TournamentService.shuffleTeams(this.id)
+        .then()//location.reload())
         .catch((error) => {
           console.log(error);
         });
