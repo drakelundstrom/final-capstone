@@ -2,7 +2,12 @@
   <div>
     <h1>Tournament Details:</h1>
 
-    <img :src="this.imageLink" alt="picture of sport" width="30%"  class="shadow-lg p-3 mb-5 bg-body rounded" />
+    <img
+      :src="this.imageLink"
+      alt="picture of sport"
+      width="30%"
+      class="shadow-lg p-3 mb-5 bg-body rounded"
+    />
 
     <table class="table style w-auto">
       <tbody>
@@ -35,12 +40,7 @@
       </tbody>
     </table>
 
-    <button
-      type="submit"
-      id="jointbn"
-      @click="onSubmit"
-      v-if="!showJoin"
-    >
+    <button type="submit" id="jointbn" @click="onSubmit" v-if="!showJoin">
       Join Now!
     </button>
     <h1>List of Participants:</h1>
@@ -94,7 +94,7 @@ export default {
               `Successfully joined ${this.tournament.tournamentName}`
             );
           }
-            this.refresh();
+          this.refresh();
         })
         .catch((error) => {
           window.alert(
@@ -105,9 +105,9 @@ export default {
 
       //clear participant ?
     },
-    refresh(){
+    refresh() {
       location.reload();
-    }
+    },
   },
   computed: {
     participants() {
@@ -133,10 +133,9 @@ export default {
       return fullLink;
     },
     showJoin() {
-
-this.participants.forEach(person => {
-  this.participantUsername.push(person.username)
-});
+      this.participants.forEach((person) => {
+        this.participantUsername.push(person.username);
+      });
 
       if (
         this.$store.state.token != "" &&
@@ -146,9 +145,8 @@ this.participants.forEach(person => {
         this.participantUsername.includes(this.$store.state.user.username)
       ) {
         return true;
-      }
-      else{
-      return false;
+      } else {
+        return false;
       }
     },
   },
