@@ -137,6 +137,7 @@ namespace Capstone.Controllers
         [HttpPost("changeStatus")]
         public ActionResult ChangeStatus(Tournament tournament)
         {
+            bool result = true;
             if (!(IsCorrectAdmin(tournament.TournamentId)))
             {
                 return Unauthorized();
@@ -146,9 +147,15 @@ namespace Capstone.Controllers
                 return Forbid();
             }
 
-            bool result = tournamentDAO.ChangeTournamentStatus(tournament);
+            if (tournament.TournamentStatus == "Recruiting")
+            {
+                result = EraseAllMatchesFromTournament(tournament.TournamentId);
+            }
 
-
+            if (result)
+            {
+                result = tournamentDAO.ChangeTournamentStatus(tournament);
+            }
 
             if (result)
             {
@@ -290,6 +297,19 @@ namespace Capstone.Controllers
             {
                 return BadRequest();
             }
+        }
+
+        private bool EraseAllMatchesFromTournament(int tournamentId)
+        {
+            bool result = tournamentDAO.EraseMatchesInTournament(tournamentId);
+            List<Match> matches = tournamentDAO.GetMatches(tournamentId);
+
+            if (matches.Count != 0)
+            {
+                result = false;
+            }
+
+            return result;
         }
     }
 }
