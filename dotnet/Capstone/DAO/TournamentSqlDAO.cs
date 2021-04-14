@@ -1045,6 +1045,29 @@ namespace Capstone.DAO
 
         }
 
+        public bool EraseMatchesInTournament(int tournamentId)
+        {
+            bool result = true;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+
+                    conn.Open
+                    ();
+                    SqlCommand cmd = new SqlCommand("  DELETE FROM matches WHERE tournament_id = (@tournamentId);", conn);
+                    cmd.Parameters.AddWithValue("@tournamentId", tournamentId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                result = false;
+            }
+            return result;
+        }
+
     }
 }
 

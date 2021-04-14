@@ -3,6 +3,7 @@
     <tournament-detail v-bind:id="tournamentId" />
     <!-- <tournament-bracket-drake v-bind:id="tournamentId" />-->
     <bracket v-bind:id="tournamentId" />
+    <tournament-matches v-bind:id="tournamentId"/>
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import TournamentDetail from "../components/TournamentDetail.vue";
 //import TournamentBracketDrake from "../components/TournamentBracketDrake.vue";
 import Bracket from "../components/Bracket.vue";
+import TournamentMatches from "../components/TournamentMatches.vue";
 
 export default {
   name: "Tournament",
@@ -18,6 +20,7 @@ export default {
     TournamentDetail,
     //  TournamentBracketDrake,
     Bracket,
+    TournamentMatches,
   },
 
   data() {

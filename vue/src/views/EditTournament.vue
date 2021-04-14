@@ -32,8 +32,13 @@
       </tbody>
     </table>
 
-    <h2 id="editdescrip">Change Tournament Status</h2>
-    <form v-on:submit.prevent="onSubmit">
+    <h2 id="editdescrip" v-if="this.tournament.tournamentStatus != 'Completed'">
+      Change Tournament Status
+    </h2>
+    <form
+      v-on:submit.prevent="onSubmit"
+      v-if="this.tournament.tournamentStatus != 'Completed'"
+    >
       <select v-model="editTournament.tournamentStatus">
         <option value="Recruiting">Recruiting</option>
         <option value="Active">Active</option>
@@ -41,6 +46,18 @@
       </select>
       <button type="submit">Change</button>
     </form>
+    <h4
+      id="caution1"
+      v-if="this.editTournament.tournamentStatus == 'Recruiting'"
+    >
+      !Caution Setting tournaments to Recruiting erases all matches!
+    </h4>
+    <h4
+      id="caution2"
+      v-if="this.editTournament.tournamentStatus == 'Completed'"
+    >
+      !Caution Tournaments set to complete cannot be changed!
+    </h4>
 
     <form v-on:submit.prevent="shuffleTeams" v-if="this.isRecruiting">
       <button type="submit">Shuffle Teams</button>
@@ -242,6 +259,7 @@ button {
 
 #editdescrip {
   margin-bottom: 1px;
+  font-size: 25px;
 }
 
 #deets {
@@ -281,5 +299,14 @@ button {
   grid:
     "homet homesc"
     "awayt awaysc";
+}
+
+#caution1 {
+  font-size: 10px;
+  color: #ff651f;
+}
+#caution2 {
+  font-size: 10px;
+  color: #ff651f;
 }
 </style>

@@ -43,12 +43,12 @@
     <button type="submit" id="jointbn" @click="onSubmit" v-if="!showJoin">
       Join Now!
     </button>
-    <h1>List of Participants:</h1>
+   <!-- <h1>List of Participants:</h1>
     <table>
       <tr v-for="part in this.participants" v-bind:key="part.username">
         <td>{{ part.username }}</td>
       </tr>
-    </table>
+    </table>  -->
     <h1 id="title">Tournament Schedule</h1>
   </div>
 </template>
