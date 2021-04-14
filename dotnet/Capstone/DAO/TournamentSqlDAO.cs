@@ -368,7 +368,7 @@ namespace Capstone.DAO
 
             return result;
 
-            //UPDATE tournaments SET tour_status = (@tournamentStatus) WHERE tournament_id = (@tournamentId);//
+           
         }
         public bool ChangeTournamentStatus(Tournament tournament)
         {

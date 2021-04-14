@@ -32,8 +32,6 @@
       </tbody>
     </table>
 
-    
-
     <h2 id="editdescrip">Change Tournament Status</h2>
     <form v-on:submit.prevent="onSubmit">
       <select v-model="editTournament.tournamentStatus">
@@ -44,7 +42,11 @@
       <button type="submit">Change</button>
     </form>
 
-    <div id="matches">
+<form v-on:submit.prevent="shuffleTeams">
+  <button type="submit">Shuffle Teams</button>
+</form>
+
+    <div id="matches" v-if="this.isActive">
       <table>
         <thead>
           <th>
@@ -75,8 +77,12 @@
 
               Who won?
               <select type="number" v-model.number="nextMatch.victorTeamId">
-                <option v-bind:value="nextMatch.homeTeamId">{{ nextMatch.homeTeamName }}</option>
-                <option v-bind:value="nextMatch.awayTeamId">{{ nextMatch.awayTeamName }}</option>
+                <option v-bind:value="nextMatch.homeTeamId">
+                  {{ nextMatch.homeTeamName }}
+                </option>
+                <option v-bind:value="nextMatch.awayTeamId">
+                  {{ nextMatch.awayTeamName }}
+                </option>
               </select>
               <button type="submit">Submit</button>
             </form>
@@ -86,7 +92,7 @@
     </div>
     <bracket v-bind:id="tournamentId" />
 
-    <table class ="table w-auto style" id="tblallmatches">
+    <table class="table w-auto style" id="tblallmatches">
       <thead>
         <tr>
           <th scope="col">Match Number</th>
@@ -97,18 +103,17 @@
           <th scope="col">Match Victor</th>
         </tr>
       </thead>
-      <tbody >
+      <tbody>
         <tr v-for="(round, index) in this.matchResults" v-bind:key="index">
-           <td>{{round.matchNumber}}</td>
-          <td>{{round.homeTeamName}}</td>
-          <td>{{round.homeTeamScore}}</td>
-          <td>{{round.awayTeamName}}</td>
-         <td>{{round.awayTeamScore}}</td>
-         <td>{{round.victorTeamName}}</td>
+          <td>{{ round.matchNumber }}</td>
+          <td>{{ round.homeTeamName }}</td>
+          <td>{{ round.homeTeamScore }}</td>
+          <td>{{ round.awayTeamName }}</td>
+          <td>{{ round.awayTeamScore }}</td>
+          <td>{{ round.victorTeamName }}</td>
         </tr>
       </tbody>
     </table>
-    
   </div>
 </template>
 
@@ -116,7 +121,7 @@
 import TournamentService from "../services/TournamentService";
 import Bracket from "../components/Bracket.vue";
 export default {
-      components: {
+  components: {
     Bracket,
   },
 
@@ -130,7 +135,7 @@ export default {
   },
 
   created() {
-      this.tournamentId = this.$route.params.id;
+    this.tournamentId = this.$route.params.id;
     TournamentService.getTournament(this.$route.params.id).then((response) => {
       this.$store.commit("SET_TOURNAMENT", response.data);
     });
@@ -142,9 +147,11 @@ export default {
     TournamentService.getNextMatch(this.$route.params.id).then((response) => {
       this.$store.commit("SET_NEXT_MATCH", response.data);
     });
-    TournamentService.getMatchesInTournament(this.$route.params.id).then((response) =>{
-      this.$store.commit("SET_MATCHES", response.data);
-    })
+    TournamentService.getMatchesInTournament(this.$route.params.id).then(
+      (response) => {
+        this.$store.commit("SET_MATCHES", response.data);
+      }
+    );
   },
   computed: {
     tournament() {
@@ -156,21 +163,36 @@ export default {
     nextMatch() {
       return this.$store.state.match;
     },
-    matchResults(){
+    matchResults() {
       return this.$store.state.matches;
-    }
+    },
+
+    isActive(){
+      if (this.tournament.tournamentStatus == 'Active') {
+        return true;
+      } else {
+        return false;
+      }
+    },
   },
   methods: {
     onSubmit() {
       TournamentService.editTournament(this.editTournament)
-        .then(location.reload())
+        .then()//location.reload())
         .catch((error) => {
           console.log(error);
         });
     },
     addNextMatch() {
       TournamentService.addNextMatch(this.nextMatch)
-        .then(location.reload())
+        .then()//location.reload())
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    shuffleTeams() {
+      TournamentService.shuffleTeams(this.id)
+        .then()//location.reload())
         .catch((error) => {
           console.log(error);
         });
@@ -206,8 +228,8 @@ button {
   margin-bottom: 50px;
 }
 
-
-#homescore, #awayscore {
+#homescore,
+#awayscore {
   display: grid;
   margin-left: auto;
   margin-right: auto;

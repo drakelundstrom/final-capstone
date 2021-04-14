@@ -55,7 +55,10 @@ export default {
 
     addNextMatch(match){
         return axios.post(path + '/addNextMatch', match)
-    }
+    },
+    shuffleTeams(id) {
+        return axios.post(path + '/shuffle/' + id)
+    },
 
 
 }
