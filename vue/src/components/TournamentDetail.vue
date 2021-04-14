@@ -40,7 +40,7 @@
       </tbody>
     </table>
 
-    <button type="submit" id="jointbn" @click="onSubmit" v-if="!showJoin">
+    <button type="submit" id="jointbn" @click="onSubmit" v-if="showJoin">
       Join Now!
     </button>
    <!-- <h1>List of Participants:</h1>
@@ -142,7 +142,7 @@ export default {
         this.tournament.numberOfParticipants <
           this.tournament.maxNumberParticipants &&
         this.tournament.tournamentStatus == "Recruiting" &&
-        this.participantUsername.includes(this.$store.state.user.username)
+        !this.participantUsername.includes(this.$store.state.user.username)
       ) {
         return true;
       } else {
