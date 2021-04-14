@@ -202,24 +202,37 @@ export default {
   methods: {
     onSubmit() {
       TournamentService.editTournament(this.editTournament)
-        .then() //location.reload())
+        .then((response) => {
+          console.debug(response);
+          this.refresh();
+        }) 
         .catch((error) => {
-          console.log(error);
+          console.error(error);
         });
+     
     },
     addNextMatch() {
       TournamentService.addNextMatch(this.nextMatch)
-        .then() //location.reload())
+        .then((response) => {
+          console.debug(response);
+          this.refresh();
+        })
         .catch((error) => {
           console.log(error);
         });
     },
     shuffleTeams() {
       TournamentService.shuffleTeams(this.$route.params.id)
-        .then() //location.reload())
+        .then((response) => {
+          console.debug(response);
+          this.refresh();
+        })
         .catch((error) => {
           console.log(error);
         });
+    },
+    refresh() {
+      location.reload();
     },
   },
 };

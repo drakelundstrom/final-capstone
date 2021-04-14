@@ -109,7 +109,6 @@ SET IDENTITY_INSERT sports OFF
 
 INSERT INTO sports (sport_name ) VALUES ('Tennis');
 INSERT INTO sports (sport_name ) VALUES ('Football (American)');
-INSERT INTO sports (sport_name ) VALUES ('Soccer');
 INSERT INTO sports (sport_name ) VALUES ('VolleyBall');
 INSERT INTO sports (sport_name ) VALUES ('Cricket');
 INSERT INTO sports (sport_name ) VALUES ('Dodgeball');
@@ -133,7 +132,7 @@ INSERT INTO sports (sport_name ) VALUES ('Squash');
 INSERT INTO sports (sport_name ) VALUES ('Roller Hockey');
 INSERT INTO sports (sport_name ) VALUES ('Lacrosse');
 INSERT INTO sports (sport_name ) VALUES ('Flag Football');
-
+INSERT INTO sports (sport_name ) VALUES ('Rock Paper Scissors');
 
 
 
