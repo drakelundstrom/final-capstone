@@ -229,6 +229,9 @@ td {
 #details:hover {
   text-shadow: 5px 5px 5px black;
 }
+#details2:hover {
+  text-shadow: 5px 5px 5px black;
+}
 
 thead {
   border-bottom: 3px solid #1fff65;
