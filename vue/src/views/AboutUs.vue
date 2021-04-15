@@ -27,7 +27,7 @@
   <img class="card-img-top rounded-circle shadow p-3 mb-5 bg-body rounded" src="https://media-exp1.licdn.com/dms/image/C5603AQHagAEbIwuu1A/profile-displayphoto-shrink_200_200/0/1612213620622?e=1623283200&v=beta&t=TYi4zqQrC_uujaVd-FxL957ybKF4Wdj_Uhx9L6PjInw" alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">Drake</h5>
-    <p class="card-text">Likes food, likes coding, hates javascript.</p>
+    <p class="card-text">Likes food, likes coding, likes sleep.</p>
     <a href="https://www.linkedin.com/in/drake-lundstrom/" target="_blank" class="btn btn-outline-light">linkedin</a>
     
   </div>
@@ -36,7 +36,7 @@
   <img class="card-img-top rounded-circle shadow p-3 mb-5 bg-body rounded" src="https://media-exp1.licdn.com/dms/image/C4E03AQHDfveFZMRHRw/profile-displayphoto-shrink_200_200/0/1611509060134?e=1623283200&v=beta&t=WStT6dIHTGW0Qd8pzA4QWTao4lPvP--Dfa2IKYpy-c0" alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">Emily</h5>
-    <p class="card-text">Will take personal offense if you criticize the styling.</p>
+    <p class="card-text">I don’t know what to do with my hands.</p>
     <a href="https://www.linkedin.com/in/emily-lumbert/" target="_blank" class="btn btn-outline-light">linkedin</a>
     
   </div>
