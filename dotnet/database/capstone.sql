@@ -95,13 +95,13 @@ SET IDENTITY_INSERT tournaments ON
 INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (1, 3, 'Westerville 2021 Club Soccer Finals', 1, 'Recruiting');
 INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (2, 4, 'Homerun Rally', 2, 'Active');
 INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (3, 5, 'Jackie Moon SemiPro', 3, 'Completed');
-INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (4, 3, 'Boxing for Hotdogs', 13, 'Recruiting');
-INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (5, 3, 'Poke N Stick', 16, 'Recruiting');
-INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (6, 3, 'Balls of Fury', 20, 'Recruiting');
-INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (7, 14, 'Las Vegas International Dodgeball Open', 9, 'Recruiting');
-INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (8, 11, '17th Semi-Annual Skinny Sumos', 12, 'Recruiting');
-INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (9, 16, 'ShinyTeeth Scholarship Showdown', 25, 'Recruiting');
-INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (10, 14, 'DARE to Dump', 22, 'Recruiting');
+INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (4, 3, 'Boxing for Hotdogs', 12, 'Recruiting');
+INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (5, 3, 'Poke N Stick', 15, 'Recruiting');
+INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (6, 3, 'Balls of Fury', 19, 'Recruiting');
+INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (7, 14, 'Las Vegas International Dodgeball Open', 8, 'Recruiting');
+INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (8, 11, '17th Semi-Annual Skinny Sumos', 11, 'Recruiting');
+INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (9, 16, 'ShinyTeeth Scholarship Showdown', 24, 'Recruiting');
+INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (10, 14, 'DARE to Dump', 21, 'Recruiting');
 
 
 
