@@ -111,18 +111,18 @@ export default {
 
 <style>
 .style {
-  background-color: #9362ff;
-  opacity: .8;
-  border-color: #d2ffe0;
+  background-color: #fff0e9;
+  opacity: .85;
+  border-color: #ffa379
 }
 .style th {
-  color: #ff844c;
-  border-color: #d2ffe0;
+  color: #280c66;
+  border-color: #ffa379;
 }
 
 .style td {
-  color: #ffc1a5;
-  border-color: #d2ffe0;
+  color: #280c66;
+  border-color: #ffa379;
 }
 
 .home h2 {

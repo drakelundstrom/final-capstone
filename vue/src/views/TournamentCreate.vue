@@ -21,7 +21,7 @@
         </option>
       </select>
       <p></p>
-      <button type="submit">Submit</button>
+      <button class="thebutton" type="submit">Submit</button>
     </form>
   </div>
 </template>
@@ -97,11 +97,15 @@ button {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  font-size: 20px;
 }
 
 .tourcreate label {
   color: #d1bcff;
   font-weight: bold;
   text-shadow: 3px 1px 2px black;
+}
+.thebutton{
+  border: 1px solid black;
 }
 </style>

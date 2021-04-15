@@ -196,7 +196,7 @@ table {
   border-collapse: collapse;
   border-radius: 27px;
   border-style: hidden;
-  box-shadow: 0 0 0 3px #1fff65;
+  box-shadow: 0 0 0 3px #ffa379;
 
   justify-content: center;
   margin-left: auto;
@@ -215,15 +215,15 @@ td {
 
 #details {
   font-weight: bold;
-  color: #ff844c;
+  color: #280c66;
   text-decoration: underline;
 }
 
 #details2 {
   font-weight: bold;
-  color: #ff844c;
+  color: #280c66;
   text-decoration: underline;
-  border-color: #1fff65;
+  border-color: #ffa379;
 }
 
 #details:hover {
@@ -234,16 +234,16 @@ td {
 }
 
 thead {
-  border-bottom: 3px solid #1fff65;
+  border-bottom: 3px solid #ffa379;
 }
 
 .style th {
-  color: #ff844c;
+  color: #280c66;
 }
 
 .style td {
-  color: #ffc1a5;
-  border-color: #1fff65;
+  color: #280c66;
+  border-color: #ffa379;
 }
 
 .tourview {
