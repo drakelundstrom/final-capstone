@@ -106,6 +106,7 @@ border: 2px solid   #d2ffe0;
 
 .tourcreate label{
   color: #d1bcff;
+  font-weight: bold;
   text-shadow: 3px 1px 2px black;
 }
 
