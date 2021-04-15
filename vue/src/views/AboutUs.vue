@@ -36,7 +36,7 @@
   <img class="card-img-top rounded-circle shadow p-3 mb-5 bg-body rounded" src="https://media-exp1.licdn.com/dms/image/C4E03AQHDfveFZMRHRw/profile-displayphoto-shrink_200_200/0/1611509060134?e=1623283200&v=beta&t=WStT6dIHTGW0Qd8pzA4QWTao4lPvP--Dfa2IKYpy-c0" alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">Emily</h5>
-    <p class="card-text">I don’t know what to do with my hands.</p>
+    <p class="card-text">I don't know what to do with my hands.</p>
     <a href="https://www.linkedin.com/in/emily-lumbert/" target="_blank" class="btn btn-outline-light">linkedin</a>
     
   </div>
