@@ -1,25 +1,29 @@
 <template>
-   <div class= "bracket">
- 
-
- <img clss="bracketimage" src="../../assets/bracketimage.png" alt="Bracket" style="width:50%"> 
-<div class="zero" v-if="this.bracket[0].username != ''"> {{ this.bracket[0].username }} WINS!</div> 
-<div class="one"> {{ this.bracket[1].username }}</div> 
-<div class="two"> {{ this.bracket[2].username }}</div> 
-<div class="three"> {{ this.bracket[3].username }}</div> 
-<div class="four"> {{ this.bracket[4].username }}</div> 
-<div class="five"> {{ this.bracket[5].username }}</div> 
-<div class="six"> {{ this.bracket[6].username }}</div>  
-<div class="seven"> {{ this.bracket[7].username }}</div> 
-<div class="eight"> {{ this.bracket[8].username }}</div>  
-<div class="nine"> {{ this.bracket[9].username }}</div> 
-<div class="ten"> {{ this.bracket[10].username }}</div>  
-<div class="eleven"> {{ this.bracket[11].username }}</div>  
-<div class="twelve"> {{ this.bracket[12].username }}</div>  
-<div class="thirteen"> {{ this.bracket[13].username }}</div>  
-<div class="fourteen"> {{ this.bracket[14].username }}</div> 
- </div>
- 
+  <div class="bracket">
+    <img
+      clss="bracketimage"
+      src="../../assets/bracketimage.png"
+      alt="Bracket"
+      style="width: 50%"
+    />
+    <div class="zero" v-if="this.bracket[0].username != ''">
+      {{ this.bracket[0].username }} WINS!
+    </div>
+    <div class="one">{{ this.bracket[1].username }}</div>
+    <div class="two">{{ this.bracket[2].username }}</div>
+    <div class="three">{{ this.bracket[3].username }}</div>
+    <div class="four">{{ this.bracket[4].username }}</div>
+    <div class="five">{{ this.bracket[5].username }}</div>
+    <div class="six">{{ this.bracket[6].username }}</div>
+    <div class="seven">{{ this.bracket[7].username }}</div>
+    <div class="eight">{{ this.bracket[8].username }}</div>
+    <div class="nine">{{ this.bracket[9].username }}</div>
+    <div class="ten">{{ this.bracket[10].username }}</div>
+    <div class="eleven">{{ this.bracket[11].username }}</div>
+    <div class="twelve">{{ this.bracket[12].username }}</div>
+    <div class="thirteen">{{ this.bracket[13].username }}</div>
+    <div class="fourteen">{{ this.bracket[14].username }}</div>
+  </div>
 </template>
 
 <script>
@@ -60,7 +64,7 @@ export default {
 </script>
 
 <style>
-.bracket{
+.bracket {
   position: relative;
   margin: 2%;
   display: block;
@@ -68,115 +72,99 @@ export default {
   margin-right: auto;
   width: 100%;
 }
-.bracketimage{
+.bracketimage {
   position: absolute;
-  left:0;
-  top:0;
+  left: 0;
+  top: 0;
 }
 
-.zero{
-  
+.zero {
   position: absolute;
- right: 28%;
- top: 48%;
-  
+  right: 28%;
+  top: 48%;
 }
 
-.one{
-   
+.one {
   position: absolute;
- right: 42%;
- top: 20%;
-
+  right: 42%;
+  top: 20%;
 }
 
-.two{
-   
+.two {
   position: absolute;
- right: 42%;
- bottom: 27%;
-
+  right: 42%;
+  bottom: 27%;
 }
 
-.three{
-  
+.three {
   position: absolute;
- right: 55%;
- top: 8%;
+  right: 55%;
+  top: 8%;
 }
 
-.four{
-  
+.four {
   position: absolute;
- right: 55%;
- top: 33%;
-
+  right: 55%;
+  top: 33%;
 }
 
-.five{
-   position: absolute;
- right: 55%;
- bottom: 39%;
-
-}
-
-.six{
-   position: absolute;
- right: 55%;
- bottom: 15%;
-
-}
-
-.seven{
-position: absolute;
- right: 66%;
- top: 3%;
-}
-
-.eight{
+.five {
   position: absolute;
- right: 66%;
- top: 13%;
+  right: 55%;
+  bottom: 39%;
 }
 
-.nine{
-   position: absolute;
- right: 66%;
- top: 28%;
-}
-
-.ten{
-   position: absolute;
- right: 66%;
- top: 38%;
-}
-
-.eleven{
+.six {
   position: absolute;
- right: 66%;
- bottom: 44%;
+  right: 55%;
+  bottom: 15%;
 }
 
-.twelve{
-   position: absolute;
- right: 66%;
- bottom: 34%;
-
+.seven {
+  position: absolute;
+  right: 66%;
+  top: 3%;
 }
 
-.thirteen{
-   position: absolute;
- right: 66%;
- bottom: 19%;
+.eight {
+  position: absolute;
+  right: 66%;
+  top: 13%;
 }
 
-.fourteen{
-   position: absolute;
- right: 66%;
- bottom: 9%;
+.nine {
+  position: absolute;
+  right: 66%;
+  top: 28%;
 }
 
+.ten {
+  position: absolute;
+  right: 66%;
+  top: 38%;
+}
 
+.eleven {
+  position: absolute;
+  right: 66%;
+  bottom: 44%;
+}
 
+.twelve {
+  position: absolute;
+  right: 66%;
+  bottom: 34%;
+}
 
+.thirteen {
+  position: absolute;
+  right: 66%;
+  bottom: 19%;
+}
+
+.fourteen {
+  position: absolute;
+  right: 66%;
+  bottom: 9%;
+}
 </style>

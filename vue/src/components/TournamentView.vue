@@ -1,7 +1,5 @@
 <template>
-  <div class="tourview" >
-    <!-- message? -->
-    <!-- I would like to make the search a button to collapse, but not sure on event handling -->
+  <div class="tourview">
     <p id="searching">
       Looking for a Specific Tournament?<select
         id="search active"
@@ -12,7 +10,6 @@
       </select>
     </p>
     <div id="search-function" v-if="searchActive == 'true'">
-      <!-- make something clickable btn, anchor tag bootstrap, showform var == true onclick data element showform default false v-if or v-show on container to hide -->
       <h3>Search tournaments:</h3>
       <p>
         Tournament Name
@@ -34,8 +31,6 @@
         Select a sport:
         <select id="statusFilter" v-model="filter.sportName">
           <option value="">Any Sport</option>
-          <!-- <option value="soccer">Soccer</option>
-          <option value="baseball">Baseball</option> -->
           <option
             id="Tournaments"
             v-for="(sport, index) in sports"
@@ -56,7 +51,7 @@
       </p>
     </div>
 
-    <table class ="table w-auto style" id="list-of-tournaments">
+    <table class="table w-auto style" id="list-of-tournaments">
       <thead>
         <tr>
           <th scope="col">Tournament Name</th>
@@ -64,25 +59,38 @@
           <th scope="col">Sport</th>
           <th scope="col">Creator Username</th>
           <th scope="col">Status</th>
-          
-          <!-- add num of participants -->
         </tr>
       </thead>
 
       <tbody v-if="searchActive == 'false'">
-        <!-- <tr v-for="(tournament, index) in this.filteredList" v-bind:key="index"> -->
         <tr v-for="(tournament, index) in this.tournaments" v-bind:key="index">
-         <td><router-link id="details" v-bind:to="{name: 'Tournament', params: {id: tournament.tournamentId} }">{{ tournament.tournamentName }}</router-link></td>
+          <td>
+            <router-link
+              id="details"
+              v-bind:to="{
+                name: 'Tournament',
+                params: { id: tournament.tournamentId },
+              }"
+              >{{ tournament.tournamentName }}</router-link
+            >
+          </td>
           <td>{{ tournament.tournamentId }}</td>
           <td>{{ tournament.sportName }}</td>
           <td>{{ tournament.creatorUsername }}</td>
           <td>{{ tournament.tournamentStatus }}</td>
-          
         </tr>
       </tbody>
       <tbody v-if="searchActive == 'true'">
         <tr v-for="(tournament, index) in this.filteredList" v-bind:key="index">
-          <router-link id="details" v-bind:to="{name: 'Tournament', params: {id: tournament.tournamentId} }"> <td>{{ tournament.tournamentName }}</td></router-link>
+          <router-link
+            id="details"
+            v-bind:to="{
+              name: 'Tournament',
+              params: { id: tournament.tournamentId },
+            }"
+          >
+            <td>{{ tournament.tournamentName }}</td></router-link
+          >
           <td>{{ tournament.tournamentId }}</td>
           <td>{{ tournament.sportName }}</td>
           <td>{{ tournament.creatorUsername }}</td>
@@ -102,7 +110,6 @@ export default {
 
   data() {
     return {
-
       filter: {
         tournamentName: "",
         tournamentId: "",
@@ -121,7 +128,7 @@ export default {
       .getTournaments()
       .then((response) => {
         this.$store.commit("SET_TOURNAMENTS", response.data);
-      }) //insert this then into the tourncreate then?
+      })
       .catch((error) => {
         {
           const response = error.response;
@@ -134,34 +141,13 @@ export default {
       this.$store.commit("SET_SPORTS", response.data);
     });
   },
-  //watch: {
-  // call again the method if the route changes
-  // '$load': 'fetchData'
-  // },
-  // beforeRouteEnter(to, from, next) {
-  //  this.filteredList();
-  // },
   computed: {
     tournaments() {
       return this.$store.state.tournaments;
     },
     filteredList() {
-      // console.log(this.$store.state.tournaments);
-      //  return this.$store.state.tournaments.filter((a) => {
-      
       return this.tournaments.filter((a) => {
         return (
-          /*   a.tournamentName
-            .toLowerCase()
-            .includes(this.filter.tournamentName.toLowerCase()) &&
-        //  a.tournamentId
-        //    .toString()
-         //   .includes(this.filter.tournamentId.toString()) &&
-          a.creatorUsername.includes(this.filter.creatorUsername) &&
-          a.sportName.includes(this.filter.sportName) &&
-          a.tournamentStatus.includes(this.filter.tournamentStatus)
-          // a.tournamentId == this.filter.tournamentId && 
-          */
           a.tournamentName
             .toLowerCase()
             .includes(this.filter.tournamentName.toLowerCase()) &&
@@ -194,7 +180,7 @@ h3 {
 }
 p {
   font-size: 15px;
-  color:  #cbb3ff;
+  color: #cbb3ff;
 }
 input {
   height: 17px;
@@ -208,10 +194,10 @@ select {
   background-color: #cbb3ff;
 }
 table {
-  border-collapse: collapse; 
+  border-collapse: collapse;
   border-radius: 27px;
-  border-style: hidden; 
-  box-shadow: 0 0 0 3px #1fff65; 
+  border-style: hidden;
+  box-shadow: 0 0 0 3px #1fff65;
 
   justify-content: center;
   margin-left: auto;
@@ -221,7 +207,6 @@ th {
   font-size: 18px;
   padding-right: 10px;
   padding-left: 10px;
-  
 }
 
 td {
@@ -229,65 +214,51 @@ td {
   padding-left: 10px;
 }
 
-#details{
-   font-weight: bold;
+#details {
+  font-weight: bold;
   color: #ff844c;
   text-decoration: underline;
 }
 
-#details:hover{
+#details:hover {
   text-shadow: 5px 5px 5px black;
 }
 
-thead{
+thead {
   border-bottom: 3px solid #1fff65;
 }
 
-.style th{
-  color: #ff844c
+.style th {
+  color: #ff844c;
 }
 
-.style td{
+.style td {
   color: #ffc1a5;
   border-color: #1fff65;
 }
 
-.tourview{
- 
+.tourview {
   background-image: url("../../assets/bnwbackground.png");
-  background-color: #cccccc; /* Used if the image is unavailable */
-  height: 90vh; /* You must set a specified height */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
+  background-color: #cccccc;
+  height: 90vh;
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
-   background-attachment: fixed;
-
+  background-attachment: fixed;
 }
 
-#searching{
+#searching {
   font-weight: bolder;
- color: #a379ff;
+  color: #a379ff;
   text-shadow: 0px 2px 2px white;
   font-size: 18px;
 }
 
-#search-function p{
-    font-weight: bolder;
- color: #a379ff;
+#search-function p {
+  font-weight: bolder;
+  color: #a379ff;
   text-shadow: 0px 2px 2px white;
   font-size: 17px;
-  
-
 }
-
-
-
-
-/* #alltournaments{
-  background-image: url("../../assets/sportsPhotos/trophy-picture.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  
-} */
 </style>
 

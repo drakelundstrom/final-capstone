@@ -9,26 +9,20 @@
 <script>
 import TournamentView from "../components/TournamentView";
 
-
 export default {
-  
   name: "tournaments",
   components: {
     TournamentView,
-    
-    
   },
 };
 </script>
 
 <style>
-h1{
+h1 {
   font-size: 35px;
 }
 
-h2{
+h2 {
   font-size: 15px;
-  
 }
-
 </style>

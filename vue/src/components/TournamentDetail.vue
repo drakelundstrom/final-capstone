@@ -23,7 +23,6 @@
 
         <tr>
           <td id="descrip">Sport:</td>
-          <!-- is completed or not -->
           <td>{{ tournament.sportName }}</td>
         </tr>
 
@@ -34,7 +33,6 @@
 
         <tr>
           <td id="descrip">Status:</td>
-          <!-- is completed or not -->
           <td>{{ tournament.tournamentStatus }}</td>
         </tr>
       </tbody>
@@ -43,12 +41,6 @@
     <button type="submit" id="jointbn" @click="onSubmit" v-if="showJoin">
       Join Now!
     </button>
-   <!-- <h1>List of Participants:</h1>
-    <table>
-      <tr v-for="part in this.participants" v-bind:key="part.username">
-        <td>{{ part.username }}</td>
-      </tr>
-    </table>  -->
     <h1 id="title">Tournament Schedule</h1>
   </div>
 </template>
@@ -74,13 +66,6 @@ export default {
     TournamentService.getTournament(this.id).then((response) => {
       this.$store.commit("SET_TOURNAMENT", response.data);
     });
-    //let tournaments = this.$store.state.tournaments;
-    //this.tournament = tournaments.find(
-    /*  (item) => {
-        return item.tournamentId == this.id;
-      }, */
-
-    //);
   },
   methods: {
     onSubmit() {
@@ -102,8 +87,6 @@ export default {
               error
           );
         });
-
-      //clear participant ?
     },
     refresh() {
       location.reload();

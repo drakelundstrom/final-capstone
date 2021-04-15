@@ -89,13 +89,6 @@ const router = new Router({
       name: "EditTournament",
       component: EditTournament
     }
-    //^^??? do we use that 
-    /* {
-      path: "/tournament/join",
-      name: "JoinTournament",
-      component: 
-    } */
-
   ]
 })
 

@@ -10,16 +10,11 @@ namespace Capstone.Models
         public int TournamentId { get; set; }
         public int CreatorId { get; set; }
         public string CreatorUsername { get; set; }
-
         public string TournamentName { get; set; }
         public int SportId { get; set; }
-
         public string SportName { get; set; }
-
         public string TournamentStatus { get; set; }
-
         public int NumberOfParticipants { get; set; }
-
         public int NumberOfMatches { get; set; }
         public int MaxNumberParticipants { get; set; }
     }

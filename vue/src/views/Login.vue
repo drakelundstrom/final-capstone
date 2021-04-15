@@ -148,13 +148,12 @@ button {
 
 
  .text-center {
-  /*background-image: url("../../assets/sportsPhotos/trophy-picture.jpg");*/ /* The image used */
   background-image: url("/sportsPhotos/trophy-picture.jpg");
-  background-color: #cccccc; /* Used if the image is unavailable */
-  height: 90vh; /* You must set a specified height */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
+  background-color: #cccccc; 
+  height: 90vh; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-size: cover; 
 } 
 
 #plssignin{

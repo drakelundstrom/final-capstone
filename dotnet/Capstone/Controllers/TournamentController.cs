@@ -69,7 +69,7 @@ namespace Capstone.Controllers
                 return NotFound();
             }
         }
-        //  Drake edit for demo tournament
+        
         [AllowAnonymous]
         [HttpGet("participants/{tournamentId}")]
         public ActionResult<List<Participant>> GetParticipantsInTournament(int tournamentId)
@@ -84,7 +84,7 @@ namespace Capstone.Controllers
                 return NotFound();
             }
         }
-        //  Drake edit for demo tournament
+        
         [Authorize(Roles = "admin")]
         [HttpPost("shuffle/{tournamentId}")]
         public ActionResult CreateTournament(int tournamentId)
@@ -116,7 +116,7 @@ namespace Capstone.Controllers
         [HttpPost("join")]
         public ActionResult JoinParticipant(Participant participant)
         {
-            
+
             if (!(tournamentDAO.IsTournamentRecruiting(participant.TournamentId)))
             {
                 return Forbid();

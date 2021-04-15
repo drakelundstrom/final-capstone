@@ -22,26 +22,27 @@ namespace Capstone.DAO
         private string sqlGetTournaments = "SELECT * FROM tournaments t " +
             "JOIN users u ON u.user_id = t.creator_id " +
             "JOIN sports s ON s.sport_id = t.sport_id " +
-            "ORDER BY tournament_id;";
+            "ORDER BY CASE WHEN tour_status = 'Recruiting' THEN '1' " +
+            "ELSE tour_status END ASC, tournament_id;";
 
-        private string sqlCreateTournament = " INSERT INTO tournaments(creator_id , tournament_name , sport_id ) VALUES(" +
+        private string sqlCreateTournament = " INSERT INTO tournaments(creator_id , tournament_name , sport_id ) VALUES( " +
             "(SELECT user_id FROM users WHERE username = (@creatorUsername)) " +
             ", (@tournamentName), " +
-"(SELECT sport_id FROM sports WHERE sport_name = (@sportName)));";
+            "(SELECT sport_id FROM sports WHERE sport_name = (@sportName)));";
 
         private string sqlGetTournament = " SELECT * FROM tournaments t " +
-        "JOIN users u ON u.user_id = t.creator_id " +
-        "JOIN sports s ON s.sport_id = t.sport_id " +
-        "WHERE tournament_id = (@tournament_id);";
+            "JOIN users u ON u.user_id = t.creator_id " +
+            "JOIN sports s ON s.sport_id = t.sport_id " +
+            "WHERE tournament_id = (@tournament_id);";
 
         private string sqlGetUsersInTournament = "SELECT u.user_id, username, team_number  FROM users u " +
-        "JOIN participants p on p.user_id = u.user_id " +
-        "WHERE tournament_id = (@tournament_id) " +
-        "ORDER BY team_number;";
+            "JOIN participants p on p.user_id = u.user_id " +
+            "WHERE tournament_id = (@tournament_id) " +
+            "ORDER BY team_number;";
 
         private string sqlUpdateTeamNumber = "UPDATE participants " +
-        "SET team_number = (@teamNumber) " +
-        "WHERE user_id = (@userId) and tournament_id = (@tournamentId);";
+            "SET team_number = (@teamNumber) " +
+            "WHERE user_id = (@userId) and tournament_id = (@tournamentId);";
 
 
         private string sqlGetMatchesInTournament = "SELECT DISTINCT m.tournament_id, match_number, " +
@@ -59,16 +60,20 @@ namespace Capstone.DAO
              " ORDER BY match_number;";
 
         private string sqlGetTournamentsByCreator = "SELECT * FROM tournaments t " +
-        "JOIN users u ON u.user_id = t.creator_id " +
-        "JOIN sports s ON s.sport_id = t.sport_id " +
-        "WHERE t.creator_id = (@creatorId);";
+            "JOIN users u ON u.user_id = t.creator_id " +
+            "JOIN sports s ON s.sport_id = t.sport_id " +
+            "WHERE t.creator_id = (@creatorId) " +
+            "ORDER BY CASE WHEN tour_status = 'Recruiting' THEN '1' " +
+            "ELSE tour_status END ASC, tournament_id;";
 
         private string sqlGetTournamentsByParticipant = " SELECT * FROM tournaments t  " +
-        "JOIN users u ON u.user_id = t.creator_id " +
-        "JOIN sports s ON s.sport_id = t.sport_id " +
-        " WHERE tournament_id IN (SELECT tournament_id " +
-                          "  FROM participants " +
-                          " WHERE user_id = (@userId));";
+            "JOIN users u ON u.user_id = t.creator_id " +
+            "JOIN sports s ON s.sport_id = t.sport_id " +
+            " WHERE tournament_id IN (SELECT tournament_id " +
+            "  FROM participants " +
+            " WHERE user_id = (@userId)) "+
+            "ORDER BY CASE WHEN tour_status = 'Recruiting' THEN '1' " +
+            "ELSE tour_status END ASC, tournament_id;";
 
 
         private string sqlAddMatch = "  INSERT INTO matches " +
@@ -79,12 +84,10 @@ namespace Capstone.DAO
         public List<Tournament> GetTournaments()
         {
             List<Tournament> tournaments = new List<Tournament>();
-
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-
                     conn.Open
                     ();
                     SqlCommand cmd = new SqlCommand(sqlGetTournaments, conn);
@@ -95,7 +98,6 @@ namespace Capstone.DAO
                     {
                         Tournament tournament = ConvertReaderToTournament(reader);
                         tournaments.Add(tournament);
-
                     }
                     foreach (Tournament tournament in tournaments)
                     {
@@ -158,7 +160,6 @@ namespace Capstone.DAO
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-
                     conn.Open
                     ();
                     SqlCommand cmd = new SqlCommand(sqlCreateTournament, conn);
@@ -166,14 +167,11 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@sportName", tournament.SportName);
                     cmd.Parameters.AddWithValue("@creatorUsername", tournament.CreatorUsername);
 
-
                     int rowsEffected = cmd.ExecuteNonQuery();
                     if (rowsEffected == 1)
                     {
                         result = true;
                     }
-
-
                 }
             }
             catch (Exception ex)
@@ -218,7 +216,7 @@ namespace Capstone.DAO
             return tournament;
         }
 
-        // Drake edit for demo tournament
+
         private int CalculateNumberOfMatches(int numberOfTeams)
         {
             int result = 0;
@@ -227,25 +225,11 @@ namespace Capstone.DAO
                 result = numberOfTeams - 1;
             }
             return result;
-            /*
-            int result = 0;
-            int twoCounter = -1;
-            while (numberOfTeams >= (Math.Pow(2, twoCounter)))
-            {
-                twoCounter++;
-            }
-            result += numberOfTeams - (int)(Math.Pow(2, (twoCounter)));
-            for (int i = 0; i < twoCounter; i++)
-            {
-                result += (int)(Math.Pow(2, i));
-            }
-            return result; */
         }
-        //  Drake edit for demo tournament
+
         public List<Participant> GetParticipantsInTournament(int tournamentId)
         {
             List<Participant> result = new List<Participant>();
-
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -273,7 +257,6 @@ namespace Capstone.DAO
             return result;
         }
 
-        //  Drake edit for demo tournament
         private Participant ConvertReaderToParticipant(SqlDataReader reader)
         {
             Participant participant = new Participant();
@@ -283,7 +266,6 @@ namespace Capstone.DAO
             return participant;
         }
 
-        //  Drake edit for demo tournament
         public bool ShuffleTournamentParticipantOrder(int tournamentId)
         {
             bool result = true;
@@ -303,7 +285,6 @@ namespace Capstone.DAO
             return result;
         }
 
-        //  Drake edit for demo tournament
         private bool UpdateTeamNumber(int tournamentId, int userId, int newTeamNumber)
         {
             bool result = false;
@@ -368,7 +349,7 @@ namespace Capstone.DAO
 
             return result;
 
-           
+
         }
         public bool ChangeTournamentStatus(Tournament tournament)
         {
@@ -401,7 +382,6 @@ namespace Capstone.DAO
 
         }
 
-        //SELECT creator_id FROM tournaments WHERE tournament_id = (1);//
         public int TournamentOwner(int tournamentId)
         {
             int result = -1;
@@ -416,9 +396,6 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@tournamentId", tournamentId);
 
                     result = Convert.ToInt32(cmd.ExecuteScalar());
-
-
-
                 }
             }
             catch (Exception ex)
@@ -450,10 +427,7 @@ namespace Capstone.DAO
                     {
                         Match match = ConvertReaderToMatch(reader);
                         matches.Add(match);
-
-
                     }
-
                 }
             }
             catch (Exception ex)
@@ -498,7 +472,6 @@ namespace Capstone.DAO
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-
                     conn.Open
                     ();
                     SqlCommand cmd = new SqlCommand(sqlGetTournamentsByCreator, conn);
@@ -531,12 +504,10 @@ namespace Capstone.DAO
         public List<Tournament> GetTournamentsByParticipant(int userId)
         {
             List<Tournament> tournaments = new List<Tournament>();
-
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-
                     conn.Open
                     ();
                     SqlCommand cmd = new SqlCommand(sqlGetTournamentsByParticipant, conn);
@@ -547,7 +518,6 @@ namespace Capstone.DAO
                     {
                         Tournament tournament = ConvertReaderToTournament(reader);
                         tournaments.Add(tournament);
-
                     }
                     foreach (Tournament tournament in tournaments)
                     {
@@ -573,7 +543,6 @@ namespace Capstone.DAO
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-
                     conn.Open
                     ();
                     SqlCommand cmd = new SqlCommand("SELECT tour_status FROM tournaments WHERE tournament_id = (@tournamentId)", conn);
@@ -584,7 +553,6 @@ namespace Capstone.DAO
                     {
                         result = true;
                     }
-
                 }
             }
             catch (Exception ex)
@@ -592,7 +560,6 @@ namespace Capstone.DAO
                 Console.WriteLine(ex.Message);
                 result = true;
             }
-
             return result;
         }
 
@@ -603,7 +570,6 @@ namespace Capstone.DAO
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-
                     conn.Open
                     ();
                     SqlCommand cmd = new SqlCommand("SELECT tour_status FROM tournaments WHERE tournament_id = (@tournamentId)", conn);
@@ -614,7 +580,6 @@ namespace Capstone.DAO
                     {
                         result = true;
                     }
-
                 }
             }
             catch (Exception ex)
@@ -622,7 +587,6 @@ namespace Capstone.DAO
                 Console.WriteLine(ex.Message);
                 result = true;
             }
-
             return result;
         }
 
@@ -633,7 +597,6 @@ namespace Capstone.DAO
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-
                     conn.Open
                     ();
                     SqlCommand cmd = new SqlCommand("SELECT tour_status FROM tournaments WHERE tournament_id = (@tournamentId)", conn);
@@ -644,7 +607,6 @@ namespace Capstone.DAO
                     {
                         result = true;
                     }
-
                 }
             }
             catch (Exception ex)
@@ -652,7 +614,6 @@ namespace Capstone.DAO
                 Console.WriteLine(ex.Message);
                 result = true;
             }
-
             return result;
         }
 
@@ -736,11 +697,6 @@ namespace Capstone.DAO
                                         }
                                         break;
                                 }
-
-                                //if (matches.Count >= tournament.NumberOfMatches - 1)
-                                //{
-                                //    participant.Username = matches[tournament.NumberOfMatches - 3].VictorTeamName;
-                                //}
                                 break;
                             case 3:
                                 switch (teams.Count)
@@ -776,14 +732,9 @@ namespace Capstone.DAO
                                         }
                                         break;
                                 }
-
-                                // if (matches.Count >= tournament.NumberOfMatches - 1)
-                                // {
-                                //     participant.Username = matches[tournament.NumberOfMatches - 2].VictorTeamName;
-                                //  }
                                 break;
                             case 4:
-                                if (teams.Count > 4 && matches.Count >0)
+                                if (teams.Count > 4 && matches.Count > 0)
                                 {
                                     participant.Username = matches[0].VictorTeamName;
                                 }
@@ -1017,7 +968,6 @@ namespace Capstone.DAO
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-
                     conn.Open
                     ();
                     SqlCommand cmd = new SqlCommand(sqlAddMatch, conn);
@@ -1034,7 +984,6 @@ namespace Capstone.DAO
                     {
                         result = true;
                     }
-
                 }
             }
             catch (Exception ex)
@@ -1042,7 +991,6 @@ namespace Capstone.DAO
                 Console.WriteLine(ex.Message);
             }
             return result;
-
         }
 
         public bool EraseMatchesInTournament(int tournamentId)
