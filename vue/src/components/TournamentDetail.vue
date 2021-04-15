@@ -38,7 +38,7 @@
       </tbody>
     </table>
 
-    <button type="submit" id="jointbn" @click="onSubmit" v-if="showJoin">
+    <button type="submit" id="jointbn" @click="onSubmit" v-if="this.showJoin">
       Join Now!
     </button>
     <h1 id="title">Tournament Schedule</h1>
@@ -116,16 +116,15 @@ export default {
       return fullLink;
     },
     showJoin() {
-      this.participants.forEach((person) => {
+      /*this.participants.forEach((person) => {
         this.participantUsername.push(person.username);
-      });
+      });*/
 
       if (
         this.$store.state.token != "" &&
-        this.tournament.numberOfParticipants <
-          this.tournament.maxNumberParticipants &&
-        this.tournament.tournamentStatus == "Recruiting" &&
-        !this.participantUsername.includes(this.$store.state.user.username)
+        this.participants.length < 8 &&
+        (this.tournament.tournamentStatus == "Recruiting")// &&
+        //!this.participantUsername.includes(this.$store.state.user.username)
       ) {
         return true;
       } else {
