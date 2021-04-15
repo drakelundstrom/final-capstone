@@ -40,10 +40,10 @@
       </tbody>
     </table>
 
-    <button type="submit" id="jointbn" @click="onSubmit" v-if="showJoin">
+    <button type="submit" id="jointbn" @click="onSubmit" v-if="this.showJoin">
       Join Now!
     </button>
-   <!-- <h1>List of Participants:</h1>
+    <!-- <h1>List of Participants:</h1>
     <table>
       <tr v-for="part in this.participants" v-bind:key="part.username">
         <td>{{ part.username }}</td>
@@ -133,16 +133,15 @@ export default {
       return fullLink;
     },
     showJoin() {
-      this.participants.forEach((person) => {
+      /*this.participants.forEach((person) => {
         this.participantUsername.push(person.username);
-      });
+      });*/
 
       if (
         this.$store.state.token != "" &&
-        this.tournament.numberOfParticipants <
-          this.tournament.maxNumberParticipants &&
-        this.tournament.tournamentStatus == "Recruiting" &&
-        !this.participantUsername.includes(this.$store.state.user.username)
+        this.participants.length < 8 &&
+        (this.tournament.tournamentStatus == "Recruiting")// &&
+        //!this.participantUsername.includes(this.$store.state.user.username)
       ) {
         return true;
       } else {
