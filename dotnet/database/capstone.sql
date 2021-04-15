@@ -93,7 +93,7 @@ SET IDENTITY_INSERT users OFF
 
 SET IDENTITY_INSERT tournaments ON
 INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (1, 3, 'Westerville 2021 Club Soccer Finals', 1, 'Recruiting');
-INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (2, 4, 'Homerun Rally', 2, 'Active');
+INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (2, 4, 'Homerun Rally', 2, 'Recruiting');
 INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (3, 5, 'Jackie Moon SemiPro', 3, 'Completed');
 INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (4, 3, 'Boxing for Hotdogs', 12, 'Active');
 INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (5, 3, 'Poke N Stick', 15, 'Recruiting');
@@ -186,11 +186,23 @@ INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (6, 4, 2
 INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (6, 5, 3);
 INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (6, 6, 4);
 
-INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (7, 3, 1);
-INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (7, 4, 2);
-INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (7, 5, 3);
-INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (7, 6, 4);
-INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (7, 7, 5);
+INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (7, 11, 1);
+INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (7, 14, 2);
+INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (7, 15, 3);
+INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (7, 8, 4);
+INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (7, 9, 5);
+INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (7, 13, 6);
+INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (7, 5, 7);
+INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (7, 12, 8);
+
+INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (7, 1, 11, 14, '5', '0', 11);
+INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (7, 2, 15, 8, '0', '2', 8);
+INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (7, 3, 9, 13, '0', '4', 13);
+INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (7, 4, 5, 12, '0', '2', 12);
+INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (7, 5, 11, 8, '4', '0', 11);
+INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (7, 6, 13, 12, '0', '2', 12);
+
+
 
 INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (8, 3, 1);
 INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (8, 4, 2);
@@ -222,10 +234,10 @@ INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (10, 10,
 
 
 
-INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (4, 1, 3, 4, '2', '0', 3);
-INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (4, 2, 5, 6, '2', '5', 6);
-INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (4, 3, 7, 8, '2', '5', 8);
-INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (4, 4, 9, 10, '2', '0', 9);
+INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (4, 1, 3, 4, '0', '0', 3);
+INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (4, 2, 5, 6, '0', '0', 6);
+INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (4, 3, 7, 8, '0', '0', 8);
+INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (4, 4, 9, 10, '0', '0', 9);
 
 
 
