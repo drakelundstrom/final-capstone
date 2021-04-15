@@ -142,7 +142,7 @@ h1 {
 
 #descrip {
   font-weight: bold;
-  text-shadow: 5px 5px 5px black;
+  text-shadow: 5px 5px 5px grey;
 }
 
 button {

@@ -72,20 +72,20 @@ INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (2,
 
 
 -- Drake edit for demo tournament
-INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (3,	'AthensSportsCenter', '5C3f+YD3kx3mH8TQPRPqRqyqLjo=', 'MW6lnSChV1Q=', 'admin');
-INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (4,    'BridgefieldBridges', '0CZpWyZKkTABMliwA/0W1jaYUJE=', 'hYqPM95MXwY=', 'admin');
-INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (5,	'CoachCarter', 'BXW4iJxq0+ZTB+ZTx66yTQpQebc=', 'FXhaCioadlQ=', 'admin');
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (3,	'Athens Sports Center', '5C3f+YD3kx3mH8TQPRPqRqyqLjo=', 'MW6lnSChV1Q=', 'admin');
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (4,    'Bridgefield Bridges', '0CZpWyZKkTABMliwA/0W1jaYUJE=', 'hYqPM95MXwY=', 'admin');
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (5,	'Coach Carter', 'BXW4iJxq0+ZTB+ZTx66yTQpQebc=', 'FXhaCioadlQ=', 'admin');
 INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (6,	'Dougthebigsleep', 'cfpq6XHgRcvX+ckKCgRQX0q6/1s=', '4ZAkChsb+5Q=', 'user');
 INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (7,	'ExtraGood1992', 'p1IZ+bEB992j4IQde3x1eoS+pBg=', '9EBow/9ISqI=', 'user');
-INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (8,	'FeloniousFelines', 'jPCrwEvNE/yfYSa0itn5Mpz6Q9c=', 'cFK5lgDnzfk=', 'user');
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (8,	'Felonious Felines', 'jPCrwEvNE/yfYSa0itn5Mpz6Q9c=', 'cFK5lgDnzfk=', 'user');
 INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (9,	'goodriddance', 'OMghYW3jmdlJ7ffEsOCuaNDZRh0=', 'MTIex7iREik=', 'user');
 INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (10,	'HenryTheOctopus', 'g0Q2aeoMd40+n8vNquy6rLBvAt0=', 'NYK4oaniGzg=', 'user');
-INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (11, 'GloboGymPurpleCobras','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin')
-INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (12, 'AverageJoes','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin')
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (11, 'Globo Gym Purple Cobras','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin')
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (12, 'Average Joes','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin')
 INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (13, 'Lumbertjacks','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','user')
-INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (14, 'LasVegasPoliceDepartment','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin')
-INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (15, 'ClownPunchers','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','user')
-INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (16, 'ChipSkylardDDS','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin')
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (14, 'Las Vegas Police Department','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin')
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (15, 'Clown Punchers','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','user')
+INSERT INTO users (user_id, username, password_hash, salt, user_role) VALUES (16, 'Chip Skylark DDS','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin')
 
 SET IDENTITY_INSERT users OFF
 
@@ -100,7 +100,7 @@ INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id ,
 INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (6, 3, 'Balls of Fury', 19, 'Recruiting');
 INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (7, 14, 'Las Vegas International Dodgeball Open', 8, 'Active');
 INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (8, 11, '17th Semi-Annual Skinny Sumos', 11, 'Recruiting');
-INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (9, 16, 'ShinyTeeth Scholarship Showdown', 24, 'Recruiting');
+INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (9, 16, 'Shiny Teeth Scholarship Showdown', 24, 'Recruiting');
 INSERT INTO tournaments (tournament_id, creator_id ,tournament_name , sport_id , tour_status) VALUES (10, 14, 'DARE to Dump', 21, 'Recruiting');
 
 
