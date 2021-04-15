@@ -59,12 +59,7 @@ body {
   
 }
 
-footer {
-  width: 100%;
-  font-size: 30px;
-   position: absolute;
-  bottom: 5px;
-}
+
 
 
 

@@ -62,6 +62,7 @@ export default {
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
+   background-attachment: fixed;
 }
 #profiles{
   margin-top: 25px;
@@ -89,25 +90,12 @@ export default {
    
 }
 
-footer{
-    display: none;
-}
 
-#footballfanpic{
-  max-width: 400px;
-  height:auto;
- 
-}
 
-#coolsoccerpic{
-   max-width: 400px;
-  height:auto;
-
-}
 
 
 #aboutheader{
-    text-shadow: 2px 3px 2px black;
+     text-shadow: 1px 1px 2px black, 0 0 1em #651fff  , 0 0 0.2em #651fff  ;
     font-size: 35px;
 }
 

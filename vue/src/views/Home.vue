@@ -111,18 +111,38 @@ export default {
 
 <style>
 .style {
-  background-color: #5b1ce6;
+  background-color: #9362ff;
+  opacity: .8;
+  border-color: #d2ffe0;
 }
 .style th {
   color: #ff844c;
+  border-color: #d2ffe0;
 }
 
 .style td {
   color: #ffc1a5;
-  border-color: #1fff65;
+  border-color: #d2ffe0;
 }
 
 .home h2 {
   font-size: 20px;
+  text-shadow: 3px 1px 2px black;
+}
+
+.home{
+ 
+  background-image: url("../../assets/bnwthreepanelbckgrnd.png");
+  background-color: #cccccc; /* Used if the image is unavailable */
+  height: 90vh; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+   background-attachment: fixed;
+
+}
+
+.home h1{
+  text-shadow: 1px 1px 2px black, 0 0 1em #651fff  , 0 0 0.2em #651fff  ;
 }
 </style>

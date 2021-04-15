@@ -1,8 +1,8 @@
 <template>
-  <div >
+  <div class="tourview" >
     <!-- message? -->
     <!-- I would like to make the search a button to collapse, but not sure on event handling -->
-    <p id>
+    <p id="searching">
       Looking for a Specific Tournament?<select
         id="search active"
         v-model="searchActive"
@@ -252,6 +252,33 @@ thead{
   border-color: #1fff65;
 }
 
+.tourview{
+ 
+  background-image: url("../../assets/bnwbackground.png");
+  background-color: #cccccc; /* Used if the image is unavailable */
+  height: 90vh; /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+   background-attachment: fixed;
+
+}
+
+#searching{
+  font-weight: bolder;
+ color: #a379ff;
+  text-shadow: 0px 2px 2px white;
+  font-size: 18px;
+}
+
+#search-function p{
+    font-weight: bolder;
+ color: #a379ff;
+  text-shadow: 0px 2px 2px white;
+  font-size: 17px;
+  
+
+}
 
 
 
