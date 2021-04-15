@@ -151,13 +151,13 @@ INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (3, 9, 7
 INSERT INTO participants (tournament_id , user_id, team_number ) VALUES (3, 10, 8);
 
 -- Drake edit for demo tournament
-INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (3, 1, 3, 4, '2', '0', 3);
-INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (3, 2, 5, 6, '2', '5', 6);
-INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (3, 3, 7, 8, '2', '5', 8);
-INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (3, 4, 9, 10, '2', '0', 9);
-INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (3, 5, 3, 6, '7', '1', 3);
-INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (3, 6, 8, 9, '5', '6', 9);
-INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (3, 7, 3, 9, '9', '10', 9);
+INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (3, 1, 3, 4, '50', '32', 3);
+INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (3, 2, 5, 6, '74', '75', 6);
+INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (3, 3, 7, 8, '24', '60', 8);
+INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (3, 4, 9, 10, '52', '80', 9);
+INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (3, 5, 3, 6, '56', '52', 3);
+INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (3, 6, 8, 9, '67', '87', 9);
+INSERT INTO matches (tournament_id , match_number, home_team_id, away_team_id, home_team_score, away_team_score, victor_id ) VALUES (3, 7, 3, 9, '60', '61', 9);
 
 
 -- second demo tournament
